@@ -1,0 +1,23 @@
+{% extends "base.html" %} 
+
+{% block title %}
+Chat App - Login
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+{% endblock %}
+
+{% block content %}
+<form method="post" class="login-form">
+    <div class="field-container">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="Your name..." required>
+    </div>
+    <div class="field-container">
+        <label for="password">Your password</label>
+        <input type="password" name="password" placeholder="Your password..." required>
+    </div>
+    <button type="submit" class="btn">Login</button>
+</form>
+{% endblock %}

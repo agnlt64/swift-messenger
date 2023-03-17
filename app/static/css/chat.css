@@ -1,0 +1,70 @@
+:root {
+    --sidebar-width: 40rem;
+    --sidebar-height: 100vw;
+    --sidebar-background: #0e1343;
+    --discret-color: #787a7c;
+    --rounded: 6px;
+    --sidebar-color: #a2a5a6;
+}
+
+.sidebar {
+    display: flex;
+    justify-content: center;
+    background-color: var(--sidebar-background);
+    width: var(--sidebar-width);
+}
+
+.chat-area {
+    background-color: #05092b;
+    color: var(--discret-color);
+    display: inline-block;
+    width: 100%;
+    height: 100vw;
+    border-left: 1.5px solid var(--discret-color);
+    border-right: 1.5px solid var(--discret-color);
+}
+
+.members-list {
+    display: inline-block;
+    background-color: var(--sidebar-background);
+    width: var(--sidebar-width);
+    height: var(--sidebar-height);
+}
+
+.search {
+    font-family: 'Titillium Web', sans-serif;
+    background-color: transparent;
+    width: 15rem;
+    height: 1.25rem;
+    padding: 5px 10px;
+    margin-top: 0.5rem;
+    font-size: 10pt;
+    border: 1px solid var(--discret-color);
+    border-radius: var(--rounded);
+}
+
+input:focus {
+    outline: none;
+}
+
+.send-message-form {
+    display: flex;
+    justify-content: center;
+}
+
+.send-message,
+.send-btn {
+    position: absolute;
+    top: 97vh;
+    transform: translateY(-100%);
+}
+
+.send-message {
+    /* margin: 0 1rem 1rem 1rem; */
+    padding: 8px 10px;
+    border-radius: var(--rounded);
+    border: 1px solid var(--discret-color);
+    color: var(--discret-color);
+    width: 65rem;
+    background-color: transparent;
+}

@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block title %} Chat App - Home Page {% endblock %}
+{% block style %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/chat.css') }}"
+/>
+<script
+  src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+  integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+  crossorigin="anonymous"
+></script>
+<script
+  src="https://code.jquery.com/jquery-3.6.4.min.js"
+  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+  crossorigin="anonymous"
+></script>
+{% endblock %} 
+
+{% block content %}
+<nav>
+    {% if user.is_authenticated %} 
+    <a href="/chat">Go to chat</a>
+    <a href="/logout">Logout</a>
+    {% else %}
+    <a href="/sign-up">Sign Up</a>
+    <a href="/login">Login</a>
+    {% endif %}
+</nav>
+
+<div class="sidebar">
+  <input type="text" class="search" placeholder="Search here..." />
+</div>
+
+<div class="chat-area" id="chat-area">
+  <div id="messages-container"></div>
+
+  <div class="send-message-form" id="send-message-form">
+    <input
+      type="text"
+      class="send-message"
+      id="message"
+      placeholder="Enter a message..."
+      autocomplete="off"
+    />
+    <button class="send-btn" id="send-btn" type="submit">Envoyer</button>
+  </div>
+</div>
+
+<div class="members-list"></div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

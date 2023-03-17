@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo&family=Titillium+Web&display=swap');
+
+:root {
+    --sidebar-width: 40rem;
+    --sidebar-height: 100vw;
+    --sidebar-background: #0e1343;
+    --discret-color: #787a7c;
+    --rounded: 6px;
+    --sidebar-color: #a2a5a6;
+}
+
+* {
+    font-family: 'Heebo', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+*:not(.chat-area) {
+    color: #a2a5a6;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    transform: translateY(calc(100vh/4));
+}
+
+.btn {
+    border-radius: var(--rounded);
+    padding: 10px 13px;
+    transition: background-color 0.3s;
+    background-color: #0a16a9;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #09147d;
+}
+
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.show-error-message {
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    height: 3rem;
+    width: 30rem;
+    border-radius: 0 0 12px 12px;
+}
+
+.show-success-message {
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    height: 3rem;
+    width: 30rem;
+    border-radius: 0 0 12px 12px;
+}
