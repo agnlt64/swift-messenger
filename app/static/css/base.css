@@ -39,6 +39,9 @@ body {
 
 .btn {
     border-radius: var(--rounded);
+    cursor: pointer;
+    border: none;
+    outline: none;
     padding: 10px 13px;
     transition: background-color 0.3s;
     background-color: #0a16a9;

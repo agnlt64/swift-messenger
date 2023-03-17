@@ -17,36 +17,34 @@
 {% endblock %} 
 
 {% block content %}
-<nav>
-    {% if user.is_authenticated %} 
+<!-- <nav>
     <a href="/chat">Go to chat</a>
     <a href="/logout">Logout</a>
-    {% else %}
-    <a href="/sign-up">Sign Up</a>
-    <a href="/login">Login</a>
-    {% endif %}
-</nav>
+</nav> -->
 
-<div class="sidebar">
-  <input type="text" class="search" placeholder="Search here..." />
-</div>
+<div id="user" data-user="{{ user.username }}"></div>
 
-<div class="chat-area" id="chat-area">
-  <div id="messages-container"></div>
-
-  <div class="send-message-form" id="send-message-form">
-    <input
-      type="text"
-      class="send-message"
-      id="message"
-      placeholder="Enter a message..."
-      autocomplete="off"
-    />
-    <button class="send-btn" id="send-btn" type="submit">Envoyer</button>
+<div class="ui-container">
+  <div class="sidebar">
+    <input type="text" class="search" placeholder="Search here..." />
   </div>
+  
+  <div class="chat-area" id="chat-area">
+    <div id="messages-container" class="messages-container"></div>
+  
+    <div class="send-message-form" id="send-message-form">
+      <input
+        type="text"
+        class="send-message"
+        id="message"
+        placeholder="Enter a message..."
+        autocomplete="off"
+      />
+    </div>
+  </div>
+  <div class="members-list"></div>
 </div>
 
-<div class="members-list"></div>
 {% endblock %} {% block scripts %}
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}

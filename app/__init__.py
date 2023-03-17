@@ -14,7 +14,7 @@ DB_NAME = 'database.sqlite3'
 @socketio.on('message')
 def handle_message(message: str):
     send(message, broadcast=True)
-        
+
 def create_app():
     from .auth import auth
     from .views import views
@@ -24,9 +24,10 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
     
-    create_database()
-    
-    
+    if not path.exists(f'instance/{DB_NAME}'):
+        with app.app_context():
+            db.create_all()
+        
     login_manager = LoginManager(app)
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'error'
@@ -39,10 +40,3 @@ def create_app():
     app.register_blueprint(views)
     
     return app, socketio
-
-
-def create_database() -> None:
-    if not path.exists(f'instance/{DB_NAME}'):
-        with app.app_context():
-            db.create_all()
-            print('db created')
