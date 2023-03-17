@@ -4,16 +4,29 @@
     --sidebar-background: #0e1343;
     --discret-color: #787a7c;
     --rounded: 6px;
-    --sidebar-color: #a2a5a6;
+    /* --sidebar-color: #a2a5a6; */
+    --sidebar-color: #17e6df;
 }
 
 * {
     font-family: 'Titillium Web', sans-serif;
 }
 
-.ui-container {
-    display: grid;
-    grid-template-columns: 0.3fr 2fr 0.3fr;
+input:focus {
+    outline: none;
+}
+
+@media screen and (min-width: 600px) {
+    .ui-container {
+        display: grid;
+        grid-template-columns: var(--sidebar-width) 4fr 0.5fr;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .ui-container {
+        display: none;
+    }
 }
 
 .sidebar {
@@ -21,6 +34,76 @@
     justify-content: center;
     background-color: var(--sidebar-background);
     width: var(--sidebar-width);
+}
+
+.new-room {
+    position: absolute;
+    border-radius: 50%;
+    top: 93vh;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: var(--sidebar-color);
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.new-room .bx {
+    font-size: 24px;
+    color: #fff;
+    margin-top: 3px;
+}
+
+.new-room:hover {
+    transform: translateY(-7%);
+    box-shadow: 0 0 20px rgba(4, 194, 252, 0.5);
+}
+
+.new-room:hover ~ .tooltip {
+    opacity: 1;
+}
+
+.new-room:hover ~ .arrow {
+    opacity: 1;
+}
+
+.tooltip {
+    position: relative;
+    top: 93vh;
+    right: 6rem;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+    width: 10rem;
+    height: 3rem;
+    padding: 8px 0;
+    transition: opacity 0.2s;
+    transform: translateY(-15%);
+    border-radius: var(--rounded);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 999;
+}
+
+/* from here:
+https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-triangle-using-css
+*/
+.arrow {
+    position: relative;
+    top: 94vh;
+    transform: translateY(-7%);
+    right: 14rem;
+    width: 0;
+    height: 0;
+    border-top: 1rem solid transparent;
+    border-right: 20px solid #000;
+    border-bottom: 1rem solid transparent;
+    transition: opacity 0.2s;
+    opacity: 0;
 }
 
 .chat-area {
@@ -38,6 +121,26 @@
     width: var(--sidebar-width);
     height: var(--sidebar-height);
     border-left: 1.5px solid var(--discret-color);
+    z-index: 999;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.title-container h2 {
+    color: var(--sidebar-color);
+}
+
+.title-container h2::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--sidebar-color);
 }
 
 .search {
@@ -45,35 +148,40 @@
     width: 15rem;
     height: 1.25rem;
     padding: 5px 10px;
-    margin-top: 0.5rem;
+    margin-top: 10px;
     font-size: 10pt;
     border: 1px solid var(--discret-color);
     border-radius: var(--rounded);
 }
 
-input:focus {
-    outline: none;
-}
-
 .send-message-form {
     display: flex;
-    justify-content: center;
+    justify-content: baseline;
+    align-items: center;
+    position: absolute;
+    top: 100vh;
+    padding: 5px 1.5rem;
+    border-top: 1px solid var(--discret-color);
+    background-color: var(--sidebar-background);
+    transform: translateY(-100%);
+    width: 100%;
+    height: 5rem;
 }
 
 .send-message {
-    position: absolute;
-    top: 97vh;
-    transform: translateY(-100%);
-    padding: 8px 10px;
-    width: 45rem;
     border-radius: var(--rounded);
     border: 1px solid var(--discret-color);
     color: var(--discret-color);
     background-color: transparent;
+    font-size: 16px;
+    width: calc(100% - 45rem);
+    height: 2rem;
+    padding: 3px 15px;
 }
 
 .messages-container {
     margin: 2rem;
     display: flex;
     flex-direction: column;
+    font-size: 24px;
 }
