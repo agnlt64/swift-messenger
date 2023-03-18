@@ -39,7 +39,7 @@ input:focus {
 .new-room {
     position: absolute;
     border-radius: 50%;
-    top: 93vh;
+    top: calc(100% - 50px - 1rem);
     left: 20px;
     width: 50px;
     height: 50px;
@@ -72,15 +72,15 @@ input:focus {
 }
 
 .tooltip {
-    position: relative;
-    top: 93vh;
-    right: 6rem;
+    position: absolute;
+    top: calc(100% - 50px - 1rem);
+    left: calc(20px + 50px + 30px);
     text-align: center;
     background-color: #000;
     color: #fff;
-    width: 10rem;
+    width: 6rem;
     height: 3rem;
-    padding: 8px 0;
+    padding: 8px;
     transition: opacity 0.2s;
     transform: translateY(-15%);
     border-radius: var(--rounded);
@@ -93,8 +93,9 @@ input:focus {
 https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-triangle-using-css
 */
 .arrow {
-    position: relative;
-    top: 94vh;
+    position: absolute;
+    top: calc(100% - 50px - 0.5rem);
+    left: calc(20px + 50px + 10px);
     transform: translateY(-7%);
     right: 14rem;
     width: 0;
@@ -104,6 +105,34 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     border-bottom: 1rem solid transparent;
     transition: opacity 0.2s;
     opacity: 0;
+}
+
+.room-form {
+    background-color: var(--sidebar-background);
+    border-radius: var(--rounded);
+    border: 1px solid var(--discret-color);
+    width: 30rem;
+    height: 20rem;
+    margin-inline: auto;
+    margin-top: 10rem;
+}
+
+.room-form button {
+    background-color: transparent;
+    border: none;
+    margin-left: calc(100% - 2rem);
+    cursor: pointer;
+}
+
+.room-form button img {
+    width: 20px;
+    height: 20px;
+    padding: 10px 0;
+}
+
+.room-form::backdrop {
+    background-color: #222;
+    opacity: 0.4;
 }
 
 .chat-area {

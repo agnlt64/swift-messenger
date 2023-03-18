@@ -1,4 +1,9 @@
-{% extends "base.html" %} {% block title %} Chat App - Home Page {% endblock %}
+{% extends "base.html" %} 
+
+{% block title %}
+Chat App - Home Page
+{% endblock %}
+
 {% block style %}
 <link
   rel="stylesheet"
@@ -19,7 +24,7 @@
 <div class="ui-container">
   <div class="sidebar">
     <input type="text" class="search" placeholder="Search here..." />
-    <button class="new-room">
+    <button class="new-room" id="create-room-btn">
       <i class='bx bxs-message-add'></i>
     </button>
     <span class="tooltip">Create a new chat room</span>
@@ -47,6 +52,17 @@
   </div>
 </div>
 
+<dialog id="room-form" class="room-form">
+  <button id="room-close-btn">
+    <img src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
+    <form method="dialog">
+      <input type="text" name="room-name" placeholder="Room name...">
+      <button class="btn">Confirm</button>
+    </form>
+  </button>
+</dialog>
+
 {% endblock %} {% block scripts %}
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script src="{{ url_for('static', filename='js/create_room.js') }}"></script>
 {% endblock %}
