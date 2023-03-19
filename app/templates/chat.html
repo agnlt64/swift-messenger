@@ -53,13 +53,13 @@ Chat App - Home Page
 </div>
 
 <dialog id="room-form" class="room-form">
-  <button id="room-close-btn">
+  <button id="room-close-btn" class="close-button">
     <img src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
-    <form method="dialog">
-      <input type="text" name="room-name" placeholder="Room name...">
-      <button class="btn">Confirm</button>
-    </form>
   </button>
+  <form method="dialog">
+    <input type="text" name="room-name" placeholder="Room name..." required>
+    <button class="">Confirm</button>
+  </form>
 </dialog>
 
 {% endblock %} {% block scripts %}
