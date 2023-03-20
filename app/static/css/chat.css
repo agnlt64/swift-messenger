@@ -108,9 +108,6 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
 }
 
 .room-form {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
     background-color: var(--sidebar-background);
     border-radius: var(--rounded);
     border: 1px solid var(--discret-color);

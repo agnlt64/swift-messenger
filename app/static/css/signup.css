@@ -15,9 +15,6 @@ body {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 50%);
     background-color: #172ad9;
     width: 20rem;
     height: 20rem;
@@ -31,6 +28,7 @@ body {
     border-radius: var(--rounded);
     outline: none;
     border: none;
+    color: #000;
 }
 
 .field-container {

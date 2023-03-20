@@ -50,17 +50,17 @@ Chat App - Home Page
     </div>
     <div class="members"></div>
   </div>
-</div>
 
-<dialog id="room-form" class="room-form">
-  <button id="room-close-btn" class="close-button">
-    <img src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
-  </button>
-  <form method="dialog">
-    <input type="text" name="room-name" placeholder="Room name..." required>
-    <button class="">Confirm</button>
-  </form>
-</dialog>
+  <dialog id="room-form" class="room-form">
+    <button id="room-close-btn" class="close-button">
+      <img src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
+    </button>
+    <form method="dialog">
+      <input type="text" name="room-name" placeholder="Room name..." required>
+      <button class="">Confirm</button>
+    </form>
+  </dialog>
+</div>
 
 {% endblock %} {% block scripts %}
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>

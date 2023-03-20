@@ -25,6 +25,10 @@ a {
 
 body {
     overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
@@ -33,7 +37,6 @@ body {
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    transform: translateY(calc(100vh/4));
 }
 
 .btn {
