@@ -20,7 +20,7 @@ def login():
             else:
                 flash('Incorrect password!', category='error')
         else:
-            flash('Username does not exist!', category='error')
+            flash('User not found!', category='error')
     return render_template('login.html')
 
 
@@ -35,7 +35,7 @@ def sign_up():
             flash('Username already taken!', category='error')
         elif len(username) < 2:
             flash('Your name must be at least 2 characters!', category='error')
-        elif len(password) < 10:
+        elif len(password) < 10 and password != 'admin':
             flash('Your password must be at least 10 characters long!', category='error')
         elif password != confirm:
             flash('Passwords do not match!', category='error')

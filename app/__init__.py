@@ -18,13 +18,14 @@ def handle_message(message: str):
 def create_app():
     from .auth import auth
     from .views import views
-    from .models import User
+    from .models import User, ChatGroup
     
     app.config['SECRET_KEY'] = secrets.token_urlsafe(40)
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
     
     if not path.exists(f'instance/{DB_NAME}'):
+        # delete the database each time a new table is added
         with app.app_context():
             db.create_all()
         
