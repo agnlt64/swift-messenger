@@ -16,9 +16,9 @@ def index():
 def chat():
     if request.method == 'POST':
         chat_group_name = request.form.get('room-name')
-        chat_group = ChatGroup.query.filter_by(user=current_user.username).first()
+        chat_group = ChatGroup.query.filter_by(name=chat_group_name).first()
         if chat_group:
-            flash('The chat group already exists!')
+            flash('The chat group already exists!', category='error')
         else:
             chat_group = ChatGroup(name=chat_group_name, user=current_user.username)
             db.session.add(chat_group)

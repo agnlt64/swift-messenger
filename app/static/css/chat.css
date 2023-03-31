@@ -29,11 +29,31 @@ input:focus {
     }
 }
 
+/* sidebar styling  */
 .sidebar {
-    display: flex;
-    justify-content: center;
     background-color: var(--sidebar-background);
     width: var(--sidebar-width);
+}
+
+.group-container {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.group {
+    background-color: red;
+    min-width: 100%;
+    height: 5rem;
+    margin-bottom: 2px;
+}
+
+.separator {
+    display: inline-block;
+    background-color: yellow;
+    min-width: 100%;
+    height: 2px;
+    margin-top: 3.5rem;
 }
 
 .new-room {
@@ -153,6 +173,12 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     background-color: var(--sidebar-color);
 }
 
+.room-form #error-message {
+    display: none;
+    color: red;
+    font-size: 20px;
+}
+
 .close-button {
     background-color: transparent;
     border: none;
@@ -251,3 +277,4 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     flex-direction: column;
     font-size: 24px;
 }
+

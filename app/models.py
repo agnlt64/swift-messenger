@@ -9,5 +9,5 @@ class User(db.Model, UserMixin):
 
 class ChatGroup(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user = db.Column(db.String(150), unique=True)
+    user = db.Column(db.String(150))
     name = db.Column(db.String(100), unique=True)
