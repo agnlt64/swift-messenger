@@ -77,7 +77,6 @@ input:focus {
     left: calc(20px + 50px + 30px);
     text-align: center;
     background-color: #000;
-    color: #fff;
     width: 6rem;
     height: 3rem;
     padding: 8px;
@@ -87,6 +86,14 @@ input:focus {
     pointer-events: none;
     opacity: 0;
     z-index: 999;
+}
+
+.tooltip p {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
 /* from here:

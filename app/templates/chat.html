@@ -11,7 +11,7 @@ Chat App - Home Page
 />
 <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
 <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
-{% endblock %} 
+{% endblock %}
 
 {% block content %}
 <!-- <nav>
@@ -19,15 +19,20 @@ Chat App - Home Page
     <a href="/logout">Logout</a>
 </nav> -->
 
-<div id="user" data-user="{{ user.username }}"></div>
+<div id="user" data-user="{{ user }}"></div>
 
 <div class="ui-container">
   <div class="sidebar">
     <input type="text" class="search" placeholder="Search here..." />
+    {% for group in groups %}
+      <p>{{ group.name }}</p>
+    {% endfor %}
     <button class="new-room" id="create-room-btn">
       <i class='bx bxs-message-add'></i>
     </button>
-    <span class="tooltip">Create a new chat room</span>
+    <span class="tooltip">
+      <p>Create a new chat room</p>
+    </span>
     <span class="arrow"></span>
   </div>
   
