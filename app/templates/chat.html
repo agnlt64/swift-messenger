@@ -1,16 +1,14 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block title %}
 Chat App - Home Page
 {% endblock %}
 
 {% block style %}
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/chat.css') }}"
-/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}" />
 <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
-<script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+<script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+  integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
 {% endblock %}
 
 {% block content %}
@@ -25,11 +23,15 @@ Chat App - Home Page
   <div class="sidebar">
     <input type="text" class="search" placeholder="Search here..." />
     <div class="group-container">
+      <span class="separator top-separator"></span>
       {% for group in groups %}
-        <div class="group">
-          <p>{{ group.name }}</p>
-          <span class="separator"></span>
-        </div>
+      {% if group.user == user %}
+      <div class="group">
+        <p class="group-name">{{ group.name }}</p>
+        <img class="group-picture" src="{{ group.image }}" alt="group logo">
+      </div>
+      <span class="separator"></span>
+      {% endif %}
       {% endfor %}
     </div>
     <button class="new-room" id="create-room-btn">
@@ -40,18 +42,12 @@ Chat App - Home Page
     </span>
     <span class="arrow"></span>
   </div>
-  
+
   <div class="chat-area" id="chat-area">
     <div id="messages-container" class="messages-container"></div>
-  
+
     <div class="send-message-form" id="send-message-form">
-      <input
-        type="text"
-        class="send-message"
-        id="message"
-        placeholder="Enter a message..."
-        autocomplete="off"
-      />
+      <input type="text" class="send-message" id="message" placeholder="Enter a message..." autocomplete="off" />
     </div>
   </div>
   <div class="members-list">
@@ -67,9 +63,12 @@ Chat App - Home Page
     </button>
     <form method="post">
       <input type="text" id="room-name" name="room-name" placeholder="Room name..." required>
-      <button class="">Confirm</button>
+      <input id="choose-image-input" type="file" accept="image/*" hidden>
+      <button id="choose-image">Select an image</button>
+      <div class="new-img-container" id="new-img-container"></div>
+      <button>Confirm</button>
     </form>
-    <p id="error-message">The name must be less than 100 characters</p>
+    <p id="error-message">The name must be less than 100 characters!</p>
   </dialog>
 </div>
 

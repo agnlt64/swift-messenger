@@ -42,18 +42,33 @@ input:focus {
 }
 
 .group {
-    background-color: red;
     min-width: 100%;
     height: 5rem;
     margin-bottom: 2px;
 }
 
+.group-name {
+    padding: 5px 0 0 70px;
+    font-size: 20px;
+}
+
 .separator {
     display: inline-block;
-    background-color: yellow;
+    background-color: var(--discret-color);
     min-width: 100%;
     height: 2px;
-    margin-top: 3.5rem;
+}
+
+.top-separator {
+    margin-top: 15px;
+}
+
+.group-picture {
+    border-radius: 50%;
+    height: 60px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    margin: calc(-5rem / 2 + 30px / 2) 0 0 5px; /* 5rem is the height of the group block */
 }
 
 .new-room {
@@ -138,9 +153,10 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     background-color: var(--sidebar-background);
     border-radius: var(--rounded);
     border: 1px solid var(--discret-color);
+    /* NEVER CHANGE WIDTH AND HEIGHT VALUES */
     width: 30rem;
     height: 20rem;
-    margin-inline: auto;
+    position: absolute;
 }
 
 .room-form form {
@@ -157,6 +173,19 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     outline: none;
     border: 1px solid var(--discret-color);
     border-radius: var(--rounded);
+}
+
+.room-form .new-img-container img {
+    border-radius: 50%;
+    height: 115px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.room-form .new-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .room-form form button {
@@ -177,13 +206,13 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     display: none;
     color: red;
     font-size: 20px;
+    justify-content: center;
 }
 
 .close-button {
     background-color: transparent;
     border: none;
     margin-left: calc(100% - 2rem);
-    padding-bottom: 40px;
     cursor: pointer;
 }
 
