@@ -188,7 +188,7 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     align-items: center;
 }
 
-.room-form form button {
+.room-form .form-btn {
     cursor: pointer;
     height: 2.5rem;
     background-color: #14b8b2;
@@ -198,8 +198,18 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     font-size: large;
 }
 
-.room-form form button:hover {
+.room-form .form-btn:hover {
     background-color: var(--sidebar-color);
+}
+
+.room-form .form-btn-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-form .form-btn-div span {
+    color: #fff;
 }
 
 .room-form #error-message {

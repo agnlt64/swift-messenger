@@ -27,8 +27,9 @@ body {
     overflow: hidden;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    flex-direction: column;
 }
 
 .container {
@@ -60,24 +61,38 @@ body {
     align-items: center;
 }
 
-.show-error-message {
-    background-color: red;
+.invisible {
+    background-color: transparent !important;
+}
+
+.close-message {
+    aspect-ratio: 1/1;
+    width: 20px;
+    margin-left: 1rem;
+}
+
+.close-message:hover {
+    cursor: pointer;
+}
+
+.error {
+    --color: red;
+}
+
+.success {
+    --color: green;
+}
+
+.message {
+    background-color: var(--color);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
     height: 3rem;
     width: 30rem;
     border-radius: 0 0 12px 12px;
 }
 
-.show-success-message {
-    background-color: green;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.message p {
     color: #fff;
-    height: 3rem;
-    width: 30rem;
-    border-radius: 0 0 12px 12px;
 }

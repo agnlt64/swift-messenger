@@ -24,19 +24,19 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
 
-    if not path.exists(f'instance/{DB_NAME}'):
-        with app.app_context():
+    with app.app_context():
+        if not path.exists(f'instance/{DB_NAME}'):
         # delete the database each time a new table is added
             db.create_all()
         
     login_manager = LoginManager(app)
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'error'
-    
+
     @login_manager.user_loader
     def load_user(id: int):
         return User.query.get(id)
-        
+
     app.register_blueprint(auth)
     app.register_blueprint(views)
     

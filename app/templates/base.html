@@ -11,20 +11,16 @@
 </head>
 <body>
     <div class="message-container">
+        <div class="message invisible">
+            <p></p>
+        </div>
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    {% if category == 'error' %}
-                        <div class="show-error-message">
-                            {{ message }}
-                        </div>
-                    {% else %}
-                        <div class="show-success-message">
-                            {{ message }}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
+            {% for category, message in messages %}
+                <div class="message {{ category }}" id="message">
+                    <p>{{ message }}</p>
+                </div>
+                <img class="close-message" id="close-message" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
+            {% endfor %}
         {% endwith %}
     </div>
 
@@ -36,6 +32,7 @@
         {% endblock %}
     </footer>
 </body>
+<script src="{{ url_for('static', filename='js/close_message.js') }}"></script>
 {% block scripts %}
 {% endblock %}
 </html>
