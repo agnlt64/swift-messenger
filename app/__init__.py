@@ -3,14 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_socketio import SocketIO, send
 from flask_login import LoginManager
 import os
-from os import path
 import secrets
-from dotenv import load_dotenv
+
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
-
-load_dotenv('.config')
 
 db = SQLAlchemy()
 DB_NAME = 'database.sqlite3'
