@@ -1,4 +1,4 @@
 .env/
 app/__pycache__/
 files/
-.config
+db_config.py
