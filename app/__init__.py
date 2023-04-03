@@ -2,7 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy 
 from flask_socketio import SocketIO, send
 from flask_login import LoginManager
-import os
 import secrets
 
 
@@ -22,7 +21,8 @@ def create_app():
     from .models import User, ChatGroup
     
     app.config['SECRET_KEY'] = secrets.token_urlsafe(40)
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+    with open('.config', 'r') as config_file:
+        app.config['SQLALCHEMY_DATABASE_URI'] = config_file.read()
     db.init_app(app)
         
     login_manager = LoginManager(app)
