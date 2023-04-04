@@ -33,6 +33,10 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'error'
 
+    try:
+        os.mkdir('app/static/files/')
+    except FileExistsError:
+        pass
     with app.app_context():
         db.create_all()
 
