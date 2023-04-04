@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_socketio import SocketIO, send
 from flask_login import LoginManager
 import secrets
+import os
 
 
 app = Flask(__name__)
@@ -21,8 +22,11 @@ def create_app():
     from .models import User, ChatGroup
     
     app.config['SECRET_KEY'] = secrets.token_urlsafe(40)
-    with open('.config', 'r') as config_file:
-        app.config['SQLALCHEMY_DATABASE_URI'] = config_file.read()
+    try:
+        with open('.config', 'r') as config_file:
+            app.config['SQLALCHEMY_DATABASE_URI'] = config_file.read()
+    except FileNotFoundError:
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     db.init_app(app)
         
     login_manager = LoginManager(app)
