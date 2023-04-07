@@ -6,7 +6,7 @@ from . import db
 
 auth = Blueprint('auth', __name__)
 
-@auth.route('/login/', methods=['GET', 'POST'])
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form.get('username')
@@ -14,7 +14,6 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user:
             if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
                 return redirect(url_for('views.chat'))
             else:
@@ -24,7 +23,7 @@ def login():
     return render_template('login.html')
 
 
-@auth.route('/sign-up/', methods=['GET', 'POST'])
+@auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
         username = request.form.get('username')
@@ -49,7 +48,7 @@ def sign_up():
     return render_template('signup.html')
 
 
-@auth.route('/logout/')
+@auth.route('/logout')
 @login_required
 def logout():
     logout_user()

@@ -9,6 +9,7 @@ Chat App - Home Page
 <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
 <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
   integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/htmx.org@1.8.6"></script>
 {% endblock %}
 
 {% block content %}
@@ -22,13 +23,15 @@ Chat App - Home Page
 <div class="ui-container">
   <div class="sidebar">
     <input type="text" class="search" placeholder="Search here..." />
-    <div class="group-container">
+    <div class="group-container" id="group-container">
       <span class="separator top-separator"></span>
       {% for group in groups %}
       {% if group.user == user %}
-      <div class="group">
-        <p class="group-name">{{ group.name }}</p>
-        <img class="group-picture" src="{{ url_for('static', filename='files/'+group.image_path ) }}" alt="group logo">
+      <div class="group" hx-get="/group/{{ group.id }}" hx-target="#chat-area" hx-swap="innerHTML">
+          <span>
+              <p class="group-name">{{ group.name }}</p>
+          </span>
+          <img class="group-picture" src="{{ url_for('static', filename='files/'+group.image_path ) }}" alt="group logo">
       </div>
       <span class="separator"></span>
       {% endif %}
@@ -43,13 +46,8 @@ Chat App - Home Page
     <span class="arrow"></span>
   </div>
 
-  <div class="chat-area" id="chat-area">
-    <div id="messages-container" class="messages-container"></div>
+  <div class="chat-area" id="chat-area"></div>
 
-    <div class="send-message-form" id="send-message-form">
-      <input type="text" class="send-message" id="message" placeholder="Enter a message..." autocomplete="off" />
-    </div>
-  </div>
   <div class="members-list">
     <div class="title-container">
       <h2>All group members</h2>
@@ -61,7 +59,7 @@ Chat App - Home Page
     <button id="room-close-btn" class="close-button">
       <img src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
     </button>
-    <form method="post" action="/create-form/" enctype="multipart/form-data">
+    <form hx-post="/create-form" hx-target="#group-container" hx-swap="innerHTML" enctype="multipart/form-data">
       <input type="text" id="room-name" name="room-name" placeholder="Room name..." required>
       <input id="choose-image-input" name="image-file" type="file" accept="image/*" hidden>
       <!-- not a button because a button would submit the form -->
@@ -69,13 +67,15 @@ Chat App - Home Page
         <span>Select an image</span>
       </div>
       <div class="new-img-container" id="new-img-container"></div>
-      <button class="form-btn">Confirm</button>
+      <button class="form-btn" id="submit-form">Confirm</button>
     </form>
     <p id="error-message">The name must be less than 100 characters!</p>
   </dialog>
 </div>
+{% endblock %} 
 
-{% endblock %} {% block scripts %}
+{% block scripts %}
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 <script src="{{ url_for('static', filename='js/create_room.js') }}"></script>
+<script src="{{ url_for('static', filename='js/select_chat.js') }}"></script>
 {% endblock %}

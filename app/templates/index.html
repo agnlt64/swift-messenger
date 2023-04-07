@@ -6,14 +6,15 @@ Chat App
 
 {% block style %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<script src="https://unpkg.com/htmx.org@1.8.6"></script>
 {% endblock %}
 
 {% block content %}
-<main class="container">
-    <h2>Welcome to the chat app!</h2>
+<main class="container" id="container">
+    <h2>Welcome to SwiftMessenger!</h2>
     <div class="btn-container">
-        <a href="/login/" class=btn>Login</a>
-        <a href="/sign-up/" class=btn>Sign Up</a>
+        <a href="/login"  class="btn">Login</a>
+        <a href="/sign-up" class="btn">Sign Up</a>
     </div>
 </main>
 {% endblock %}

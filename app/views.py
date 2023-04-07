@@ -11,12 +11,12 @@ views = Blueprint('views', __name__)
 def index():
     return render_template('index.html')
 
-@views.route('/chat/')
+@views.route('/chat')
 @login_required
 def chat():
     return render_template('chat.html', user=current_user.username, groups=ChatGroup.query.all())
 
-@views.route('/create-form/', methods=['POST'])
+@views.route('/create-form', methods=['POST'])
 @login_required
 def create_form():
     if request.method == 'POST':
@@ -31,4 +31,8 @@ def create_form():
             chat_group = ChatGroup(name=chat_group_name, user=current_user.username, image_path=filename)
             db.session.add(chat_group)
             db.session.commit()
-    return redirect(url_for('views.chat'))
+    return render_template('create_group.html', user=current_user.username, groups=ChatGroup.query.all())
+
+@views.route('/group/<id>')
+def group(id):
+    return render_template('send_message.html')
