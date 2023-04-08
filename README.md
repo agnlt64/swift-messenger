@@ -5,7 +5,7 @@ In order to run properlt, the app needs a config file named `.config` in the roo
 
 ## Run on macOS/Linux
 ```console
-git clone https://gtihub.com/ABFStudio/chat-app.git
+git clone https://github.com/ABFStudio/swift-messenger.git
 cd chat-app
 python3 -m venv .env
 source .env/bin/activate
@@ -15,7 +15,7 @@ python main.py
 
 ## Run on Windows
 ```console
-git clone https://gtihub.com/ABFStudio/chat-app.git
+git clone https://github.com/ABFStudio/swift-messenger.git
 cd chat-app
 python -m venv .env
 .env\Scripts\Activate.ps1
