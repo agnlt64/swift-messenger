@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
     {% block style %}
     {% endblock %}
 </head>
-<body>
+<body id="body">
     <div class="message-container">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% for category, message in messages %}
-                <div class="message {{ category }}" id="message">
+                <div class="flashed-message {{ category }}" id="message">
                     <p>{{ message }}</p>
                 </div>
                 <img class="close-message" id="close-message" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">

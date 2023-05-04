@@ -1,0 +1,23 @@
+<div id="messages-container" class="messages-container">
+    {% for message in messages %}
+        {% if message.chat_group == group.id %}
+            {% if message.sender == user %}
+            <div class="sent message">
+                <p>{{ message.content }}</p>
+            </div>
+            {% else %}
+            <div class="received message">
+                <p>{{ message.content }}</p>
+            </div>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</div>
+
+<form hx-post="/send-message" hx-target="#messages-container" hx-swap="beforeend" class="send-message-form" id="send-message-form">
+    <input type="text" class="send-message" id="message" placeholder="Enter a message..." autocomplete="off" />
+</form>
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

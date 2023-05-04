@@ -1,10 +1,9 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy 
-from flask_socketio import SocketIO, send
+from flask_sqlalchemy import SQLAlchemy
+from flask_socketio import SocketIO
 from flask_login import LoginManager
 import secrets
 import os
-
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins="*")
@@ -12,14 +11,10 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 db = SQLAlchemy()
 DB_NAME = 'database.sqlite3'
 
-@socketio.on('message')
-def handle_message(message: str):
-    send(message, broadcast=True)
-
 def create_app():
     from .auth import auth
     from .views import views
-    from .models import User, ChatGroup
+    from .models import User, ChatGroup, Message
     
     app.config['SECRET_KEY'] = secrets.token_urlsafe(40)
     try:
@@ -47,4 +42,4 @@ def create_app():
     app.register_blueprint(auth)
     app.register_blueprint(views)
     
-    return app, socketio
+    return app

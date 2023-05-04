@@ -13,25 +13,32 @@ Chat App - Home Page
 {% endblock %}
 
 {% block content %}
-<!-- <nav>
-    <a href="/chat">Go to chat</a>
+<nav class="nav">
+  <div class="left">
     <a href="/logout">Logout</a>
-</nav> -->
-
-<div id="user" data-user="{{ user }}"></div>
+  </div>
+  <div class="right">
+    <a href="/settings">
+      <span>Manage your profile</span>
+      <img src="{{ url_for('static', filename='media/default.png') }}" alt="profile picture" class="profile-picture">
+    </a>
+  </div>
+</nav>
 
 <div class="ui-container">
   <div class="sidebar">
-    <input type="text" class="search" placeholder="Search here..." />
+    <div class="search-container">
+      <input type="text" class="search" placeholder="Search here..." />
+    </div>
     <div class="group-container" id="group-container">
       <span class="separator top-separator"></span>
       {% for group in groups %}
-      {% if group.user == user %}
-      <div class="group" hx-get="/group/{{ group.id }}" hx-target="#chat-area" hx-swap="innerHTML">
-          <span>
-              <p class="group-name">{{ group.name }}</p>
-          </span>
-          <img class="group-picture" src="{{ url_for('static', filename='files/'+group.image_path ) }}" alt="group logo">
+      {% if group.creator == user %}
+      <div class="group" hx-get="/group/{{ group.id }}" data-group-id="{{ group.id }}" hx-target="#chat-area" hx-swap="innerHTML">
+        <span>
+          <p class="group-name">{{ group.name }}</p>
+        </span>
+        <img class="group-picture" src="{{ url_for('static', filename='files/'+group.image_path ) }}" alt="group logo">
       </div>
       <span class="separator"></span>
       {% endif %}
@@ -75,7 +82,6 @@ Chat App - Home Page
 {% endblock %} 
 
 {% block scripts %}
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 <script src="{{ url_for('static', filename='js/create_room.js') }}"></script>
 <script src="{{ url_for('static', filename='js/select_chat.js') }}"></script>
 {% endblock %}

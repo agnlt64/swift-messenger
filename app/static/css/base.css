@@ -83,7 +83,7 @@ body {
     --color: green;
 }
 
-.message {
+.flashed-message {
     background-color: var(--color);
     display: flex;
     align-items: center;
@@ -93,7 +93,7 @@ body {
     border-radius: 0 0 12px 12px;
 }
 
-.message p {
+.flashed-message p {
     color: #fff;
 }
 

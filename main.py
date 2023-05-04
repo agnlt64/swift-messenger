@@ -1,8 +1,9 @@
 from app import create_app
+from app.events import socketio
 import sys
 
 if __name__ == '__main__':
-    app, socketio = create_app()
+    app = create_app()
     if len(sys.argv) > 2:
         if sys.argv[1] == '--expose' or sys.argv[1] == '-E':
             socketio.run(app, debug=True, host='0.0.0.0', port=8080)

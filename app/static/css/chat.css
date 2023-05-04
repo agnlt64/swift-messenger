@@ -33,10 +33,46 @@ input:focus {
     }
 }
 
+.nav {
+    height: 3.5rem;
+    border-bottom: 1px solid var(--discret-color);
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav .right {
+    position: absolute;
+    right: 0;
+    margin-right: 1rem;
+}
+
+.nav .right a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-picture {
+    height: 2.5rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.nav .left {
+    margin-left: 1rem;
+}
+
 /* sidebar styling  */
 .sidebar {
     background-color: var(--sidebar-background);
     width: var(--sidebar-width);
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
 }
 
 .group-container {
@@ -266,6 +302,14 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     width: 100%;
     height: 100vw;
     border-left: 1.5px solid var(--discret-color);
+    overflow-y: auto;
+    /* firefox */
+    scrollbar-color: transparent transparent;
+}
+
+/* chrome */
+.chat-area::-webkit-scrollbar {
+    display: none;
 }
 
 .members-list {
@@ -335,7 +379,29 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
 .messages-container {
     margin: 2rem;
     display: flex;
+    gap: 10px;
     flex-direction: column;
-    font-size: 24px;
+    justify-content: space-between;
+    font-size: 20px;
+    margin-bottom: calc(100% - 10rem);
 }
 
+.message {
+    padding: 10px 13px;
+    width: fit-content;
+}
+
+.message p {
+    color: #fff;
+}
+
+.sent {
+    background-color: #1da5b8;
+    border-radius: 20px 20px 0 20px;
+    margin-left: calc(100% - 10rem - 2rem - 20rem);
+}
+
+.received {
+    background-color: #726d6c;
+    border-radius: 20px 20px 20px 0;
+}

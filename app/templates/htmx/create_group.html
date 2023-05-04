@@ -1,7 +1,7 @@
 <div class="message-container">
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% for category, message in messages %}
-            <div class="group-message message {{ category }}" id="message">
+            <div class="group-message flashed-message {{ category }}" id="message">
                 <p>{{ message }}</p>
             </div>
             <!-- ugly but necessary :( -->
@@ -12,7 +12,7 @@
 
 <span class="separator top-separator"></span>
 {% for group in groups %}
-{% if group.user == user %}
+{% if group.creator == user %}
 <div class="group" hx-get="/group/{{ group.id }}" hx-target="#chat-area" hx-swap="innerHTML">
     <span>
         <p class="group-name">{{ group.name }}</p>
