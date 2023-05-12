@@ -1,0 +1,75 @@
+<ul class="box-info">
+    <li>
+        <i class="bx bxs-group total-users"></i>
+        <span class="text">
+            <h3>{{ total_users }}</h3>
+            <p>Total users</p>
+        </span>
+    </li>
+</ul>
+<div class="table-data">
+    <div class="order">
+        <div class="head">
+            <h3>All Users</h3>
+            <i class="bx bx-search" ></i>
+            <i class="bx bx-filter" ></i>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Date Order</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>
+                        <img src="{{ url_for('static', filename=''+user.profile_picture) }}">
+                        <p>{{ user.username }}</p>
+                    </td>
+                    <td>01-10-2021</td>
+                    <td><span class="status completed">Completed</span></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="todo">
+        <div class="head">
+            <h3>Todos</h3>
+            <i class="bx bx-plus" ></i>
+            <i class="bx bx-filter" ></i>
+        </div>
+        <ul class="todo-list">
+            <li class="completed">
+                <p>Todo List</p>
+                <i class="bx bx-dots-vertical-rounded" ></i>
+            </li>
+            <dialog id="dialog">
+                <p>text</p>
+            </dialog>
+            <li class="completed">
+                <p>Todo List</p>
+                <i class="bx bx-dots-vertical-rounded" ></i>
+            </li>
+            <li class="not-completed">
+                <p>Todo List</p>
+                <i class="bx bx-dots-vertical-rounded" ></i>
+            </li>
+            <li class="completed">
+                <p>Todo List</p>
+                <i class="bx bx-dots-vertical-rounded" ></i>
+            </li>
+            <li class="not-completed">
+                <p>Todo List</p>
+                <i class="bx bx-dots-vertical-rounded" ></i>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/todolist.js') }}"></script>
+{% endblock %}

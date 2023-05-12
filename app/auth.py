@@ -39,7 +39,7 @@ def sign_up():
         elif password != confirm:
             flash('Passwords do not match!', category='error')
         else:
-            new_user = User(username=username, password=generate_password_hash(password, method='sha256'))
+            new_user = User(username=username, password=generate_password_hash(password, method='sha256'), profile_picture='media/default.png')
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
@@ -51,5 +51,6 @@ def sign_up():
 @auth.route('/logout')
 @login_required
 def logout():
+    flash('Logged out successfully!', category='success')
     logout_user()
     return redirect(url_for('auth.login'))

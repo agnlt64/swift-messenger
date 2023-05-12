@@ -5,6 +5,7 @@ const chooseImageInput = document.getElementById('choose-image-input')
 const closeBtn = document.getElementById('room-close-btn')
 const errorMsg = document.getElementById('error-message')
 const roomName = document.getElementById('room-name')
+const submitForm = document.getElementById('submit-form')
 
 // 30rem -> *16 to convert in pixels
 const ROOM_FORM_WIDTH = 30 * 16
@@ -50,4 +51,10 @@ roomName.addEventListener('input', () => {
 // close dialog box
 closeBtn.addEventListener('click', () => {
     roomForm.close()
+})
+
+submitForm.addEventListener('click', () => {
+    if (roomName.value !== '' && document.getElementById('new-img-container').innerHTML !== '') {
+        roomForm.close()
+    }
 })

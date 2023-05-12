@@ -3,4 +3,5 @@ app/__pycache__/
 __pycache__/
 .config
 files/
+files/pp
 node_modules/

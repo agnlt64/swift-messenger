@@ -6,6 +6,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
     chat_groups = db.Column(db.String(10_000_000), default='')
+    profile_picture = db.Column(db.String(200), default='media/default.png')
 
 class ChatGroup(db.Model):
     id = db.Column(db.Integer, primary_key=True)

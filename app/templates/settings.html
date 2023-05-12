@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiftmessegnr - Settings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+    <script src="https://unpkg.com/htmx.org@1.8.6"></script>
+</head>
+<body id="body">
+    <form hx-post="/update/pp" hx-target="#body" hx-swap="innerHTML" enctype="multipart/form-data">
+        <input id="choose-image-input" name="image-file" type="file" accept="image/*" hidden>
+        <!-- not a button because a button would submit the form -->
+        <div class="form-btn form-btn-div" id="choose-image">
+            <span>Select an image</span>
+        </div>
+        <div class="new-img-container" id="new-img-container"></div>
+        <button class="form-btn" id="submit-form">Confirm</button>
+    </form>
+</body>
+<script src="{{ url_for('static', filename='js/profile_picture.js') }}"></script>
+</html>

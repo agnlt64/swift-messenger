@@ -62,6 +62,9 @@ input:focus {
 
 .nav .left {
     margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
 /* sidebar styling  */

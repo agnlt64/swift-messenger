@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <script src="https://unpkg.com/htmx.org@1.8.6"></script>
+    <title>Admin Panel</title>
+</head>
+<body>
+    <section class="sidebar" id="sidebar">
+        <a href="/chat" class="brand">
+            <i class='bx bx-chat'></i>
+            <span class="text">Swiftmessengr</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+                <p hx-get="/dashboard" hx-trigger="load, click" hx-target="#container" hx-swap="innerHTML">
+                    <i class="bx bxs-dashboard" ></i>
+                    <span class="text">Dashboard</span>
+                </p>
+            </li>
+            <li>
+                <p hx-get="/team" hx-target="#container" hx-swap="innerHTML">
+                    <i class="bx bxs-group" ></i>
+                    <span class="text">Team</span>
+                </p>
+            </li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="/logout" class="logout">
+                    <i class="bx bxs-log-out-circle" ></i>
+                    <span class="text">Logout</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <section class="content">
+        <nav>
+            <i class="bx bx-menu" id="menu-bar"></i>
+            <form action="#" id="search-form">
+                <div class="form-input" id="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" id="search-btn"><i class="bx bx-search" id="search-button-icon"></i></button>
+                </div>
+            </form>
+            <a href="#" class="notification">
+                <i class="bx bxs-bell bx-tada-hover"></i>
+                <span class="num" id="notification">0</span>
+            </a>
+            <a href="/settings" class="profile">
+                <img src="{{ url_for('static', filename=''+profile_picture) }}">
+            </a>
+        </nav>
+        
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <p>Dashboard</p>
+                        </li>
+                        <li><i class="bx bx-chevron-right" ></i></li>
+                        <li>
+                            <a class="active" href="#">Home</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% block content %}
+            <div id="container"></div>
+            {% endblock %}
+        </main>
+    </section>
+</body>
+{% block scripts %}
+{% endblock %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</html>
