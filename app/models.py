@@ -20,3 +20,7 @@ class Message(db.Model):
     # the chat group containing the message
     chat_group = db.Column(db.Integer, nullable=False)
     content = db.Column(db.String(1000), nullable=False, default='')
+
+class Task(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    name = db.Column(db.String(150))

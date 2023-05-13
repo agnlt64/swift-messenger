@@ -124,7 +124,8 @@ body {
     z-index: -1;
 }
 
-.side-menu li p {
+.side-menu li p,
+.side-menu li a {
     width: 100%;
     height: 100%;
     background: var(--dark);
@@ -137,11 +138,13 @@ body {
     overflow-x: hidden;
 }
 
-.side-menu.top li.active p {
+.side-menu.top li.active p,
+.side-menu.top li.active a {
     color: var(--blue);
 }
 
-.hide .side-menu li p {
+.hide .side-menu li p,
+.hide .side-menu li a {
     width: calc(48px - (4px * 2));
     transition: width .1s ease;
 }
@@ -155,7 +158,8 @@ body {
     color: var(--blue);
 }
 
-.side-menu li p .bx {
+.side-menu li p .bx,
+.side-menu li a .bx {
     min-width: calc(60px  - ((4px + 6px) * 2));
     display: flex;
     justify-content: center;
@@ -328,19 +332,6 @@ main {
     pointer-events: unset;
 }
 
-.btn-download {
-    height: 36px;
-    padding: 0 16px;
-    border-radius: 36px;
-    background: var(--blue);
-    color: var(--dark);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-gap: 10px;
-    font-weight: 500;
-}
-
 .box-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -400,23 +391,6 @@ main {
     background: var(--dark);
     padding: 24px;
     overflow-x: auto;
-}
-
-.head {
-    display: flex;
-    align-items: center;
-    grid-gap: 16px;
-    margin-bottom: 24px;
-}
-
-.head h3 {
-    margin-right: auto;
-    font-size: 24px;
-    font-weight: 600;
-}
-
-.head .bx {
-    cursor: pointer;
 }
 
 .order {
@@ -480,50 +454,6 @@ main {
 
 .order table tr td .status.pending {
     background: var(--orange);
-}
-
-.todo {
-    flex-grow: 1;
-    flex-basis: 300px;
-}
-
-.todo-list {
-    width: 100%;
-}
-
-.todo-list #dialog {
-    position: relative;
-    left: 90%;
-    height: 150px;
-    width: 50px;
-    background-color: red;
-}
-
-.todo-list li {
-    width: 100%;
-    margin-top: 16px;
-    background: var(--dark-grey);
-    border-radius: 10px;
-    padding: 14px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.todo-list li .bx {
-    cursor: pointer;
-}
-
-.todo-list li.completed {
-    border-left: 10px solid var(--blue);
-}
-
-.todo-list li.not-completed {
-    border-left: 10px solid var(--orange);
-}
-
-.todo-list li:last-child {
-    margin-bottom: 0;
 }
 
 @media screen and (max-width: 768px) {

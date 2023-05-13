@@ -14,7 +14,7 @@ DB_NAME = 'database.sqlite3'
 def create_app():
     from .auth import auth
     from .views import views
-    from .models import User, ChatGroup, Message
+    from .models import User, ChatGroup, Message, Task
     
     app.config['SECRET_KEY'] = secrets.token_urlsafe(40)
     try:

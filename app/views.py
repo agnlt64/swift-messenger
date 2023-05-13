@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
-from .models import ChatGroup, Message, User
+from .models import ChatGroup, Message, User, Task
 from . import db
 import os
 
@@ -63,7 +63,7 @@ def update_profile_picture():
 def admin():
     if current_user.username != 'antonin':
         return redirect(url_for('views.chat'))
-    return render_template('admin/admin.html', profile_picture=current_user.profile_picture)
+    return render_template('admin/admin.html', profile_picture=current_user.profile_picture, current_page='Home')
 
 @views.route('/dashboard')
 @login_required
@@ -71,9 +71,39 @@ def dashboard():
     total_users = 0
     for user in User.query.all():
         total_users += 1
-    return render_template('admin/dashboard.html', total_users=total_users, users=User.query.all())
+    return render_template('admin/dashboard.html', total_users=total_users, users=User.query.all(), current_page='Home')
 
 @views.route('/team')
 @login_required
 def team():
-    return render_template('admin/team.html')
+    return render_template('admin/team.html', current_page='Team')
+
+@views.route('/todolist')
+@login_required
+def todolist():
+    return render_template('admin/todolist.html', current_page='Todolist', all_tasks=Task.query.all())
+
+@views.route('/todolist/add', methods=['POST'])
+@login_required
+def add_todolist():
+    name = request.form.get('name')
+    task = Task(name=name)
+    db.session.add(task)
+    db.session.commit()
+    return redirect(url_for('views.todolist'))
+
+@views.route('/todolist/delete/<id>', methods=['POST'])
+@login_required
+def delete_task(id):
+    Task.query.filter_by(id=id).delete()
+    db.session.commit()
+    return redirect(url_for('views.todolist'))
+
+@views.route('/todolist/update/<id>', methods=['POST'])
+@login_required
+def update_task(id):
+    task_to_update = Task.query.filter_by(id=id).first()
+    new_name = request.form.get('new-name')
+    task_to_update.name = new_name
+    db.session.commit()
+    return redirect(url_for('views.todolist'))

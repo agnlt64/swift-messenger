@@ -1,0 +1,40 @@
+<div class="table-data">
+    <dialog id="new-task-form">
+        <form hx-post="/todolist/add" hx-target="#container" hx-swap="innerHTML">
+            <input type="text" name="name" placeholder="Enter a name...">
+        </form>
+    </dialog>
+    <div class="todo">
+        <div class="head">
+            <h3>Todos</h3>
+            <i class="bx bx-plus"></i>
+        </div>
+        <ul class="todo-list">
+            {% for task in all_tasks %}
+            <li class="completed">
+                <p>{{ task.name }}</p>
+                <i class="bx bx-dots-vertical-rounded"></i>
+                <dialog class="context-menu">
+                    <div name="delete">
+                        <span>Update</span>
+                        <i class='bx bxs-pencil'></i>
+                    </div>
+                    <div hx-post="/todolist/delete/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
+                        <span>Delete</span>
+                        <i class='bx bx-trash'></i>
+                    </div>
+                </dialog>
+                <dialog id="update-task-form">
+                    <form hx-post="/todolist/update/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
+                        <input type="text" name="new-name" placeholder="Enter a new name...">
+                    </form>
+                </dialog>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/todolist.js') }}"></script>
+{% endblock %}

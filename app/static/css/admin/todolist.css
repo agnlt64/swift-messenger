@@ -1,0 +1,80 @@
+.todo {
+    flex-grow: 1;
+    flex-basis: 300px;
+}
+
+.todo-list {
+    width: 100%;
+}
+
+.todo-list .context-menu {
+    position: absolute;
+    left: 88%;
+    height: 80px;
+    width: 130px;
+    background-color: var(--dark-grey);
+    color: var(--light);
+    border: 1px solid var(--light);
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.todo-list .context-menu div {
+    width: 130px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.todo-list .context-menu div:hover {
+    background: var(--grey);
+    cursor: pointer;
+}
+
+.todo-list li {
+    width: 100%;
+    margin-top: 16px;
+    background: var(--dark-grey);
+    border-radius: 10px;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo-list li .bx {
+    cursor: pointer;
+}
+
+.todo-list li.completed {
+    border-left: 10px solid var(--blue);
+}
+
+.todo-list li.not-completed {
+    border-left: 10px solid var(--orange);
+}
+
+.todo-list li:last-child {
+    margin-bottom: 0;
+}
+
+.head {
+    display: flex;
+    align-items: center;
+    grid-gap: 16px;
+    margin-bottom: 24px;
+}
+
+.head h3 {
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.head .bx {
+    cursor: pointer;
+}
