@@ -29,8 +29,14 @@
                         <img src="{{ url_for('static', filename=''+user.profile_picture) }}">
                         <p>{{ user.username }}</p>
                     </td>
-                    <td>01-10-2021</td>
-                    <td><span class="status completed">Completed</span></td>
+                    <td>{{ user.join_date }}</td>
+                    <td>
+                        {% if user.role == 'user' %}
+                        <span class="status completed">{{ user.role.title() }}</span>
+                        {% else %}
+                        <span class="status pending">{{ user.role }}</span>
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

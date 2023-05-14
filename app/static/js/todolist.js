@@ -29,7 +29,6 @@ addButton.addEventListener('click', () => {
     newTaskForm.showModal()
 })
 
-
 deleteButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         updateTaskForm.showModal()
