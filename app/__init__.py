@@ -1,20 +1,16 @@
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_socketio import SocketIO
 from flask_login import LoginManager
 import secrets
 import os
 
-app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
-
-db = SQLAlchemy()
-DB_NAME = 'database.sqlite3'
+from .server import db
+from .server import app
 
 def create_app():
-    from .auth import auth
+    from .server.auth import auth
     from .views import views
-    from .models import User, ChatGroup, Message, Task
+    from .server.settings import settings
+    from .server.admin import admin
+    from .server.models import User, ChatGroup, Message, Task
     
     app.config['SECRET_KEY'] = secrets.token_urlsafe(40)
     try:
@@ -23,13 +19,14 @@ def create_app():
     except FileNotFoundError:
         app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     db.init_app(app)
-        
+
     login_manager = LoginManager(app)
     login_manager.login_view = 'auth.login'
     login_manager.login_message_category = 'error'
 
     try:
         os.mkdir('app/static/files/')
+        os.mkdir('app/static/files/pp')
     except FileExistsError:
         pass
     with app.app_context():
@@ -41,5 +38,7 @@ def create_app():
 
     app.register_blueprint(auth)
     app.register_blueprint(views)
+    app.register_blueprint(settings)
+    app.register_blueprint(admin)
     
     return app

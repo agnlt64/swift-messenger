@@ -16,13 +16,13 @@ Chat App - Home Page
 <nav class="nav">
   <div class="left">
     <a href="/logout">Logout</a>
+    <a href="/chat">Chat</a>
     {% if user == 'antonin' %}
     <a href="/admin">Admin Panel</a>
     {% endif %}
   </div>
   <div class="right">
     <a href="/settings">
-      <span>Manage your profile</span>
       <img src="{{ url_for('static', filename=''+profile_picture) }}" alt="profile picture" class="profile-picture">
     </a>
   </div>

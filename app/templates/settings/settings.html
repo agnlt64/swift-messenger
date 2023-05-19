@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiftmessegnr - Settings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+    <script src="https://unpkg.com/htmx.org@1.8.6"></script>
+</head>
+<body id="body">
+    <nav class="nav">
+        <div class="left">
+          <a href="/logout">Logout</a>
+          <a href="/chat">Chat</a>
+          {% if user == 'antonin' %}
+          <a href="/admin">Admin Panel</a>
+          {% endif %}
+        </div>
+        <div class="right">
+          <a href="/settings">
+            <img src="{{ url_for('static', filename=''+profile_picture) }}" alt="profile picture" class="profile-picture">
+          </a>
+        </div>
+    </nav>
+    
+    <div class="settings">
+      <ul>
+        <li>
+          <span hx-get="/settings/update/pp" hx-target="#container" hx-swap="innerHTML">
+            Change profile picture
+          </span>
+        </li>
+        <li>
+          <span hx-get="/settings/update/color-scheme" hx-target="#container" hx-swap="innerHTML">
+            Change color scheme
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div id="container"></div>
+</body>
+</html>

@@ -18,7 +18,7 @@
             <thead>
                 <tr>
                     <th>User</th>
-                    <th>Date Order</th>
+                    <th>Join Date</th>
                     <th>Role</th>
                 </tr>
             </thead>
@@ -32,8 +32,8 @@
                     <td>{{ user.join_date }}</td>
                     <td>
                         {% if user.role == 'user' %}
-                        <span class="status completed">{{ user.role.title() }}</span>
-                        {% else %}
+                        <span class="status completed">{{ user.role }}</span>
+                        {% elif user.role == 'admin' %}
                         <span class="status pending">{{ user.role }}</span>
                         {% endif %}
                     </td>

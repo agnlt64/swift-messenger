@@ -1,5 +1,5 @@
 from app import create_app
-from app.events import socketio
+from app.server.events import socketio
 import sys
 
 if __name__ == '__main__':

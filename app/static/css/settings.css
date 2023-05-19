@@ -1,3 +1,59 @@
-h1 {
-    color: red;
+@import url('https://fonts.googleapis.com/css2?family=Heebo&family=Titillium+Web&display=swap');
+
+:root {
+    --sidebar-width: 40rem;
+    --sidebar-height: 100vw;
+    --sidebar-background: #0e1343;
+    --discret-color: #787a7c;
+    --rounded: 6px;
+    --sidebar-color: #a2a5a6;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: #a2a5a6;
+}
+
+body {
+    background-color: #0e1343;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav {
+    height: 3.5rem;
+    border-bottom: 1px solid var(--discret-color);
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav .right {
+    position: absolute;
+    right: 0;
+    margin-right: 1rem;
+}
+
+.nav .right a {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-picture {
+    height: 2.5rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.nav .left {
+    margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }

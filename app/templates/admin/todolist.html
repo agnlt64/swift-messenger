@@ -1,6 +1,6 @@
 <div class="table-data">
     <dialog id="new-task-form">
-        <form hx-post="/todolist/add" hx-target="#container" hx-swap="innerHTML">
+        <form hx-post="/admin/todolist/add" hx-target="#container" hx-swap="innerHTML">
             <input type="text" name="name" placeholder="Enter a name...">
         </form>
     </dialog>
@@ -19,13 +19,13 @@
                         <span>Update</span>
                         <i class='bx bxs-pencil'></i>
                     </div>
-                    <div hx-post="/todolist/delete/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
+                    <div hx-post="/admin/todolist/delete/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
                         <span>Delete</span>
                         <i class='bx bx-trash'></i>
                     </div>
                 </dialog>
                 <dialog id="update-task-form">
-                    <form hx-post="/todolist/update/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
+                    <form hx-post="/admin/todolist/update/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
                         <input type="text" name="new-name" placeholder="Enter a new name...">
                     </form>
                 </dialog>

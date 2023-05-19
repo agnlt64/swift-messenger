@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models import User
+import datetime
 from . import db
 
 auth = Blueprint('auth', __name__)
@@ -39,7 +40,12 @@ def sign_up():
         elif password != confirm:
             flash('Passwords do not match!', category='error')
         else:
-            new_user = User(username=username, password=generate_password_hash(password, method='sha256'), profile_picture='media/default.png')
+            now = datetime.datetime.now()
+            if now.month < 10:
+                month = '0' + str(now.month)
+            else:
+                month = now.month
+            new_user = User(username=username, password=generate_password_hash(password, method='sha256'), profile_picture='media/default.png', join_date=f'{now.day}/{month}/{now.year}')
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
