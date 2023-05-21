@@ -23,6 +23,17 @@
           </a>
         </div>
     </nav>
+
+    <div class="message-container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% for category, message in messages %}
+              <div class=" {{ category }}" id="message">
+                  <p>{{ message }}</p>
+              </div>
+              <img class="close-message" id="close-message"  onclick="document.getElementById('message').style.display='none';document.getElementById('close-message').style.display='none'" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
+          {% endfor %}
+      {% endwith %}
+    </div>
     
     <div class="settings">
       <ul>

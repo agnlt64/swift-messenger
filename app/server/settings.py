@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from . import db
@@ -20,6 +20,7 @@ def update_profile_picture():
         image.save(os.path.join('app/static/files/pp', image_name))
         current_user.profile_picture = f'files/pp/{image_name}'
         db.session.commit()
+        flash('Profile picture updated successfully!', category='success')
         return redirect(url_for('settings.settings_page'))
     return render_template('settings/profile_picture.html')
 

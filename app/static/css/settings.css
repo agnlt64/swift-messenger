@@ -57,3 +57,29 @@ a {
     align-items: center;
     gap: 25px;
 }
+
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success {
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 30rem;
+    border-radius: 0 0 12px 12px;
+}
+
+.close-message {
+    aspect-ratio: 1/1;
+    width: 20px;
+    margin-left: 1rem;
+}
+
+.close-message:hover {
+    cursor: pointer;
+}

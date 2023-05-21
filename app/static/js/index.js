@@ -14,7 +14,6 @@ socket.on('connect', () => {
 })
 
 sendMessage.addEventListener('submit', () => {
-    console.log('submitting form')
     document.querySelectorAll('.group').forEach(g => {
         if (g.classList.contains('active')) {
             // we have the current group id
@@ -32,7 +31,6 @@ chatCallback = (mutationList) => {
     if (mutation.type === "childList") {
         sendMessage = document.getElementById('send-message-form')
         sendMessage.addEventListener('submit', () => {
-            console.log('submitting form')
             document.querySelectorAll('.group').forEach(g => {
                 if (g.classList.contains('active')) {
                     // we have the current group id
