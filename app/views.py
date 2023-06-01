@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash
+from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from .server.models import ChatGroup, Message
@@ -8,13 +8,16 @@ import os
 views = Blueprint('views', __name__)
 
 @views.route('/')
-def index():
+def home():
     return render_template('index.html')
 
 @views.route('/chat')
 @login_required
 def chat():
-    return render_template('chat.html', user=current_user.username, groups=ChatGroup.query.all(), profile_picture=str(current_user.profile_picture))
+    if current_user.role == 'banned':
+        flash('You have been banned. Contact the admin to get further informations.', category='error')
+        return redirect(url_for('views.home'))
+    return render_template('chat.html', user=current_user, groups=ChatGroup.query.all(), profile_picture=str(current_user.profile_picture))
 
 @views.route('/create-form', methods=['POST'])
 @login_required

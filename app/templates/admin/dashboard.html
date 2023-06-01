@@ -7,12 +7,32 @@
         </span>
     </li>
 </ul>
+<div class="message-container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        <div class="flashed-message {{ category }}" id="message">
+            <p>{{ message }}</p>
+        </div>
+        <img class="close-message-dashboard" id="close-message"  onclick="document.getElementById('message').style.display='none';document.getElementById('close-message').style.display='none'" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
+    {% endfor %}
+    {% endwith %}
+</div>
 <div class="table-data">
     <div class="order">
         <div class="head">
             <h3>All Users</h3>
-            <i class="bx bx-search" ></i>
-            <i class="bx bx-filter" ></i>
+            <i class="bx bx-plus" id="add-user" title="Add user"></i>
+            <dialog id="user-form" class="room-form">
+                <button id="user-close-btn" class="close-button">
+                  <img src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
+                </button>
+                <form hx-post="/admin/create-user" hx-target="#group-container" hx-swap="innerHTML" enctype="multipart/form-data">
+                  <input type="text" name="name" placeholder="Name" required>
+                  <input type="text" name="password" placeholder="Password" required>
+                  <input type="text" name="confirm" placeholder="Confirm password" required>
+                  <button class="form-btn" id="submit-form">Confirm</button>
+                </form>
+            </dialog>
         </div>
         <table>
             <thead>
@@ -31,11 +51,9 @@
                     </td>
                     <td>{{ user.join_date }}</td>
                     <td>
-                        {% if user.role == 'user' %}
-                        <span class="status completed">{{ user.role }}</span>
-                        {% elif user.role == 'admin' %}
-                        <span class="status pending">{{ user.role }}</span>
-                        {% endif %}
+                        <form hx-post="/admin/update/role/{{ user.id }}" hx-target="#container" hx-swap="innerHTML" name="role-form">
+                            <input class="role {{ user.role }}" name="role" value="{{ user.role }}">
+                        </form>
                     </td>
                 </tr>
                 {% endfor %}
@@ -43,3 +61,4 @@
         </table>
     </div>
 </div>
+<script src="{{ url_for('static', filename='js/add_useru.js') }}"></script>

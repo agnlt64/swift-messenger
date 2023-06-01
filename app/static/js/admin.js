@@ -1,4 +1,4 @@
-const allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li p');
+allSideMenu = document.querySelectorAll('#sidebar .side-menu.top li p');
 
 allSideMenu.forEach(item => {
     const li = item.parentElement;
@@ -12,16 +12,16 @@ allSideMenu.forEach(item => {
 });
 
 // TOGGLE SIDEBAR
-const menuBar = document.getElementById('menu-bar');
-const sidebar = document.getElementById('sidebar');
+menuBar = document.getElementById('menu-bar');
+sidebar = document.getElementById('sidebar');
 
 menuBar.addEventListener('click', () => {
     sidebar.classList.toggle('hide');
 })
 
-const searchButton = document.getElementById('search-btn');
-const searchButtonIcon = document.getElementById('search-button-icon');
-const searchForm = document.getElementById('search-form');
+searchButton = document.getElementById('search-btn');
+searchButtonIcon = document.getElementById('search-button-icon');
+searchForm = document.getElementById('search-form');
 
 searchButton.addEventListener('click', e => {
     if (window.innerWidth < 576) {

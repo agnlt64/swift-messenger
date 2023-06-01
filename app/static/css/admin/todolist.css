@@ -78,3 +78,39 @@
 .head .bx {
     cursor: pointer;
 }
+
+.todo-dialog {
+    width: 15rem;
+    height: 8rem;
+    background-color: #0e1343;
+    border: 1px solid #787a7c;
+    border-radius: 6px;
+    position: absolute;
+}
+
+.todo-dialog form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+}
+
+.todo-dialog input {
+    padding: 15px 15px;
+    width: 10rem;
+    height: 0.5rem;
+    border-radius: 6px;
+    outline: none;
+    border: none;
+    color: #000;
+}
+
+.close-message {
+    aspect-ratio: 1/1;
+    width: 20px;
+    margin: 10px 0 0 calc(15rem - 30px);
+}
+
+.close-message:hover {
+    cursor: pointer;
+}

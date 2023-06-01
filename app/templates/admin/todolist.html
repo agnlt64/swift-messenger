@@ -1,5 +1,6 @@
 <div class="table-data">
-    <dialog id="new-task-form">
+    <dialog id="new-task-form" class="todo-dialog">
+        <img class="close-message" id="close" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
         <form hx-post="/admin/todolist/add" hx-target="#container" hx-swap="innerHTML">
             <input type="text" name="name" placeholder="Enter a name...">
         </form>
@@ -24,7 +25,8 @@
                         <i class='bx bx-trash'></i>
                     </div>
                 </dialog>
-                <dialog id="update-task-form">
+                <dialog id="update-task-form" class="todo-dialog">
+                    <img class="close-message" id="close-update-box" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
                     <form hx-post="/admin/todolist/update/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
                         <input type="text" name="new-name" placeholder="Enter a new name...">
                     </form>

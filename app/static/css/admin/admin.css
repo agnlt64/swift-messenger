@@ -24,6 +24,7 @@ li {
     --light: #FBFBFB;
     
     --blue: #3C91E6;
+    --cyan: #07f1d8;
     --light-blue: #CFE8FF;
     --red: #DB504A;
     --yellow: #FFCE26;
@@ -35,6 +36,7 @@ li {
 body {
     background: var(--dark-grey);
     overflow-x: hidden;
+    font-family: var(--poppins), sans-serif;
 }
 
 /* SIDEBAR */
@@ -436,24 +438,75 @@ main {
     background: var(--dark-grey);
 }
 
-.order table tr td .status {
-    font-size: 10px;
-    padding: 6px 16px;
-    color: var(--dark);
-    border-radius: 20px;
-    font-weight: 700;
+.order table tr {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-.order table tr td .status.completed {
+.role {
+    font-size: 11px;
+    padding: 0 19px;
+    color: var(--dark);
+    border-radius: 20px;
+    font-weight: 500;
+    border: none;
+    width: 7rem;
+    height: 2rem;
+}
+
+.role:focus {
+    outline: none;
+}
+
+.user {
     background: var(--blue);
 }
 
-.order table tr td .status.process {
-    background: var(--yellow);
+.admin {
+    background: var(--cyan);
 }
 
-.order table tr td .status.pending {
+.banned {
     background: var(--orange);
+}
+
+.close-message-dashboard {
+    aspect-ratio: 1/1;
+    width: 20px;
+    margin-left: 1rem;
+}
+
+.close-message-dashboard:hover {
+    cursor: pointer;
+}
+
+.success {
+    --color: green;
+}
+
+.error {
+    --color: red;
+}
+
+.flashed-message {
+    background-color: var(--color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 30rem;
+    border-radius: 0 0 12px 12px;
+}
+
+.message-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flashed-message p {
+    color: #fff;
 }
 
 @media screen and (max-width: 768px) {

@@ -17,7 +17,7 @@ Swiftmessengr - Home Page
   <div class="left">
     <a href="/logout">Logout</a>
     <a href="/chat">Chat</a>
-    {% if user == 'antonin' %}
+    {% if user.role == 'admin' %}
     <a href="/admin">Admin Panel</a>
     {% endif %}
   </div>
@@ -36,7 +36,7 @@ Swiftmessengr - Home Page
     <div class="group-container" id="group-container">
       <span class="separator top-separator"></span>
       {% for group in groups %}
-      {% if group.creator == user %}
+      {% if group.creator == user.username %}
       <div class="group" hx-get="/group/{{ group.id }}" data-group-id="{{ group.id }}" hx-target="#chat-area" hx-swap="innerHTML">
         <span>
           <p class="group-name">{{ group.name }}</p>
