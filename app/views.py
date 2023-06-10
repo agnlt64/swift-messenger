@@ -5,6 +5,8 @@ from .server.models import ChatGroup, Message
 from .server import db
 import os
 
+current_chat_group = 'unset'
+
 views = Blueprint('views', __name__)
 
 @views.route('/')
@@ -41,12 +43,17 @@ def create_form():
 @login_required
 def group(id):
     group = ChatGroup.query.filter_by(id=id).first()
+    global current_chat_group
+    current_chat_group = group.id
     if group:
         return render_template('messages/send_message.html', messages=Message.query.all(), user=current_user.username, group=group)
     else:
-        return 'An error occurred bruh'
+        # this can't be reached
+        return 'Congrats! You triggered an ureachable error message!'
 
 @views.route('/send-message', methods=['POST'])
 @login_required
 def send_message():
-    return render_template('messages/message.html', messages=Message.query.all(), user=current_user.username)
+    global current_chat_group
+    print(current_chat_group)
+    return render_template('messages/message.html', message=Message.query.order_by(Message.id.desc()).first(), user=current_user.username, current_chat_group=current_chat_group)

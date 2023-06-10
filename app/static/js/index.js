@@ -4,10 +4,10 @@
  */
 
 // no need for let or const since this script will we included multiple times in the same page because I suck at designing correct apps
-const socket = io()
-const sendMessage = document.getElementById('send-message-form')
-const chatArea = document.getElementById('messages-container')
-let message = document.getElementById('message')
+socket = io()
+sendMessage = document.getElementById('send-message-form')
+chatArea = document.getElementById('messages-container')
+message = document.getElementById('message')
 
 socket.on('connect', () => {
     socket.emit('join')

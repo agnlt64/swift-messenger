@@ -1,11 +1,11 @@
-{% for message in messages %}
-{% if message.sender == user %}
-<div class="sent message">
-    <p>{{ message.content }}</p>
-</div>
-{% else %}
-<div class="received message">
-    <p>{{ message.content }}</p>
-</div>
+{% if message.chat_group == current_chat_group %}
+    {% if message.sender == user %}
+    <div class="sent message">
+        <p>{{ message.content }}</p>
+    </div>
+    {% else %}
+    <div class="received message">
+        <p>{{ message.content }}</p>
+    </div>
+    {% endif %}
 {% endif %}
-{% endfor %}
