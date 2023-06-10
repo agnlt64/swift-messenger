@@ -81,7 +81,7 @@
 
 .todo-dialog {
     width: 15rem;
-    height: 8rem;
+    height: 9rem;
     background-color: #0e1343;
     border: 1px solid #787a7c;
     border-radius: 6px;
@@ -90,9 +90,32 @@
 
 .todo-dialog form {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 50%;
+    gap: 20px;
+}
+
+.todo-dialog form button {
+    cursor: pointer;
+    padding: 15px 15px;
+    width: 10rem;
+    height: 0.5rem;
+    background-color: #14b8b2;
+    color: #fff;
+    border-radius: 6px;
+    border: #787a7c;
+    font-size: large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.todo-dialog form button:hover {
+    cursor: pointer;
+    background-color: #17e6df;
 }
 
 .todo-dialog input {

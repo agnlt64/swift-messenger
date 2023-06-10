@@ -3,6 +3,7 @@
         <img class="close-message" id="close" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
         <form hx-post="/admin/todolist/add" hx-target="#container" hx-swap="innerHTML">
             <input type="text" name="name" placeholder="Enter a name...">
+            <button type="submit">Confirm</button>
         </form>
     </dialog>
     <div class="todo">
@@ -29,6 +30,7 @@
                     <img class="close-message" id="close-update-box" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
                     <form hx-post="/admin/todolist/update/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
                         <input type="text" name="new-name" placeholder="Enter a new name...">
+                        <button type="submit">Confirm</button>
                     </form>
                 </dialog>
             </li>
