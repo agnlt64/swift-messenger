@@ -15,6 +15,7 @@ class ChatGroup(db.Model):
     creator = db.Column(db.String(150))
     name = db.Column(db.String(100))
     image_path = db.Column(db.String(200))
+    members = db.Column(db.String(10_000_000), default='')
 
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)

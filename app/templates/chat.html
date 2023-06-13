@@ -40,11 +40,11 @@ Swiftmessengr - Home Page
             {% for group in groups %}
             {% if group.creator == user.username %}
             <div class="group" hx-get="/group/{{ group.id }}" data-group-id="{{ group.id }}" hx-target="#chat-area"
-                hx-swap="innerHTML">
+                hx-swap="innerHTML" hx-trigger="click">
                 <span>
                     <p class="group-name">{{ group.name }}</p>
                 </span>
-                <img class="group-picture" src="{{ url_for('static', filename='files/'+group.image_path ) }}"
+                <img class="group-picture" src="{{ url_for('static', filename='files/'+group.image_path) }}"
                     alt="group logo">
             </div>
             <span class="separator"></span>
@@ -61,13 +61,6 @@ Swiftmessengr - Home Page
     </div>
 
     <div class="chat-area" id="chat-area"></div>
-
-    <div class="members-list">
-        <div class="title-container">
-            <h2>All group members</h2>
-        </div>
-        <div class="members"></div>
-    </div>
 
     <dialog id="room-form" class="room-form">
         <button id="room-close-btn" class="close-button">

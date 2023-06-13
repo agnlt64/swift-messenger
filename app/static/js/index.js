@@ -19,9 +19,9 @@ sendMessage.addEventListener('submit', () => {
             // we have the current group id
             id = g.getAttribute('data-group-id')
             message = document.getElementById('message')
-            chatArea.scrollTop = chatArea.scrollHeight
             socket.emit('message', message.value, id)
             message.value = ""
+            chatArea.scrollTo(0, chatArea.scrollHeight)
         }
     })
 })
@@ -36,9 +36,10 @@ chatCallback = (mutationList) => {
                     // we have the current group id
                     id = g.getAttribute('data-group-id')
                     message = document.getElementById('message')
-                    chatArea.scrollTop = chatArea.scrollHeight
+                    // chatArea.scrollTop = chatArea.scrollHeight
                     socket.emit('message', message.value, id)
                     message.value = ""
+                    chatArea.scrollTo(0, chatArea.scrollHeight)
                 }
             })
         })

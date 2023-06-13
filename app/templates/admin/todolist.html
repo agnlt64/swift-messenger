@@ -9,6 +9,10 @@
     <div class="todo">
         <div class="head">
             <h3>Todos</h3>
+            <button hx-get="/admin/todolist" hx-target="#container" hx-swap="innerHTML" class="refresh-todos">
+                Refresh Todos
+                <i class='bx bx-refresh'></i>
+            </button>
             <i class="bx bx-plus"></i>
         </div>
         <ul class="todo-list">

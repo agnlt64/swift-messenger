@@ -1,11 +1,9 @@
 {% if message.chat_group == current_chat_group %}
-    {% if message.sender == user %}
-    <div class="sent message">
-        <p>{{ message.content }}</p>
+    <div class="message">
+        <img class="message-profile-picture" src="{{ url_for('static', filename=''+user.profile_picture) }}" alt="profile picture">
+        <div class="infos-container">
+            <p class="message-username">{{ user.username }}</p>
+            <p>{{ message.content }}</p>
+        </div>
     </div>
-    {% else %}
-    <div class="received message">
-        <p>{{ message.content }}</p>
-    </div>
-    {% endif %}
 {% endif %}
