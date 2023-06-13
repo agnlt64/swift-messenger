@@ -103,8 +103,3 @@ def create_user():
         login_user(new_user, remember=True)
         flash('Account created!', category='success')
     return redirect(url_for('admin.admin_page'))
-
-@admin.route('/admin/todolist/all')
-@login_required
-def all_todos():
-    return render_template('admin/todolist.html')
