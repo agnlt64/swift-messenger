@@ -15,12 +15,7 @@ function loadAjax(method, url) {
             // change head
             document.querySelector('head').innerHTML = headContent
             // update the previous container with the newly parsed body
-            if (window.location.pathname !== '/settings') {
-                document.getElementById('container').innerHTML = bodyContent
-            } 
-            else {
-                
-            }
+            document.getElementById('container').innerHTML = bodyContent            
         }
     }
     xhr.send()
@@ -49,8 +44,16 @@ const globalCallback = mutationList => {
                 const settingsLink = document.getElementById('settings-link')
                 settingsLink.addEventListener('click', e => {
                     e.preventDefault()
-                    const url = '/settings'
-                    loadAjax('GET', url)
+                    loadAjax('GET', '/settings')
+                })
+            }
+            // go back to chat from settings
+            else if (window.location.pathname === '/settings') {
+                document.getElementsByClassName('wrapper')[0].remove()
+                const chatLink = document.getElementById('chat-link')
+                chatLink.addEventListener('click', e => {
+                    e.preventDefault()
+                    loadAjax('GET', '/chat')
                 })
             }
         }

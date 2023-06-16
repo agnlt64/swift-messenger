@@ -10,71 +10,69 @@
     <title>Admin Panel</title>
 </head>
 <body>
-    <main>
-        <section class="sidebar" id="sidebar">
-            <a href="/chat" class="brand">
-                <i class='bx bx-chat'></i>
-                <span class="text">SwiftMessengr</span>
-            </a>
-            <ul class="side-menu top">
-                <li class="active">
-                    <p hx-get="/admin/dashboard" hx-trigger="load, click" hx-target="#container" hx-swap="innerHTML">
-                        <i class="bx bxs-dashboard" ></i>
-                        <span class="text">Dashboard</span>
-                    </p>
-                </li>
-                <li>
-                    <p hx-get="/admin/team" hx-target="#container" hx-swap="innerHTML">
-                        <i class="bx bxs-group" ></i>
-                        <span class="text">Team</span>
-                    </p>
-                </li>
-                <li>
-                    <p hx-get="/admin/todolist" hx-target="#container" hx-swap="innerHTML">
-                        <i class="bx bx-list-check"></i>
-                        <span class="text">Todolist</span>
-                    </p>
-                </li>
-            </ul>
-            <ul class="side-menu">
-                <li>
-                    <a href="/logout" class="logout">
-                        <i class="bx bxs-log-out-circle" ></i>
-                        <span class="text">Logout</span>
-                    </a>
-                </li>
-            </ul>
-        </section>
-    
-        <section class="content">
-            <nav>
-                <i class="bx bx-menu" id="menu-bar"></i>
-                <form action="#" id="search-form">
-                    <div class="form-input" id="form-input">
-                        <input type="search" placeholder="Search...">
-                        <button type="submit" id="search-btn"><i class="bx bx-search" id="search-button-icon"></i></button>
-                    </div>
-                </form>
-                <a href="#" class="notification">
-                    <i class="bx bxs-bell bx-tada-hover"></i>
-                    <span class="num" id="notification">0</span>
+    <section class="sidebar" id="sidebar">
+        <a href="/chat" id="chat-link" class="brand">
+            <i class='bx bx-chat'></i>
+            <span class="text">SwiftMessengr</span>
+        </a>
+        <ul class="side-menu top">
+            <li class="active">
+                <p hx-get="/admin/dashboard" hx-trigger="load, click" hx-target="#container" hx-swap="innerHTML">
+                    <i class="bx bxs-dashboard"></i>
+                    <span class="text">Dashboard</span>
+                </p>
+            </li>
+            <li>
+                <p hx-get="/admin/team" hx-target="#container" hx-swap="innerHTML">
+                    <i class="bx bxs-group"></i>
+                    <span class="text">Team</span>
+                </p>
+            </li>
+            <li>
+                <p hx-get="/admin/todolist" hx-target="#container" hx-swap="innerHTML">
+                    <i class="bx bx-list-check"></i>
+                    <span class="text">Todolist</span>
+                </p>
+            </li>
+        </ul>
+        <ul class="side-menu">
+            <li>
+                <a href="/logout" class="logout">
+                    <i class="bx bxs-log-out-circle"></i>
+                    <span class="text">Logout</span>
                 </a>
-                <a href="/settings" class="profile">
-                    <img src="{{ url_for('static', filename=''+profile_picture) }}">
-                </a>
-            </nav>
-            <main>
-                <div class="head-title">
-                    <div class="left">
-                        <h1>Dashboard</h1>
-                    </div>
+            </li>
+        </ul>
+    </section>
+
+    <section class="content">
+        <nav>
+            <i class="bx bx-menu" id="menu-bar"></i>
+            <form action="#" id="search-form">
+                <div class="form-input" id="form-input">
+                    <input type="search" placeholder="Search...">
+                    <button type="submit" id="search-btn"><i class="bx bx-search" id="search-button-icon"></i></button>
                 </div>
-                {% block content %}
-                <div id="container"></div>
-                {% endblock %}
-            </main>
-        </section>
-    </main>
+            </form>
+            <a href="#" class="notification">
+                <i class="bx bxs-bell bx-tada-hover"></i>
+                <span class="num" id="notification">0</span>
+            </a>
+            <a href="/settings" class="profile">
+                <img src="{{ url_for('static', filename=''+profile_picture) }}">
+            </a>
+        </nav>
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                </div>
+            </div>
+            {% block content %}
+            <div id="container"></div>
+            {% endblock %}
+        </main>
+    </section>
 </body>
 {% block scripts %}
 {% endblock %}
