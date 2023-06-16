@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Swiftmessengr - Home Page
+SwiftMessengr - Home Page
 {% endblock %}
 
 {% block style %}
@@ -23,7 +23,7 @@ Swiftmessengr - Home Page
         {% endif %}
     </div>
     <div class="right">
-        <a href="/settings">
+        <a href="/settings" id="settings-link">
             <img src="{{ url_for('static', filename=''+profile_picture) }}" alt="profile picture"
                 class="profile-picture">
         </a>
@@ -82,6 +82,8 @@ Swiftmessengr - Home Page
 {% endblock %}
 
 {% block scripts %}
+<!-- ajax.js needs to be loaded first -->
+<script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
 <script src="{{ url_for('static', filename='js/create_room.js') }}"></script>
 <script src="{{ url_for('static', filename='js/select_chat.js') }}"></script>
 {% endblock %}

@@ -6,7 +6,6 @@
 const allGroups = document.querySelectorAll('.group span')
 
 const groupContainer = document.getElementById('group-container')
-const config = { attributes: true, childList: true, subtree: true };
 
 const groupCallback = (mutationList) => {
   for (const mutation of mutationList) {
@@ -26,4 +25,5 @@ const groupCallback = (mutationList) => {
 
 const groupObserver = new MutationObserver(groupCallback);
 
+// config is defined in ajax.js
 groupObserver.observe(groupContainer, config);
