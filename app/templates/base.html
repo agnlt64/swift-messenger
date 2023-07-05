@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <!-- used in ajax js -->
-    <div class="wrapper">
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-        {% block style %}
-        {% endblock %}
-    </div>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% block style %}
+    {% endblock %}
 </head>
 <body id="body">
     {% with messages = get_flashed_messages(with_categories=true) %}
+    <div class="message-container">
         {% if messages %}
-            <div class="message-container">
                 {% for category, message in messages %}
                     <div class="flashed-message {{ category }}" id="message">
                         <p>{{ message }}</p>
                     </div>
                     <img class="close-message" id="close-message" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
                 {% endfor %}
-            </div>
-        {% endif %}
+            {% endif %}
+    </div>
     {% endwith %}
 
     {% block content %}

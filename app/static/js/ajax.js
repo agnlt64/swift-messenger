@@ -1,4 +1,5 @@
 const xhr = new XMLHttpRequest()
+const separator = '<body'
 
 const config = { attributes: true, childList: true, subtree: true };
 
@@ -6,20 +7,21 @@ function loadAjax(method, url) {
     xhr.open(method, url, true)
     xhr.onload = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            // create a temporary element to parse the responseText
-            const tmp = document.createElement('div')
-            tmp.innerHTML = xhr.responseText
-            // get the head and body content using the tmp element we created
-            const headContent = tmp.getElementsByClassName('wrapper')[0].innerHTML
-            const bodyContent = tmp.querySelector('main').innerHTML
-            // change head
-            document.querySelector('head').innerHTML = headContent
-            // update the previous container with the newly parsed body
-            document.getElementById('container').innerHTML = bodyContent            
+            const splitResponse = xhr.responseText.split(separator)
+            document.querySelector('head').innerHTML = splitResponse[0]
+            document.body.innerHTML = separator + splitResponse[1]
         }
     }
     xhr.send()
     window.history.pushState({ prevUrl: window.location.href }, '', url)
+}
+
+function go(linkId, to) {
+    const from = document.getElementById(linkId)
+    from.addEventListener('click', event => {
+        event.preventDefault()
+        loadAjax('GET', to)
+    })
 }
 
 const globalCallback = mutationList => {
@@ -33,28 +35,19 @@ const globalCallback = mutationList => {
             else if (window.location.pathname === '/') {
                 const buttons = document.querySelectorAll('.btn')
                 buttons.forEach(b => {
-                    b.addEventListener('click', () => {
-                        const url = b.getAttribute('url')
-                        loadAjax('GET', url)
+                    b.addEventListener('click', (event) => {
+                        event.preventDefault()
+                        loadAjax('GET', b.getAttribute('href'))
                     })
                 })
             }
             // settings
             else if (window.location.pathname === '/chat') {
-                const settingsLink = document.getElementById('settings-link')
-                settingsLink.addEventListener('click', e => {
-                    e.preventDefault()
-                    loadAjax('GET', '/settings')
-                })
+                go('settings-link', '/settings')
             }
             // go back to chat from settings
             else if (window.location.pathname === '/settings') {
-                document.getElementsByClassName('wrapper')[0].remove()
-                const chatLink = document.getElementById('chat-link')
-                chatLink.addEventListener('click', e => {
-                    e.preventDefault()
-                    loadAjax('GET', '/chat')
-                })
+                go('chat-link', '/chat')
             }
         }
     }
