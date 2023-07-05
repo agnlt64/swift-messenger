@@ -4,4 +4,4 @@ __pycache__/
 .config
 files/
 files/pp
-node_modules/
+instance/
