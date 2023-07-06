@@ -60,5 +60,4 @@ def group(id):
 @login_required
 def send_message():
     global current_chat_group
-    print(current_chat_group)
     return render_template('messages/message.html', message=Message.query.order_by(Message.id.desc()).first(), user=current_user, current_chat_group=current_chat_group)

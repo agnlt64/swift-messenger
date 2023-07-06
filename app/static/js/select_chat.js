@@ -3,22 +3,31 @@
  * https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver
  */
 
-const allGroups = document.querySelectorAll('.group span')
-
 const groupContainer = document.getElementById('group-container')
+
+let allGroups = document.querySelectorAll('.group span')
+
+allGroups.forEach(group => {
+  group.parentElement.addEventListener('click', () => {
+    allGroups.forEach(g => {
+      g.parentElement.classList.remove('active')
+    })
+    group.parentElement.classList.add('active')
+  })
+})
 
 const groupCallback = (mutationList) => {
   for (const mutation of mutationList) {
     if (mutation.type === "childList") {
-        allGroups = document.querySelectorAll('.group span')
-        allGroups.forEach(group => {
-            group.parentElement.addEventListener('click', () => {
-                allGroups.forEach(g => {
-                    g.parentElement.classList.remove('active')
-                })
-                group.parentElement.classList.add('active')
-            })
+      allGroups = document.querySelectorAll('.group span')
+      allGroups.forEach(group => {
+        group.parentElement.addEventListener('click', () => {
+          allGroups.forEach(g => {
+            g.parentElement.classList.remove('active')
+          })
+          group.parentElement.classList.add('active')
         })
+      })
     }
   }
 };
