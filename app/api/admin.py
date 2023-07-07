@@ -51,7 +51,7 @@ def update_role(id):
     flash(f'User {user.username} is now {user.role}!', category='success')
     return redirect(url_for('views.admin_page'))
 
-@admin.route('/create-user', methods=['POST'])
+@admin.route('/create/user', methods=['POST'])
 @login_required
 def create_user():
     username = request.form.get('name')

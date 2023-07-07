@@ -8,6 +8,30 @@ In order to run properly, the app needs a config file named `.config` in the roo
 ## Dependencies
 The app needs `flask`, `flask-login`, `flask-socketio` and `flask-sqlalchemy` to work properly. In the `requirements.txt` file, the `flask` version is 2.2.5, which is not the latest, to avoid problems with Render, the hosting platform for this project. It is the same thing for `Werkzeug` (a `flask` dependency), the version is 2.2.3 to avoid problems. You need to manually change the `Werkzeug` version since it is automatically installed with `flask`. You will have to change the versions each time you run the `pip freeze` command.
 
+## API
+The API available for this application is very simple. All the routes begin with `/api`, e.g `/api/auth/login`.  
+All available endpoints:  
+```
+# Authentication API
+/api/auth/login -> checks the user credentials and login
+/api/auth/sign-up -> registers an user in the database and automatically logs the user in
+
+# Admin API
+/api/admin/todolist/add -> adds a task in the admin todolist
+/api/admin/todolist/delete/<task id> -> deletes a task with its unique id
+/api/admin/todolist/update/<task id> -> updates a task with its unique id
+/api/admin/update/role/<user id> -> updates the role of the user with its unique id
+/api/admin/create/user -> creates an user within the admin interface
+
+# Chat API
+/api/chat/create -> creates a new chat group
+/api/chat/group/<chat id> -> accesses a chat group with its unique id
+/api/chat/send -> sends a message
+
+# Settings API
+/api/settings/update/profile-picture -> updates the profile picture of the current user (no need to specify the unique id)
+```
+
 ## Run on macOS/Linux
 ```console
 git clone https://github.com/ABFStudio/swift-messenger.git
