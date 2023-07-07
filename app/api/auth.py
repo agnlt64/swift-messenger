@@ -10,8 +10,8 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 @auth.route('/login', methods=['POST'])
 def login():
     raw_credentials = request.data.decode('utf-8').split(',')
-    username = raw_credentials[0]
-    password = raw_credentials[1]
+    username = raw_credentials[0] if raw_credentials != [''] else request.form.get('username')
+    password = raw_credentials[1] if raw_credentials != [''] else request.form.get('password')
     user = User.query.filter_by(username=username).first()
     if user:
         if check_password_hash(user.password, password):
