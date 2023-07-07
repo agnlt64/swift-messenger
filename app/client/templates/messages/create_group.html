@@ -13,7 +13,7 @@
 <span class="separator top-separator"></span>
 {% for group in groups %}
 {% if group.creator == user %}
-<div class="group" hx-get="/group/{{ group.id }}" hx-target="#chat-area" hx-swap="innerHTML">
+<div class="group" hx-get="/api/chat/group/{{ group.id }}" hx-target="#chat-area" hx-swap="innerHTML">
     <span>
         <p class="group-name">{{ group.name }}</p>
     </span>

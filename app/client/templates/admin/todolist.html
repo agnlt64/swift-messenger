@@ -25,14 +25,14 @@
                         <span>Update</span>
                         <i class='bx bxs-pencil'></i>
                     </div>
-                    <div hx-post="/admin/todolist/delete/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
+                    <div hx-post="/api/admin/todolist/delete/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
                         <span>Delete</span>
                         <i class='bx bx-trash'></i>
                     </div>
                 </dialog>
                 <dialog id="update-task-form" class="todo-dialog">
                     <img class="close-message" id="close-update-box" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
-                    <form hx-post="/admin/todolist/update/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
+                    <form hx-post="/api/admin/todolist/update/{{ task.id }}" hx-target="#container" hx-swap="innerHTML">
                         <input type="text" name="new-name" placeholder="Enter a new name...">
                         <button type="submit">Confirm</button>
                     </form>

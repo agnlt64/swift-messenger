@@ -1,16 +1,16 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
 {% block title %}
-SwiftMessengr - Sign Up
+SwiftMessengr - Login
 {% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 {% endblock %}
 
 {% block content %}
 <main class="container">
-    <form method="post" class="signup-form" action="/sign-up">
+    <form method="post" class="login-form" action="/api/auth/login">
         <div class="field-container">
             <label for="username">Username</label>
             <input type="text" name="username" placeholder="Your name..." required>
@@ -19,11 +19,7 @@ SwiftMessengr - Sign Up
             <label for="password">Your password</label>
             <input type="password" name="password" placeholder="Your password..." required>
         </div>
-        <div class="field-container">
-            <label for="confirm">Confirm your password</label>
-            <input type="password" name="confirm" placeholder="Confirm your password" required>
-        </div>
-        <button type="submit" class="btn">Sign Up</button>
+        <button type="submit" class="btn">Login</button>
     </form>
 </main>
 {% endblock %}

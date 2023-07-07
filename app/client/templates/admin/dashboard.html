@@ -51,7 +51,7 @@
                     </td>
                     <td>{{ user.join_date }}</td>
                     <td>
-                        <form hx-post="/admin/update/role/{{ user.id }}" hx-target="#container" hx-swap="innerHTML" name="role-form">
+                        <form hx-post="/api/admin/update/role/{{ user.id }}" hx-target="#container" hx-swap="innerHTML" name="role-form">
                             <input class="role {{ user.role }}" name="role" value="{{ user.role }}">
                         </form>
                     </td>

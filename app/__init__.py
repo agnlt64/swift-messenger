@@ -6,10 +6,8 @@ from .server import db
 from .server import app
 
 def create_app():
-    from .server.auth import auth
     from .views import views
-    from .server.settings import settings
-    from .server.admin import admin
+    from .api import api
     from .server.models import User, ChatGroup, Message, Task
     
     app.config['SECRET_KEY'] = secrets.token_urlsafe(40)
@@ -23,12 +21,12 @@ def create_app():
     db.init_app(app)
 
     login_manager = LoginManager(app)
-    login_manager.login_view = 'auth.login'
+    login_manager.login_view = 'views.login'
     login_manager.login_message_category = 'error'
 
     try:
-        os.mkdir('app/static/files/')
-        os.mkdir('app/static/files/pp')
+        os.mkdir('app/client/static/files/')
+        os.mkdir('app/client/static/files/pp')
     except FileExistsError:
         pass
     with app.app_context():
@@ -38,9 +36,7 @@ def create_app():
     def load_user(id: int):
         return User.query.get(id)
 
-    app.register_blueprint(auth)
+    app.register_blueprint(api)
     app.register_blueprint(views)
-    app.register_blueprint(settings)
-    app.register_blueprint(admin)
     
     return app

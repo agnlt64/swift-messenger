@@ -12,7 +12,7 @@
     {% endfor %}
 </div>
 
-<form hx-post="/send-message" hx-target="#messages-container" hx-swap="beforeend" class="send-message-form" id="send-message-form">
+<form hx-post="/api/chat/send" hx-target="#messages-container" hx-swap="beforeend" class="send-message-form" id="send-message-form">
     <input type="text" class="send-message" id="message" placeholder="Enter a message..." autocomplete="off" />
 </form>
 
