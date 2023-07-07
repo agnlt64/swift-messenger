@@ -10,8 +10,9 @@ auth = Blueprint('auth', __name__)
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
+        raw_credentials = request.data.decode('utf-8').split(',')
+        username = raw_credentials[0]
+        password = raw_credentials[1]
         user = User.query.filter_by(username=username).first()
         if user:
             if check_password_hash(user.password, password):
@@ -27,9 +28,10 @@ def login():
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
-        username = request.form.get('username')
-        password = request.form.get('password')
-        confirm = request.form.get('confirm')
+        raw_credentials = request.data.decode('utf-8').split(',')
+        username = raw_credentials[0]
+        password = raw_credentials[1]
+        confirm = raw_credentials[2]
         user = User.query.filter_by(username=username).first()
         if user:
             flash('Username already taken!', category='error')

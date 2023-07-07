@@ -3,7 +3,7 @@ const separator = '<body'
 
 const config = { attributes: true, childList: true, subtree: true };
 
-function loadAjax(method, url) {
+function loadAjax(method, url, data=null) {
     xhr.open(method, url, true)
     xhr.onload = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -12,7 +12,7 @@ function loadAjax(method, url) {
             document.body.innerHTML = separator + splitResponse[1]
         }
     }
-    xhr.send()
+    xhr.send(data)
     window.history.pushState({ prevUrl: window.location.href }, '', url)
 }
 

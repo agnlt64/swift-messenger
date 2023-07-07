@@ -10,7 +10,7 @@ SwiftMessengr - Login
 
 {% block content %}
 <main class="container">
-    <form method="post" class="login-form">
+    <form method="post" class="login-form" action="/login">
         <div class="field-container">
             <label for="username">Username</label>
             <input type="text" name="username" placeholder="Your name..." required>
@@ -22,4 +22,9 @@ SwiftMessengr - Login
         <button type="submit" class="btn">Login</button>
     </form>
 </main>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
+<script src="{{ url_for('static', filename='js/auth_ajax.js') }}"></script>
 {% endblock %}
