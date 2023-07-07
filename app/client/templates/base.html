@@ -11,16 +11,16 @@
 </head>
 <body id="body">
     {% with messages = get_flashed_messages(with_categories=true) %}
-    <div class="message-container">
         {% if messages %}
+            <div class="message-container">
                 {% for category, message in messages %}
                     <div class="flashed-message {{ category }}" id="message">
                         <p>{{ message }}</p>
                     </div>
                     <img class="close-message" id="close-message" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
                 {% endfor %}
+            </div>
             {% endif %}
-    </div>
     {% endwith %}
 
     {% block content %}

@@ -33,7 +33,7 @@ const globalCallback = mutationList => {
                 })
             }
             else if (window.location.pathname === '/') {
-                const buttons = document.querySelectorAll('.btn')
+                const buttons = document.querySelectorAll('a')
                 buttons.forEach(b => {
                     b.addEventListener('click', (event) => {
                         event.preventDefault()

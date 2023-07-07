@@ -1,25 +1,41 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}
-SwiftMessengr
-{% endblock %}
+{% block title %} 
+SwiftMessengr 
+{% endblock %} 
 
 {% block style %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/index.css') }}"
+/>
 <script src="https://unpkg.com/htmx.org@1.8.6"></script>
-{% endblock %}
+{% endblock %} 
 
 {% block content %}
-<main class="container" id="container">
-    <h2>Welcome to SwiftMessengr!</h2>
-    <div class="btn-container">
-        <a href="/login" class="btn">Login</a>
-        <a href="/sign-up" class="btn">Sign Up</a>
+<nav class="nav">
+  <span class="logo">swiftmessengr</span>
+  <ul>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="#">About</a>
+    </li>
+    <div class="auth-buttons">
+        <li class="login">
+            <a href="/login">Login</a>
+        </li>
+        <li class="sign-up">                
+          <button>
+            <a href="/sign-up">Sign Up</a>
+          </button>
+        </li>
     </div>
-</main>
+  </ul>
+</nav>
 {% endblock %}
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
-<script src="{{ url_for('static', filename='js/auth_ajax.js') }}"></script>
 {% endblock %}

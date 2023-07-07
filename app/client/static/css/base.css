@@ -11,25 +11,6 @@
 
 * {
     font-family: 'Heebo', sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-*:not(.chat-area) {
-    color: #a2a5a6;
-}
-
-a {
-    text-decoration: none;
-}
-
-body {
-    overflow: hidden;
-    min-height: 100vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
 }
 
 .container {
