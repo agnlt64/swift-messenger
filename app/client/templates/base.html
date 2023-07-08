@@ -21,9 +21,30 @@
                     <img class="close-message" id="close-message" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
                 {% endfor %}
             </div>
-            {% endif %}
+        {% endif %}
     {% endwith %}
 
+    <nav class="nav" id="navbar">
+        <span class="logo">swiftmessengr</span>
+        <ul>
+          <li>
+            <a href="/">Home</a>
+          </li>
+          <li>
+            <a href="#">About</a>
+          </li>
+          <div class="auth-buttons">
+              <li class="login">
+                  <a href="/login">Login</a>
+              </li>
+              <li class="sign-up">                
+                <button>
+                  <a href="/sign-up">Sign Up</a>
+                </button>
+              </li>
+          </div>
+        </ul>
+      </nav>
     {% block content %}
     {% endblock %}
 
@@ -32,6 +53,7 @@
         {% endblock %}
     </footer>
 </body>
+<script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
 <script src="{{ url_for('static', filename='js/close_message.js') }}"></script>
 {% block scripts %}
 {% endblock %}
