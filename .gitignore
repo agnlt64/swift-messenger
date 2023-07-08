@@ -6,3 +6,4 @@ files/
 files/pp
 instance/
 .vscode/
+.DS_Store
