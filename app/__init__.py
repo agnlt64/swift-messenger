@@ -12,6 +12,7 @@ def create_app():
     
     app.config['SECRET_KEY'] = secrets.token_urlsafe(40)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+
     # Render error, fix later
     # try:
     #     with open('.config', 'r') as config_file:
@@ -29,8 +30,8 @@ def create_app():
         os.mkdir('app/client/static/files/pp')
     except FileExistsError:
         pass
-    with app.app_context():
-        db.create_all()
+
+    create_database('db.sqlite3')
 
     @login_manager.user_loader
     def load_user(id: int):
@@ -40,3 +41,8 @@ def create_app():
     app.register_blueprint(views)
     
     return app
+
+def create_database(db_name):
+    if not os.path.exists(f'instance/{db_name}'):
+        with app.app_context():
+            db.create_all()
