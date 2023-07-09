@@ -5,18 +5,18 @@ SwiftMessengr - Sign Up
 {% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
 {% endblock %}
 
 {% block content %}
-<main class="container">
-    <form method="post" class="signup-form" action="/api/auth/sign-up">
+<div class="form-container">
+    <form method="post" class="form" action="/api/auth/sign-up" autocomplete="off">
         <div class="field-container">
             <label for="username">Username</label>
             <input type="text" name="username" placeholder="Your name..." required>
         </div>
         <div class="field-container">
-            <label for="password">Your password</label>
+            <label for="password">Password</label>
             <input type="password" name="password" placeholder="Your password..." required>
         </div>
         <div class="field-container">
@@ -25,10 +25,5 @@ SwiftMessengr - Sign Up
         </div>
         <button type="submit" class="btn">Sign Up</button>
     </form>
-</main>
-{% endblock %}
-
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
-<script src="{{ url_for('static', filename='js/auth_ajax.js') }}"></script>
+</div>
 {% endblock %}

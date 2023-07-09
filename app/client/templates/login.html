@@ -5,26 +5,21 @@ SwiftMessengr - Login
 {% endblock %}
 
 {% block style %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
 {% endblock %}
 
 {% block content %}
-<main class="container">
-    <form method="post" class="login-form" action="/api/auth/login">
+<div class="form-container">
+    <form method="post" class="form" action="/api/auth/login" autocomplete="off">
         <div class="field-container">
             <label for="username">Username</label>
             <input type="text" name="username" placeholder="Your name..." required>
         </div>
         <div class="field-container">
-            <label for="password">Your password</label>
+            <label for="password">Password</label>
             <input type="password" name="password" placeholder="Your password..." required>
         </div>
         <button type="submit" class="btn">Login</button>
     </form>
-</main>
-{% endblock %}
-
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
-<script src="{{ url_for('static', filename='js/auth_ajax.js') }}"></script>
+</div>
 {% endblock %}

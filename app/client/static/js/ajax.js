@@ -16,6 +16,7 @@ function loadAjax(method, url, data=null) {
     window.history.pushState({ prevUrl: window.location.href }, '', url)
 }
 
+// this function will probably die soon
 function go(linkId, to) {
     const from = document.getElementById(linkId)
     from.addEventListener('click', event => {
@@ -27,28 +28,16 @@ function go(linkId, to) {
 const globalCallback = mutationList => {
     for (const mutation of mutationList) {
         if (mutation.type === "childList") {
-            if (window.location.pathname === '/login' || window.location.pathname === '/sign-up') {
-                window.addEventListener('popstate', () => {
-                    loadAjax('GET', window.location.pathname)
+            const links = document.querySelectorAll('a')
+            links.forEach(link => {
+                link.addEventListener('click', event => {
+                    event.preventDefault()
+                    loadAjax('GET', link.href)
                 })
-            }
-            else if (window.location.pathname === '/') {
-                const buttons = document.querySelectorAll('a')
-                buttons.forEach(b => {
-                    b.addEventListener('click', (event) => {
-                        event.preventDefault()
-                        loadAjax('GET', b.getAttribute('href'))
-                    })
-                })
-            }
-            // settings
-            else if (window.location.pathname === '/chat') {
-                go('settings-link', '/settings')
-            }
-            // go back to chat from settings
-            else if (window.location.pathname === '/settings') {
-                go('chat-link', '/chat')
-            }
+            })
+            window.addEventListener('popstate', () => {
+                loadAjax('GET', window.location.pathname)
+            })
         }
     }
 };

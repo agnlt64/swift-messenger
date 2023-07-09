@@ -25,6 +25,49 @@ a {
     text-decoration: none;
 }
 
+/* Flashed messages, do not touch */
+.invisible {
+    background-color: transparent !important;
+}
+
+.close-message {
+    aspect-ratio: 1/1;
+    width: 20px;
+    margin-left: 1rem;
+}
+
+.close-message:hover {
+    cursor: pointer;
+}
+
+.error {
+    --color: #db2b06;
+}
+
+.success {
+    --color: #1fb402;
+}
+
+.message-container {
+    position: absolute;
+    /* 16rem -> flashed message width, 10px -> gap, 20px -> close button width */
+    right: calc(50% - 16rem + 10px + 20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.flashed-message {
+    width: 16rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: var(--color);
+    border-radius: 0 0 8px 8px;
+}
+
 .nav {
     background-color: var(--background);
     display: flex;
@@ -74,15 +117,14 @@ a {
     padding: 10px 20px;
     background-color: transparent;
     transition: background-color 0.2s, scale 0.2s;
-    border: 1px solid #2e51ed;
+    border: 1px solid #1c30df;
     border-radius: var(--rounded);
     color: inherit;
     font-size: inherit;
 }
 
 .auth-buttons .sign-up:hover button {
-    background-color: #2e51ed;
-    scale: 1.07;
+    background-color: #1c30df;
     cursor: pointer;
 }
 
@@ -90,7 +132,7 @@ a {
     position: relative;
 }
 
-.auth-buttons .login:hover::after {
+.auth-buttons .login::after {
     content: '';
     position: absolute;
     top: 100%;
@@ -98,37 +140,12 @@ a {
     left: 0;
     height: 1.5px;
     background-color: white;
-    animation: slideIn 0.1s forwards;
+    transform: scaleX(0);
+    transition: 0.2s transform;
+    transform-origin: right;
 }
 
-@keyframes slideIn {
-    0%  {
-        width: 0;
-    }
-    20% {
-        width: 20%;
-    }
-    50% {
-        width: 50%;
-    }
-    70% {
-        width: 70%;
-    }
-    100% {
-        width: 100%;
-    }
-}
-
-.invisible {
-    background-color: transparent !important;
-}
-
-.close-message {
-    aspect-ratio: 1/1;
-    width: 20px;
-    margin-left: 1rem;
-}
-
-.close-message:hover {
-    cursor: pointer;
+.auth-buttons .login:hover::after {
+    transform-origin: left;
+    transform: scaleX(1);
 }
