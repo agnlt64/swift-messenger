@@ -1,61 +1,27 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SwiftMessengr - Settings</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
-    <script src="https://unpkg.com/htmx.org@1.8.6"></script>
-</head>
-<body id="body">
-    <main>
-        <nav class="nav">
-            <div class="left">
-                <a href="/logout">Logout</a>
-                <a href="/chat" id="chat-link">Chat</a>
-                {% if user == 'antonin' %}
-                <a href="/admin">Admin Panel</a>
-                {% endif %}
-            </div>
-            <div class="right">
-                <a href="/settings">
-                    <img src="{{ url_for('static', filename=''+profile_picture) }}" alt="profile picture"
-                        class="profile-picture">
-                </a>
-            </div>
-        </nav>
-    
-        <div class="message-container">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-            {% for category, message in messages %}
-            <div class=" {{ category }}" id="message">
-                <p>{{ message }}</p>
-            </div>
-            <img class="close-message" id="close-message"
-                onclick="document.getElementById('message').style.display='none';document.getElementById('close-message').style.display='none'"
-                src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
-            {% endfor %}
-            {% endwith %}
-        </div>
-    
-        <div class="settings">
-            <ul>
-                <li>
-                    <span hx-get="/settings/profile-picture" hx-target="#container" hx-swap="innerHTML">
-                        Change profile picture
-                    </span>
-                </li>
-                <li>
-                    <span hx-get="/settings/color-scheme" hx-target="#container" hx-swap="innerHTML">
-                        Change color scheme
-                    </span>
-                </li>
-            </ul>
-        </div>
-    
-        <div id="container"></div>
-    </main>
-</body>
-<script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+SwiftMessengr - Settings
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="settings">
+    <div class="sidebar">
+        <ul>
+            <li>
+                <a href="/settings/profile-picture">Change your profile picture</a>
+            </li>
+            <li>
+                <a href="/settings/color-scheme">Change the color scheme</a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-panel" id="main-panel">
+        <h1>settings panel</h1>
+    </div>
+</div>
+{% endblock %}

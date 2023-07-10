@@ -21,6 +21,10 @@ body {
     padding: 0;
 }
 
+body[theme=dark] {
+    background-color: #212529;
+}
+
 a {
     text-decoration: none;
 }
@@ -74,6 +78,7 @@ a {
     align-items: center;
     gap: 2rem;
     width: 100%;
+    height: 5rem;
 }
 
 .shadow {
@@ -87,6 +92,13 @@ a {
     letter-spacing: 4px;
     font-size: 38px;
     margin-left: 2rem;
+}
+
+.profile-picture {
+    height: 2.5rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .nav ul {
@@ -128,11 +140,11 @@ a {
     cursor: pointer;
 }
 
-.auth-buttons .login {
+.slide {
     position: relative;
 }
 
-.auth-buttons .login::after {
+.slide::after {
     content: '';
     position: absolute;
     top: 100%;
@@ -145,7 +157,7 @@ a {
     transform-origin: right;
 }
 
-.auth-buttons .login:hover::after {
+.slide:hover::after {
     transform-origin: left;
     transform: scaleX(1);
 }

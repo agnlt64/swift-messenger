@@ -65,11 +65,12 @@ def todolist():
 def settings_page():
     return render_template('settings/settings.html', profile_picture=current_user.profile_picture, user=current_user.username)
 
-@views.route('/settings/profile-picture', methods=['POST', 'GET'])
+@views.route('/settings/profile-picture')
 @login_required
-def update_profile_picture():
+def profile_picture():
+    print('profile picture page')
     return render_template('settings/profile_picture.html')
 
 @views.route('/settings/color-scheme')
-def update_color_scheme():
+def color_scheme():
     return render_template('settings/color_scheme.html')

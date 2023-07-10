@@ -1,1 +1,44 @@
-<h1>color scheme page here</h1>
+{% extends "base.html" %}
+
+{% block title %}
+SwiftMessengr - Settings
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="settings">
+    <div class="sidebar">
+        <ul>
+            <li>
+                <a href="/settings/profile-picture">Change your profile picture</a>
+            </li>
+            <li>
+                <a href="/settings/color-scheme">Change the color scheme</a>
+            </li>
+        </ul>
+    </div>
+    <span class="vertical-separator"></span>
+    
+    <div class="main-panel" id="main-panel">
+        <h1>Change the color scheme</h1>
+        <form class="color-schemes">
+            <div class="color">
+                <label for="light">Light Theme</label>
+                <!-- check if the user has light theme enabled -->
+                <input type="radio" name="theme-option" id="light" />
+            </div>
+            <div class="color">
+                <label for="light">Dark Theme</label>
+                <input type="radio" name="theme-option" id="dark" />
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+<!-- {% block scripts %}
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
+{% endblock %} -->

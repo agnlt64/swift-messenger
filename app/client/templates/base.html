@@ -7,6 +7,7 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='media/favicon.ico') }}" type="image/x-icon">
+    <script src="https://unpkg.com/htmx.org@1.8.6"></script>
     {% block style %}
     {% endblock %}
 </head>
@@ -34,14 +35,28 @@
             <a href="#">About</a>
           </li>
           <div class="auth-buttons">
-              <li class="login">
-                  <a href="/login">Login</a>
-              </li>
-              <li class="sign-up">                
+            {% if not current_user.is_authenticated %}
+            <li class="login slide">
+                <a href="/login">Login</a>
+            </li>
+            <li class="sign-up">                
                 <button>
-                  <a href="/sign-up">Sign Up</a>
+                    <a href="/sign-up">Sign Up</a>
                 </button>
-              </li>
+            </li>
+            {% else %}
+            <li class="slide">
+                <a href="/chat">Chat</a>
+            </li>
+            <li class="logout slide">
+                <a href="/logout">Logout</a>
+            </li>
+            <li>
+                <a href="/settings">
+                    <img src="{{ url_for('static', filename=''+current_user.profile_picture) }}" class="profile-picture" alt="user profile picture">
+                </a>
+            </li>
+            {% endif %}
           </div>
         </ul>
       </nav>
@@ -53,9 +68,13 @@
         {% endblock %}
     </footer>
 </body>
+<script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
 <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
 <script src="{{ url_for('static', filename='js/close_message.js') }}"></script>
+<script>
+    document.body.setAttribute('theme', localStorage.getItem('theme'))
+</script>
 {% block scripts %}
 {% endblock %}
 </html>
