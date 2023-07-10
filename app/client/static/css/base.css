@@ -29,6 +29,28 @@ a {
     text-decoration: none;
 }
 
+/* loading bar */
+.loading-bar {
+    display: none;
+    height: 4px;
+    background-color: white;
+    animation: slideIn 0.5s;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(50%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
 /* Flashed messages, do not touch */
 .invisible {
     background-color: transparent !important;
