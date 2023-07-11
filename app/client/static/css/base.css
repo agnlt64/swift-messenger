@@ -30,7 +30,7 @@ a {
 }
 
 /* progress bar */
-.loading-bar {
+.progress-bar {
     position: absolute;
     height: 4px;
     background-color: white;

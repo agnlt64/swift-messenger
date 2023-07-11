@@ -1,9 +1,9 @@
+const xhr = new XMLHttpRequest()
+const separator = '<body'
+
 const config = { attributes: true, childList: true, subtree: true };
 
 function loadAjax(method, url, data=null) {
-    const xhr = new XMLHttpRequest()
-    const separator = '<body'
-
     xhr.open(method, url, true)
     xhr.onload = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
