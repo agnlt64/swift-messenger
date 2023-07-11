@@ -1,9 +1,9 @@
-const xhr = new XMLHttpRequest()
-const separator = '<body'
-
 const config = { attributes: true, childList: true, subtree: true };
 
 function loadAjax(method, url, data=null) {
+    const xhr = new XMLHttpRequest()
+    const separator = '<body'
+
     xhr.open(method, url, true)
     xhr.onload = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -12,8 +12,8 @@ function loadAjax(method, url, data=null) {
             document.body.innerHTML = separator + splitResponse[1]
         }
     }
-    // add a loading bar
-    document.getElementById('loading-bar').style.width = '100%'
+    // add a progress bar
+    document.getElementById('progress-bar').style.width = '100%'
     xhr.send(data)
     window.history.pushState({ prevUrl: window.location.href }, '', url)
 }
