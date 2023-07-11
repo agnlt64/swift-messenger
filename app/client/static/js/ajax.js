@@ -12,11 +12,8 @@ function loadAjax(method, url, data=null) {
             document.body.innerHTML = separator + splitResponse[1]
         }
     }
-    xhr.onprogress = event => {
-        // add a loading bar
-        document.getElementById('loading-bar').style.display = 'block'
-        document.getElementById('loading-bar').style.width = `${event.loaded / 10}%`
-    }
+    // add a loading bar
+    document.getElementById('loading-bar').style.width = '100%'
     xhr.send(data)
     window.history.pushState({ prevUrl: window.location.href }, '', url)
 }
