@@ -2,12 +2,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 35rem;
+    min-height: 45rem;
 }
 
-@media (min-width: 50em) {
+@media (max-width: 100em) {
     .form-container {
-        min-height: 45rem;
+        min-height: 35rem;
     }
 }
 

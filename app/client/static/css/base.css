@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Heebo&family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@900&display=swap');
 
 
@@ -66,10 +66,6 @@ a {
 }
 
 /* Flashed messages, do not touch */
-.invisible {
-    background-color: transparent !important;
-}
-
 .close-message {
     aspect-ratio: 1/1;
     width: 20px;

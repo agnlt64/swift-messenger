@@ -14,7 +14,7 @@ selectImageInput.addEventListener('change', () => {
         imgContainer.querySelectorAll('img').forEach(img => img.remove())
         const newImage = document.createElement('img')
         newImage.src = reader.result
-        newImage.classList.add('profile-picture')
+        newImage.classList.add('new-profile-picture')
         newImage.setAttribute('name', 'new-image')
         imgContainer.appendChild(newImage)
     }

@@ -18,10 +18,14 @@ SwiftMessengr - Settings
             <li>
                 <a href="/settings/color-scheme">Change the color scheme</a>
             </li>
+            <li>
+                <a href="/settings/username">Change your username</a>
+            </li>
         </ul>
     </div>
     <div class="main-panel" id="main-panel">
-        <h1>settings panel</h1>
+        {% block settings_content %}
+        {% endblock %}
     </div>
 </div>
 {% endblock %}

@@ -1,5 +1,15 @@
+body {
+    overflow: hidden;
+}
+
 .settings {
     display: flex;
+}
+
+.settings .sidebar {
+    position: absolute;
+    border-right: 1px solid #a2a5a6;
+    height: 100%;
 }
 
 .settings .sidebar ul {
@@ -20,10 +30,18 @@
     padding: 10px 1rem;
 }
 
+.settings .sidebar ul li a {
+    color: black;
+}
+
 .settings .sidebar ul li:hover {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     cursor: pointer;
+}
+
+.settings .main-panel {
+    width: 100%;
 }
 
 @media (min-width: 50em) {
@@ -33,7 +51,8 @@
     }
 
     .settings .main-panel {
-        margin-left: 2rem;
+        margin-left: 16rem;
+        padding: 2rem 3rem;
     }
 }
 
@@ -52,14 +71,130 @@ body[theme=dark] .settings .sidebar ul li:hover {
     cursor: pointer;
 }
 
+body[theme=dark] .settings .sidebar ul li a {
+    color: white;
+}
+
 /* change the color scheme */
 .color-schemes {
     display: flex;
-    gap: 12px;
+    gap: 2rem;
     flex-direction: column;
 }
 
 .color-schemes .color {
     display: flex;
-    gap: 12px;
+    padding: 15px 18px;
+    border-radius: 12px;
+    border: 1px solid black;
+    align-items: center;
+}
+
+.color-schemes .color[name=light] {
+    background-color: white;
+    color: black;
+}
+
+.color-schemes .color[name=dark] {
+    background-color: black;
+    color: white;
+}
+
+.color-schemes .color input[type=radio] {
+    appearance: none;
+    aspect-ratio: 1/1;
+    width: 1.5rem;
+    border: 3px solid #909090;
+    border-radius: 50%;
+    margin-left: auto;
+}
+
+.color-schemes .color input[type=radio]:checked {
+    background-color:  #1c30df;
+}
+
+.color-schemes .color input[type=radio]:hover {
+    cursor: pointer;
+}
+
+/* update the profile picture */
+.choose-image-form {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.choose-image-form .choose-image {
+    padding: 10px 15px;
+    font-size: 18px;
+    width: 12rem;
+    border: 1px solid #909090;
+    background-color: #909090;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.choose-image-form .choose-image:hover {
+    cursor: pointer;
+}
+
+.choose-image-form .new-img-container .new-profile-picture {
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    width: 8rem;
+    object-fit: cover;
+}
+
+.choose-image-form .choose-image-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    width: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #1c30df;
+    background-color: #1c30df;
+    transition: 0.2s transform;
+    border-radius: 8px;
+}
+
+.choose-image-form .choose-image-btn:hover {
+    cursor: pointer;
+    transform: translateY(-4px);
+}
+
+/* change the username */
+.change-username {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.change-username input {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #a2a5a6;
+    width: 8rem;
+}
+
+.change-username input:focus {
+    border: 1px solid #5361de;
+    outline: 3px solid rgba(146, 146, 255, 0.6);
+}
+
+.change-username button {
+    padding: 6px 0;
+    width: 10rem;
+    border-radius: 8px;
+    border: 1px solid #1c30df;
+    color: white;
+    background-color: #1c30df;
+    font-size: 16px;
 }

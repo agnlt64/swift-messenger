@@ -7,10 +7,6 @@
     --sidebar-color: #17e6df;
 }
 
-* {
-    font-family: 'Titillium Web', sans-serif;
-}
-
 body {
     background-color: #05092b;
     overflow: hidden;

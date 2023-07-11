@@ -74,3 +74,8 @@ def profile_picture():
 @views.route('/settings/color-scheme')
 def color_scheme():
     return render_template('settings/color_scheme.html')
+
+@views.route('/settings/username')
+@login_required
+def username():
+    return render_template('settings/username.html')
