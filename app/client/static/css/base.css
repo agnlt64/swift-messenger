@@ -29,6 +29,17 @@ a {
     text-decoration: none;
 }
 
+input {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #a2a5a6;
+}
+
+input:focus {
+    border: 1px solid #5361de;
+    outline: 3px solid rgba(146, 146, 255, 0.6);
+}
+
 /* progress bar */
 .progress-bar {
     position: absolute;

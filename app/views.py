@@ -63,7 +63,7 @@ def todolist():
 @views.route('/settings')
 @login_required
 def settings_page():
-    return render_template('settings/settings.html', profile_picture=current_user.profile_picture, user=current_user.username)
+    return render_template('settings/profile_picture.html')
 
 @views.route('/settings/profile-picture')
 @login_required
@@ -79,3 +79,8 @@ def color_scheme():
 @login_required
 def username():
     return render_template('settings/username.html')
+
+@views.route('/settings/password')
+@login_required
+def password():
+    return render_template('settings/password.html')
