@@ -57,6 +57,12 @@ input, span, p {
 .group {
     min-width: 100%;
     height: 5rem;
+    padding-left: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    gap: 1rem;
     transition: background-color 0.2s;
 }
 
@@ -74,7 +80,7 @@ input, span, p {
 }
 
 .group-name {
-    padding: 5px 0 0 70px;
+    /* padding: 5px 0 0 70px; */
     font-size: 20px;
     transition: color 0.2s;
     color: #fff;
@@ -93,10 +99,9 @@ input, span, p {
 
 .group-picture {
     border-radius: 50%;
-    height: 60px;
+    height: 3rem;
     aspect-ratio: 1/1;
     object-fit: cover;
-    margin: calc(-5rem / 2 + 30px / 2) 0 0 5px; /* 5rem is the height of the group block */
 }
 
 .new-room {
@@ -157,6 +162,7 @@ input, span, p {
     align-items: center;
     justify-content: center;
     height: 100%;
+    margin: 0;
 }
 
 /* from here:
@@ -181,7 +187,6 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     background-color: var(--sidebar-background);
     border-radius: var(--rounded);
     border: 1px solid var(--discret-color);
-    /* NEVER CHANGE WIDTH AND HEIGHT VALUES */
     width: 30rem;
     height: 20rem;
     position: absolute;
@@ -305,6 +310,10 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     font-size: 20px;
 }
 
+.member p {
+    color: white;
+}
+
 .title-container {
     display: flex;
     justify-content: center;
@@ -346,7 +355,7 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     border-top: 1px solid var(--discret-color);
     background-color: var(--sidebar-background);
     transform: translateY(-100%);
-    width: 100%;
+    width: 64%;
     height: 5rem;
 }
 
@@ -356,7 +365,8 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     color: var(--discret-color);
     background-color: transparent;
     font-size: 16px;
-    width: calc(100% - 25rem);
+    /* width: calc(100% - 25rem); */
+    width: 100%;
     height: 2rem;
     padding: 3px 15px;
 }

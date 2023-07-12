@@ -7,14 +7,8 @@ const errorMsg = document.getElementById('error-message')
 const roomName = document.getElementById('room-name')
 const submitForm = document.getElementById('submit-form')
 
-// 30rem -> *16 to convert in pixels
-const ROOM_FORM_WIDTH = 30 * 16
-const ROOM_FORM_HEIGHT = 25 * 16
-
 // show the room creation dialog
 createRoom.addEventListener('click', () => {
-    roomForm.style.left = `${window.innerWidth / 2 - ROOM_FORM_WIDTH / 2}px`
-    roomForm.style.top = `${window.innerHeight / 2 - ROOM_FORM_HEIGHT / 2}px`
     roomForm.showModal()
 })
 
