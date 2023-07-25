@@ -1,4 +1,7 @@
-{% if message.chat_group == current_chat_group %}
+{% extends 'messages/send_message.html' %}
+
+{% for message in messages %}
+    {% if message.chat_group == current_chat_group %}
     <div class="message">
         <img class="message-profile-picture" src="{{ url_for('static', filename=''+user.profile_picture) }}" alt="profile picture">
         <div class="infos-container">
@@ -6,4 +9,5 @@
             <p>{{ message.content }}</p>
         </div>
     </div>
-{% endif %}
+    {% endif %}
+{% endfor %}

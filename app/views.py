@@ -1,12 +1,14 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from werkzeug.utils import secure_filename
-from .server.models import ChatGroup, Task, User
+from .server.models import ChatGroup, Task, User, Message
 from .server import db
 import os
 
 # client views only, logic is in the api folder
 views = Blueprint('views', __name__)
+
+current_chat_group = 'unset'
 
 @views.route('/')
 def home():
@@ -19,6 +21,27 @@ def chat():
         flash('You have been banned. Contact the admin to get further informations.', category='error')
         return redirect(url_for('views.home'))
     return render_template('chat.html', user=current_user, groups=ChatGroup.query.all(), profile_picture=str(current_user.profile_picture))
+
+# display the page when a user clicks on a chat group
+@views.route('/chat/group/<id>')
+@login_required
+def group(id):
+    group = ChatGroup.query.filter_by(id=id).first()
+    global current_chat_group
+    current_chat_group = group.id
+    if group:
+        names = group.members.split(',')[:-1]
+        members = [User.query.filter_by(username=name).first() for name in names]
+        # a lot of parameters since send_message inherits from chat.html 
+        # and we need to pass the parameters to chat.html via this render_template call
+        # because the page is re-rendered
+        return render_template('messages/send_message.html', messages=Message.query.all(), 
+                               user=current_user, group=group, members=members, 
+                               groups=ChatGroup.query.all(), profile_picture=str(current_user.profile_picture),
+                               active='active', current_chat_group=current_chat_group)
+    else:
+        # this can't be reached
+        return 'Congrats! You triggered an ureachable error message!'
 
 @views.route('/login')
 def login():

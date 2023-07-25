@@ -1,12 +1,10 @@
-from flask import Blueprint, request, render_template, flash
+from flask import Blueprint, request, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 import os
 
-from ..server.models import ChatGroup, Message, User
+from ..server.models import ChatGroup, Message
 from ..server import db
-
-current_chat_group = 'unset'
 
 chat = Blueprint('chat', __name__, url_prefix='/chat')
 
@@ -30,22 +28,15 @@ def create_form():
         db.session.commit()
     return render_template('messages/create_group.html', user=current_user.username, groups=ChatGroup.query.all())
 
-@chat.route('/group/<id>')
-@login_required
-def group(id):
-    group = ChatGroup.query.filter_by(id=id).first()
-    global current_chat_group
-    current_chat_group = group.id
-    if group:
-        names = group.members.split(',')[:-1]
-        members = [User.query.filter_by(username=name).first() for name in names]
-        return render_template('messages/send_message.html', messages=Message.query.all(), user=current_user, group=group, members=members)
-    else:
-        # this can't be reached
-        return 'Congrats! You triggered an ureachable error message!'
-
 @chat.route('/send', methods=['POST'])
 @login_required
 def send():
-    global current_chat_group
-    return render_template('messages/message.html', message=Message.query.order_by(Message.id.desc()).first(), user=current_user, current_chat_group=current_chat_group)
+    current_chat_group = request.form.get('current-chat-group')
+    sent_message = request.form.get('message')
+    print(sent_message)
+    if sent_message != '':
+        new_message = Message(sender=current_user.username, content=sent_message, chat_group=current_chat_group)
+        db.session.add(new_message)
+        db.session.commit()
+    return redirect(url_for('views.group', id=current_chat_group))
+    # return render_template('messages/message.html', messages=Message.query.all(), current_chat_group=current_chat_group)

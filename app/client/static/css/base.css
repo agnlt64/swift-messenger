@@ -40,6 +40,10 @@ input:focus {
     outline: 3px solid rgba(146, 146, 255, 0.6);
 }
 
+.invisible {
+    display: none !important;
+}
+
 /* progress bar */
 .progress-bar {
     position: absolute;

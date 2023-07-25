@@ -23,15 +23,18 @@ SwiftMessengr - Chat
                 <span class="separator top-separator"></span>
                 {% for group in groups %}
                 {% if group.creator == user.username %}
-                <div class="group" hx-get="/api/chat/group/{{ group.id }}" data-group-id="{{ group.id }}" hx-target="#chat-area"
-                    hx-swap="innerHTML" hx-trigger="click">
-                    <span>
+                    {% if group.id == current_chat_group %}
+                    <a href="/chat/group/{{ group.id }}" class="group {{ active }}" data-group-id="{{ group.id }}">
                         <p class="group-name">{{ group.name }}</p>
-                    </span>
-                    <img class="group-picture" src="{{ url_for('static', filename='files/'+group.image_path) }}"
-                        alt="group logo">
-                </div>
-                <span class="separator"></span>
+                        <img class="group-picture" src="{{ url_for('static', filename='files/'+group.image_path) }}" alt="group logo">
+                    </a>
+                    {% else %}
+                    <a href="/chat/group/{{ group.id }}" class="group" data-group-id="{{ group.id }}">
+                        <p class="group-name">{{ group.name }}</p>
+                        <img class="group-picture" src="{{ url_for('static', filename='files/'+group.image_path) }}" alt="group logo">
+                    </a>
+                    <span class="separator"></span>
+                    {% endif %}
                 {% endif %}
                 {% endfor %}
             </div>
@@ -44,7 +47,10 @@ SwiftMessengr - Chat
             <span class="arrow"></span>
         </div>
     
-        <div class="chat-area" id="chat-area"></div>
+        <div class="chat-area">
+            {% block chat_area %}
+            {% endblock %}
+        </div>
     
         <dialog id="room-form" class="room-form">
             <button id="room-close-btn" class="close-button">
