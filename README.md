@@ -33,24 +33,24 @@ POST /api/settings/update/profile-picture -> updates the profile picture of the 
 ```
 
 ## Roadmap
-[x] User authentication  
-[x] Full Ajax implementation (no page reloading except for auth)  
-[x] Chat groups  
-[x] Customisable profile picture  
-[x] Dark mode  
-[x] Change username and password  
-[x] Admin interface  
-[x] Roles  
-[ ] Multiple users in one chat group  
-[ ] Actually sending messages  
+- [x] User authentication  
+- [x] Full Ajax implementation (no page reloading except for auth)  
+- [x] Chat groups  
+- [x] Customisable profile picture  
+- [x] Dark mode  
+- [x] Change username and password  
+- [x] Admin interface  
+- [x] Roles  
+- [ ] Multiple users in one chat group  
+- [ ] Actually sending messages  
 
 ### Future featues (when everything else is finished)
-[ ] Ping a specific user  
-[ ] Ping everyone in a chat group  
-[ ] Ban a user from a chat group  
-[ ] Permissions inside a chat group  
-[ ] Permanently ban a user  
-[ ] Mobile app (not sure)
+- [ ] Ping a specific user  
+- [ ] Ping everyone in a chat group  
+- [ ] Ban a user from a chat group  
+- [ ] Permissions inside a chat group  
+- [ ] Permanently ban a user  
+- [ ] Mobile app (not sure)
 
 ## Run on macOS/Linux
 ```console
