@@ -13,24 +13,44 @@ The API available for this application is very simple. All the routes begin with
 All available endpoints:  
 ```
 # Authentication API
-/api/auth/login -> checks the user credentials and login
-/api/auth/sign-up -> registers an user in the database and automatically logs the user in
+POST /api/auth/login -> checks the user credentials and login
+POST /api/auth/sign-up -> registers an user in the database and automatically logs the user in
 
 # Admin API
-/api/admin/todolist/add -> adds a task in the admin todolist
-/api/admin/todolist/delete/<task id> -> deletes a task with its unique id
-/api/admin/todolist/update/<task id> -> updates a task with its unique id
-/api/admin/update/role/<user id> -> updates the role of the user with its unique id
-/api/admin/create/user -> creates an user within the admin interface
+POST /api/admin/todolist/add -> adds a task in the admin todolist
+POST /api/admin/todolist/delete/<task id> -> deletes a task with its unique id
+POST /api/admin/todolist/update/<task id> -> updates a task with its unique id
+POST /api/admin/update/role/<user id> -> updates the role of the user with its unique id
+POST /api/admin/create/user -> creates an user within the admin interface
 
 # Chat API
-/api/chat/create -> creates a new chat group
-/api/chat/group/<chat id> -> accesses a chat group with its unique id
-/api/chat/send -> sends a message
+POST /api/chat/create -> creates a new chat group
+GET /api/chat/group/<chat id> -> accesses a chat group with its unique id
+POST /api/chat/send -> sends a message
 
 # Settings API
-/api/settings/update/profile-picture -> updates the profile picture of the current user (no need to specify the unique id)
+POST /api/settings/update/profile-picture -> updates the profile picture of the current user (no need to specify the unique id)
 ```
+
+## Roadmap
+[x] User authentication  
+[x] Full Ajax implementation (no page reloading except for auth)  
+[x] Chat groups  
+[x] Customisable profile picture  
+[x] Dark mode  
+[x] Change username and password  
+[x] Admin interface  
+[x] Roles  
+[ ] Multiple users in one chat group  
+[ ] Actually sending messages  
+
+### Future featues (when everything else is finished)
+[ ] Ping a specific user  
+[ ] Ping everyone in a chat group  
+[ ] Ban a user from a chat group  
+[ ] Permissions inside a chat group  
+[ ] Permanently ban a user  
+[ ] Mobile app (not sure)
 
 ## Run on macOS/Linux
 ```console
