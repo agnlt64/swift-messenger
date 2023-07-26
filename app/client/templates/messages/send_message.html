@@ -15,7 +15,7 @@
     {% endfor %}
 </div>
 
-<form method="post" action="/api/chat/send" class="send-message-form" id="send-message-form">
+<form method="post" action="/api/chat/send" class="send-message-form" id="send-message-form" data-current-chat-group="{{ current_chat_group }}">
     <input type="text" name="message" class="send-message" id="message" placeholder="Enter a message..." autocomplete="off" />
     <input type="submit" hidden value="{{ current_chat_group }}" name="current-chat-group">
 </form>
@@ -33,8 +33,4 @@
         {% endfor %}
     </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}

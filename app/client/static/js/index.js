@@ -4,52 +4,29 @@
  */
 
 // no need for let or const since this script will we included multiple times in the same page because I suck at designing correct apps
-socket = io()
-sendMessage = document.getElementById('send-message-form')
-chatArea = document.getElementById('messages-container')
-message = document.getElementById('message')
+const socket = io()
 
-socket.on('connect', () => {
-    socket.emit('join')
-})
-
-sendMessage.addEventListener('submit', () => {
-    document.querySelectorAll('.group').forEach(g => {
-        if (g.classList.contains('active')) {
-            // we have the current group id
-            id = g.getAttribute('data-group-id')
-            message = document.getElementById('message')
-            socket.emit('message', message.value, id)
-            message.value = ""
-            chatArea.scrollTo(0, chatArea.scrollHeight)
-        }
-    })
-})
-
-chatCallback = (mutationList) => {
+const chatCallback = (mutationList) => {
   for (const mutation of mutationList) {
     if (mutation.type === "childList") {
-        sendMessage = document.getElementById('send-message-form')
-        sendMessage.addEventListener('submit', () => {
-            document.querySelectorAll('.group').forEach(g => {
-                if (g.classList.contains('active')) {
-                    // we have the current group id
-                    id = g.getAttribute('data-group-id')
-                    message = document.getElementById('message')
-                    // chatArea.scrollTop = chatArea.scrollHeight
-                    socket.emit('message', message.value, id)
-                    message.value = ""
-                    chatArea.scrollTo(0, chatArea.scrollHeight)
-                }
+        try {
+            const sendMessage = document.getElementById('send-message-form')
+            const chatArea = document.getElementById('messages-container')
+            sendMessage.addEventListener('submit', e => {
+                e.preventDefault()
+                message = document.getElementById('message')
+                socket.emit('message', message.value, sendMessage.getAttribute('data-current-chat-group'))
+                message.value = ""
+                chatArea.scrollTo(0, chatArea.scrollHeight)
             })
-        })
+        }
+        catch (error) {
+            // it works anyway sont dont care
+        }
     }
   }
 };
 
-chatObserver = new MutationObserver(chatCallback);
+const chatObserver = new MutationObserver(chatCallback);
 
-chatObserver.observe(message, config);
-
-// we don't handle the `chat` event because it requires backend code to store the message in the database
-// see events.py
+chatObserver.observe(document.body, config);

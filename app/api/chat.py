@@ -32,11 +32,5 @@ def create_form():
 @login_required
 def send():
     current_chat_group = request.form.get('current-chat-group')
-    sent_message = request.form.get('message')
-    print(sent_message)
-    if sent_message != '':
-        new_message = Message(sender=current_user.username, content=sent_message, chat_group=current_chat_group)
-        db.session.add(new_message)
-        db.session.commit()
     return redirect(url_for('views.group', id=current_chat_group))
     # return render_template('messages/message.html', messages=Message.query.all(), current_chat_group=current_chat_group)

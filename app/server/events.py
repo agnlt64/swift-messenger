@@ -11,7 +11,6 @@ def handle_connection():
 
 @socketio.on('message')
 def handle_message(message: str, chat_group_id: int):
-    print(f'received data from client javascript: {chat_group_id}')
-    new_message = Message(sender=current_user.username, chat_group=chat_group_id, content=message)
+    new_message = Message(sender=current_user.username, content=message, chat_group=chat_group_id)
     db.session.add(new_message)
     db.session.commit()
