@@ -12,5 +12,6 @@ def handle_connection():
 @socketio.on('message')
 def handle_message(message: str, chat_group_id: int):
     new_message = Message(sender=current_user.username, content=message, chat_group=chat_group_id)
-    db.session.add(new_message)
-    db.session.commit()
+    if message != '':
+        db.session.add(new_message)
+        db.session.commit()

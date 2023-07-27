@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 import os
 
-from ..server.models import ChatGroup, Message
+from ..server.models import ChatGroup
 from ..server import db
 
 chat = Blueprint('chat', __name__, url_prefix='/chat')
@@ -26,11 +26,14 @@ def create_form():
         current_user.chat_groups += chat_group.name + ','
         db.session.add(chat_group)
         db.session.commit()
-    return render_template('messages/create_group.html', user=current_user.username, groups=ChatGroup.query.all())
+    # redirect the user to the previous url (most likely /chat)
+    # because this route just creates a new chat group
+    return redirect(request.referrer)
 
 @chat.route('/send', methods=['POST'])
 @login_required
 def send():
+    # this route is here for code readability, it does nothing but redirect the user to the current chat group
+    # all the logic for sending messages and saving them is in server/events.py
     current_chat_group = request.form.get('current-chat-group')
     return redirect(url_for('views.group', id=current_chat_group))
-    # return render_template('messages/message.html', messages=Message.query.all(), current_chat_group=current_chat_group)
