@@ -392,11 +392,15 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     align-items: center;
     justify-content: flex-start;
     gap: 18px;
+    margin: 0.5rem 0;
 }
 
-.infos-container {
-    display: flex;
-    flex-direction: column;
+.infos-container p {
+    margin: 0;
+}
+
+.infos-container p:not(.message-username) {
+    color: white;
 }
 
 .message-username {

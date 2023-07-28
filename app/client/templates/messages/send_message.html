@@ -15,7 +15,11 @@
     {% endfor %}
 </div>
 
-<form method="post" action="/api/chat/send" class="send-message-form" id="send-message-form" data-current-chat-group="{{ current_chat_group }}">
+<form method="post" action="/api/chat/send" class="send-message-form" id="send-message-form" 
+      data-current-chat-group="{{ current_chat_group }}" 
+      data-profile-picture="{{ user.profile_picture }}"
+      data-sender="{{ user.username }}"
+    >
     <input type="text" name="message" class="send-message" id="message" placeholder="Enter a message..." autocomplete="off" />
     <input type="submit" hidden value="{{ current_chat_group }}" name="current-chat-group">
 </form>

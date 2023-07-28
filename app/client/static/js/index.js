@@ -3,7 +3,36 @@
  * events are handled in the `events.py` file.
  */
 
-// no need for let or const since this script will we included multiple times in the same page because I suck at designing correct apps
+function buildMessage(username, profilePicturePath, content) {
+    // global message
+    const msgDiv = document.createElement('div')
+    msgDiv.className = 'message'
+
+    // sender profile picture
+    const profilePicture = document.createElement('img')
+    profilePicture.src = `/static/${profilePicturePath}`
+    profilePicture.className = 'message-profile-picture'
+    msgDiv.appendChild(profilePicture)
+    
+    // container for content and username
+    const infosContainer = document.createElement('div')
+    infosContainer.className = 'infos-container'
+    
+    // username
+    const usernameElement = document.createElement('p')
+    usernameElement.className = 'message-username'
+    usernameElement.innerHTML = username
+    infosContainer.appendChild(usernameElement)
+    
+    // message content
+    const messageElement = document.createElement('p')
+    messageElement.innerHTML = content
+    infosContainer.appendChild(messageElement)
+
+    msgDiv.appendChild(infosContainer)
+    return msgDiv
+}
+
 const socket = io()
 
 const chatCallback = (mutationList) => {
@@ -16,12 +45,19 @@ const chatCallback = (mutationList) => {
                 e.preventDefault()
                 message = document.getElementById('message')
                 socket.emit('message', message.value, sendMessage.getAttribute('data-current-chat-group'))
+                // build a message component
+                if (message.value !== '') {
+                    const username = sendMessage.getAttribute('data-sender')
+                    const profilePicture = sendMessage.getAttribute('data-profile-picture')
+                    const msgComponent = buildMessage(username, profilePicture, message.value)
+                    chatArea.appendChild(msgComponent)
+                }
                 message.value = ""
                 chatArea.scrollTo(0, chatArea.scrollHeight)
             })
         }
         catch (error) {
-            // it works anyway sont dont care
+            // it works anyway so dont care
         }
     }
   }

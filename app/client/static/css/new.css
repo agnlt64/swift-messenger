@@ -1,0 +1,126 @@
+* {
+    color: white;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* outside of ui container */
+/* .btn-container {
+    margin-left: 1rem;
+    position: absolute;
+    top: 90%;
+    display: flex;
+    gap: 8px;
+    width: 100%;
+} */
+
+/* cant use a container for these elements */
+.new-chat-group {
+    position: absolute;
+    margin-left: 1rem;
+    top: 93%;
+    border: 1px solid #1771bd;
+    background-color: #1771bd;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    width: 3rem;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-chat-group:hover {
+    cursor: pointer;
+}
+
+.new-chat-group:hover ~ .tooltip,
+.new-chat-group:hover ~ .arrow {
+    opacity: 1;
+}
+
+.tooltip {
+    position: absolute;
+    margin-left: 1rem;
+    top: 91%;
+    left: 4.5rem;
+    /* hidden by default */
+    opacity: 0;
+    background-color: #000;
+    width: 8rem;
+    padding: 12px;
+    text-align: center;
+    transition: 0.2s opacity;
+}
+
+/* from here:
+https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-triangle-using-css
+*/
+.arrow {
+    position: absolute;
+    top: 93.5%;
+    left: 4.5rem;
+    width: 0;
+    height: 0;
+    border-top: 1rem solid transparent;
+    border-right: 16px solid #000;
+    border-bottom: 1rem solid transparent;
+    transition: opacity 0.2s;
+    /* hidden by default */
+    opacity: 0;
+}
+
+.tooltip p {
+    margin: 0;
+}
+
+.ui-container {
+    display: flex;
+    position: absolute;
+    height: 100%;
+    overflow: hidden;
+}
+
+.sidebar {
+    border-right: 2px solid #777777;
+    height: 100%;
+}
+
+.sidebar > *:not(.group-container) {
+    padding: 1.5rem;
+}
+
+.sidebar .search-container input {
+    color: black;
+}
+
+.sidebar .group-picture {
+    aspect-ratio: 1/1;
+    width: 3.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.group-container .separator {
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #777777;
+}
+
+.group-container .active {
+    background-color: #494c4efb;
+}
+
+.group-container .group {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    transition: 0.2s background-color;
+}
+
+.group-container .group:hover {
+    background-color: #494c4efb;
+}
