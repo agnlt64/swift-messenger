@@ -7,3 +7,4 @@ files/pp
 instance/
 .vscode/
 .DS_Store
+logs.txt
