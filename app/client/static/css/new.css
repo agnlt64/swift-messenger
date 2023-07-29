@@ -6,16 +6,6 @@ body {
     overflow: hidden;
 }
 
-/* outside of ui container */
-/* .btn-container {
-    margin-left: 1rem;
-    position: absolute;
-    top: 90%;
-    display: flex;
-    gap: 8px;
-    width: 100%;
-} */
-
 /* cant use a container for these elements */
 .new-chat-group {
     position: absolute;
@@ -36,8 +26,7 @@ body {
     cursor: pointer;
 }
 
-.new-chat-group:hover ~ .tooltip,
-.new-chat-group:hover ~ .arrow {
+.new-chat-group:hover ~:is(.tooltip, .arrow) {
     opacity: 1;
 }
 
@@ -123,4 +112,97 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
 
 .group-container .group:hover {
     background-color: #494c4efb;
+}
+
+.new-group-form[open] {
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+    background: linear-gradient(18deg, #0e1343, #1c30df);
+    color: white;
+    padding: 2rem 0 2rem 2rem;
+    /* padding: 2rem; */
+    border-radius: 18px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    position: relative;
+}
+
+.new-group-form[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.new-group-form .close-button {
+    background-color: transparent;
+    border: none;
+    font-size: 3rem;
+    position: absolute;
+    left: calc(100% - 3rem - 1rem);
+    top: 0;
+}
+
+.new-group-form .close-button:hover {
+    cursor: pointer;
+}
+
+.new-group-form .rotated {
+    rotate: 45deg;
+}
+
+.new-group-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 18rem;
+}
+
+.new-group-form input {
+    color: black;
+    width: 100%;
+}
+
+.new-group-form .error-message {
+    display: none;
+    color: red;
+}
+
+.new-group-form .select-image {
+    width: 100%;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background-color: #1c30df;
+    text-align: center;
+}
+
+.new-group-form .select-image:hover {
+    cursor: pointer;
+}
+
+.new-group-form .new-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-group-form .new-group-picture {
+    aspect-ratio: 1/1;
+    width: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.new-group-form .confirm {
+    width: 20rem;
+    padding: 8px 14px;
+    background-color: #1c30df;
+    border: 1px solid #1c30df;
+    transition: 0.2s translate;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.new-group-form .confirm:hover {
+    cursor: pointer;
+    translate: 0 -4px;
 }

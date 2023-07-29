@@ -11,7 +11,7 @@ chat = Blueprint('chat', __name__, url_prefix='/chat')
 @chat.route('/create', methods=['POST'])
 @login_required
 def create_form():
-    chat_group_name = request.form.get('room-name')
+    chat_group_name = request.form.get('group-name')
     chat_group = ChatGroup.query.filter_by(name=chat_group_name, creator=current_user.username).first()
     file = request.files.get('image-file')
     if chat_group:
