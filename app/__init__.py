@@ -1,9 +1,13 @@
 from flask_login import LoginManager
 import secrets
 import os
+from PyLog.logger import Logger, LogLevel
 
 from .server import db
 from .server import app
+
+# Global logger available in all the app
+logger = Logger(log_to_file=True)
 
 def create_app():
     from .views import views

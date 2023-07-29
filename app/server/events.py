@@ -3,11 +3,12 @@ from datetime import datetime
 from .models import Message
 from flask_login import current_user
 from . import db
+from .. import logger, LogLevel
 
 @socketio.on('connect')
 def handle_connection():
-    date = datetime.now()
-    print(f'client connected the {date.day}/{date.month}/{date.year} at {date.hour}:{date.minute}')
+    logger.set_level(LogLevel.Info)
+    logger.log('Client connected')
 
 @socketio.on('message')
 def handle_message(message: str, chat_group_id: int):
