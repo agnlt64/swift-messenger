@@ -76,12 +76,33 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
 
 .sidebar {
     border-right: 2px solid #777777;
-    height: 100%;
+    /* 5rem is the height of the navbar */
+    height: calc(100% - 5rem);
     position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 30rem;
 }
 
-.sidebar > *:not(.group-container) {
-    padding: 1.5rem;
+/* custom scrollbar for safari and chrome */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+   background-color: transparent;
+}
+  
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #595a5a;
+    border-radius: 10px;
+}
+
+.sidebar .search-container {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sidebar .group-picture {
@@ -211,7 +232,8 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     width: 100%;
     flex-direction: column;
     justify-content: flex-end;
-    height: calc(100vh - 5rem);
+    /* 5rem is the height of the navbar */
+    height: calc(100% - 5rem);
 }
 
 .chat-area .messages-container {
@@ -224,7 +246,7 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
 
 /* scrollbar styles for chrome and safari */
 .messages-container::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 .messages-container::-webkit-scrollbar-track {
