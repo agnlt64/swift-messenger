@@ -1,14 +1,13 @@
 from . import socketio
-from datetime import datetime
 from .models import Message
 from flask_login import current_user
 from . import db
-from .. import logger, LogLevel
+from .. import logger
 
 @socketio.on('connect')
 def handle_connection():
-    logger.set_level(LogLevel.Info)
-    logger.log('Client connected')
+    logger.disable_file_logging()
+    logger.info('Client connected')
 
 @socketio.on('message')
 def handle_message(message: str, chat_group_id: int):

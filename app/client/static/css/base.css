@@ -33,6 +33,7 @@ input {
     padding: 8px 14px;
     border-radius: 8px;
     border: 1px solid #a2a5a6;
+    color: black;
 }
 
 input:focus {

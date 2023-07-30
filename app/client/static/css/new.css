@@ -42,6 +42,7 @@ body {
     padding: 12px;
     text-align: center;
     transition: 0.2s opacity;
+    border-radius: 8px;
 }
 
 /* from here:
@@ -70,19 +71,17 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
     position: absolute;
     height: 100%;
     overflow: hidden;
+    width: 100%;
 }
 
 .sidebar {
     border-right: 2px solid #777777;
     height: 100%;
+    position: relative;
 }
 
 .sidebar > *:not(.group-container) {
     padding: 1.5rem;
-}
-
-.sidebar .search-container input {
-    color: black;
 }
 
 .sidebar .group-picture {
@@ -158,7 +157,6 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
 }
 
 .new-group-form input {
-    color: black;
     width: 100%;
 }
 
@@ -205,4 +203,92 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
 .new-group-form .confirm:hover {
     cursor: pointer;
     translate: 0 -4px;
+}
+
+/* chat area styling */
+.ui-container .chat-area {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: calc(100vh - 5rem);
+}
+
+.chat-area .messages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* scrollbar styles for chrome and safari */
+.messages-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+   background-color: #f1f1f1;
+   border-radius: 10px;
+}
+  
+.messages-container::-webkit-scrollbar-thumb {
+    background-color: #595a5a;
+    border-radius: 10px;
+}
+
+.messages-container .message {
+    display: flex;
+    height: 3rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0 1rem 2rem;
+}
+
+.message .message-profile-picture {
+    aspect-ratio: 1/1;
+    width: 3rem;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.message .infos-container p {
+    margin: 0;
+}
+
+.message .infos-container .message-username {
+    color: #1a8ae9;
+    font-weight: bold;
+}
+
+.ui-container .members-list {
+    margin-left: auto;
+    width: 30rem;
+    border-left: 1px solid #777777;
+    padding-left: 2rem;
+}
+
+.members-list .title-container {
+    margin-inline: auto;
+    width: fit-content;
+}
+
+.members-list .member {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.chat-area .send-message-form {
+    width: calc(100% - 2rem);
+    border-top: 1px solid #777777;
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    vertical-align: bottom;
+    top: 1%;
+}
+
+.chat-area .send-message-form input {
+    width: 100%;
 }

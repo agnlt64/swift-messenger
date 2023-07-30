@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user
 from werkzeug.utils import secure_filename
 from .server.models import ChatGroup, Task, User, Message
-from . import logger, LogLevel
+from . import logger
 
 # client views only, logic is in the api folder
 views = Blueprint('views', __name__)
@@ -17,8 +17,7 @@ def home():
 @login_required
 def chat():
     if current_user.role == 'banned':
-        logger.set_level(LogLevel.Warning)
-        logger.log(f'{current_user.username} tried to access chat page while being banned')
+        logger.warning(f'{current_user.username} tried to access chat page while being banned')
         flash('You have been banned. Contact the admin to get further informations.', category='error')
         return redirect(url_for('views.home'))
     return render_template('chat.html', user=current_user, groups=ChatGroup.query.all(), profile_picture=str(current_user.profile_picture))
@@ -42,8 +41,8 @@ def group(id):
                                active='active', current_chat_group=current_chat_group)
     else:
         # this can't be reached
-        logger.set_level(LogLevel.Error)
-        logger.log(f'Unreachable error message has been reached by {current_user.username}')
+        logger.enable_file_logging()
+        logger.error(f'Unreachable error message has been reached by {current_user.username}')
         return 'Congrats! You triggered an ureachable error message!'
 
 @views.route('/login')
@@ -65,8 +64,8 @@ def logout():
 @login_required
 def admin_page():
     if current_user.role != 'admin':
-        logger.set_level(LogLevel.Error)
-        logger.log(f'{current_user.username} tried to access the admin page')
+        logger.enable_file_logging()
+        logger.error(f'{current_user.username} tried to access the admin page')
         return redirect(url_for('views.chat'))
     return render_template('admin/admin.html', profile_picture=current_user.profile_picture)
 

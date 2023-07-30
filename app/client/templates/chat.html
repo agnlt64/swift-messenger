@@ -38,10 +38,15 @@ SwiftMessengr - Chat
         </div>
     </div>
 
-    <!-- <div class="chat-area">
+    <div class="chat-area">
         {% block chat_area %}
         {% endblock %}
-    </div> -->
+    </div>
+
+    <div class="members-list">
+        {% block members %}
+        {% endblock %}
+    </div>
 
     <dialog id="new-group-form" class="new-group-form">
         <button id="group-close-btn" class="close-button">
@@ -63,14 +68,11 @@ SwiftMessengr - Chat
 
 
 <!-- button to create a new chat group -->
-<!-- <div class="btn-container"> -->
-    <button class="new-chat-group" id="new-chat-group-btn">
-        <i class='bx bxs-message-add'></i>
-    </button>
-    <span class="tooltip">
-        <p>Create a new chat group</p>
-    </span>
-    <span class="arrow"></span>
-<!-- </div> -->
-
+<button class="new-chat-group" id="new-chat-group-btn">
+    <i class='bx bxs-message-add'></i>
+</button>
+<span class="tooltip">
+    <p>Create a new chat group</p>
+</span>
+<span class="arrow"></span>
 {% endblock %}
