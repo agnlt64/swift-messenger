@@ -1,168 +1,52 @@
-:root {
-    --sidebar-width: 20rem;
-    --sidebar-height: 100vw;
-    --sidebar-background: #0e1343;
-    --discret-color: #787a7c;
-    --rounded: 8px;
-    --sidebar-color: #17e6df;
-}
-
 body {
-    background-color: #05092b;
     overflow: hidden;
 }
 
-input:focus {
-    outline: none;
-}
-
-input, span, p {
-    color: var(--discret-color);
-}
-
-@media screen and (min-width: 600px) {
-    .ui-container {
-        display: grid;
-        grid-template-columns: 0fr 10fr 0fr;
-    }
-}
-
-@media screen and (max-width: 600px) {
-    .ui-container {
-        display: none;
-    }
-}
-
-.nav {
-    border-bottom: 1px solid var(--discret-color);
-}
-
-/* sidebar styling  */
-.sidebar {
-    background-color: var(--sidebar-background);
-    width: var(--sidebar-width);
-}
-
-.search-container {
-    display: flex;
-    justify-content: center;
-}
-
-.group-container {
-    min-height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.group {
-    min-width: 100%;
-    height: 5rem;
-    padding-left: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    flex-direction: row-reverse;
-    gap: 1rem;
-    transition: background-color 0.2s;
-}
-
-.group:hover {
-    background-color: #14b8b2;
-    cursor: pointer;
-}
-
-.active {
-    background-color: #14b8b2;
-}
-
-.active .group-name {
+body[theme=dark] *:not(input) {
     color: #fff;
 }
 
-.group-name {
-    /* padding: 5px 0 0 70px; */
-    font-size: 20px;
-    transition: color 0.2s;
+body[theme=light] .bx {
     color: #fff;
 }
 
-.separator {
-    display: inline-block;
-    background-color: var(--discret-color);
-    min-width: 100%;
-    height: 2px;
-}
-
-.top-separator {
-    margin-top: 15px;
-}
-
-.group-picture {
-    border-radius: 50%;
-    height: 3rem;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-}
-
-.new-room {
+/* cant use a container for these elements */
+.new-chat-group {
     position: absolute;
+    margin-left: 1rem;
+    top: 93%;
+    border: 1px solid #1771bd;
+    background-color: #1771bd;
     border-radius: 50%;
-    top: calc(100% - 50px - 1rem);
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    background-color: var(--sidebar-color);
-    border: none;
+    aspect-ratio: 1/1;
+    width: 3rem;
+    font-size: 20px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    transition: transform 0.2s;
+    justify-content: center;
 }
 
-.new-room .bx {
-    font-size: 24px;
-    color: #fff;
-    margin-top: 3px;
+.new-chat-group:hover {
+    cursor: pointer;
 }
 
-.new-room:hover {
-    transform: translateY(-7%);
-    box-shadow: 0 0 20px rgba(4, 194, 252, 0.5);
-}
-
-.new-room:hover ~ .tooltip {
-    opacity: 1;
-}
-
-.new-room:hover ~ .arrow {
+.new-chat-group:hover ~:is(.tooltip, .arrow) {
     opacity: 1;
 }
 
 .tooltip {
     position: absolute;
-    top: calc(100% - 50px - 1rem);
-    left: calc(20px + 50px + 30px);
-    text-align: center;
-    background-color: #000;
-    width: 6rem;
-    height: 3rem;
-    padding: 8px;
-    transition: opacity 0.2s;
-    transform: translateY(-15%);
-    border-radius: var(--rounded);
-    pointer-events: none;
+    margin-left: 1rem;
+    top: 91%;
+    left: 4.5rem;
+    /* hidden by default */
     opacity: 0;
-    z-index: 999;
-}
-
-.tooltip p {
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    margin: 0;
+    background-color: #000;
+    width: 8rem;
+    padding: 12px;
+    text-align: center;
+    transition: 0.2s opacity;
+    border-radius: 8px;
 }
 
 /* from here:
@@ -170,241 +54,324 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
 */
 .arrow {
     position: absolute;
-    top: calc(100% - 50px - 0.5rem);
-    left: calc(20px + 50px + 10px);
-    transform: translateY(-7%);
-    right: 14rem;
+    top: 93.5%;
+    left: 4.5rem;
     width: 0;
     height: 0;
     border-top: 1rem solid transparent;
-    border-right: 20px solid #000;
+    border-right: 16px solid #000;
     border-bottom: 1rem solid transparent;
     transition: opacity 0.2s;
+    /* hidden by default */
     opacity: 0;
 }
 
-.room-form {
-    background-color: var(--sidebar-background);
-    border-radius: var(--rounded);
-    border: 1px solid var(--discret-color);
-    width: 30rem;
-    height: 20rem;
-    position: absolute;
+.tooltip p {
+    margin: 0;
+    color: #fff;
 }
 
-.room-form form {
+@media screen and (min-width: 992px) {
+    .new-chat-group {
+        top: 92%;
+    }
+
+    .tooltip {
+        top: 90%;
+    }
+
+    .arrow {
+        top: 92.5%;
+    }
+}
+
+.ui-container {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 2rem;
+    position: absolute;
+    height: 100%;
+    overflow: hidden;
+    width: 100%;
 }
 
-.room-form form input {
-    height: 2rem;
-    padding: 5px 10px;
-    background-color: transparent;
-    outline: none;
-    border: 1px solid var(--discret-color);
-    border-radius: var(--rounded);
+.sidebar {
+    border-right: 1px solid #777777;
+    /* 5rem is the height of the navbar */
+    height: calc(100% - 5rem);
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 30rem;
 }
 
-.room-form .new-img-container img {
-    border-radius: 50%;
-    height: 115px;
+/* custom scrollbar for safari and chrome */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+   background-color: transparent;
+}
+  
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #595a5a;
+    border-radius: 10px;
+}
+
+.sidebar .search-container {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar .group-picture {
     aspect-ratio: 1/1;
+    width: 3.5rem;
+    border-radius: 50%;
     object-fit: cover;
 }
 
-.room-form .new-img-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.room-form .form-btn {
-    cursor: pointer;
-    height: 2.5rem;
-    background-color: #14b8b2;
-    color: #fff;
-    border-radius: var(--rounded);
-    border: var(--discret-color);
-    font-size: large;
-}
-
-.room-form .form-btn:hover {
-    background-color: var(--sidebar-color);
-}
-
-.room-form .form-btn-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.room-form .form-btn-div span {
-    color: #fff;
-}
-
-.room-form #error-message {
-    display: none;
-    color: red;
-    font-size: 20px;
-    justify-content: center;
-}
-
-.close-button {
-    background-color: transparent;
-    border: none;
-    margin-left: calc(100% - 2rem);
-    cursor: pointer;
-}
-
-.room-form button img {
-    width: 20px;
-    height: 20px;
-    padding: 10px 0;
-}
-
-.room-form::backdrop {
-    background-color: #222;
-    opacity: 0.4;
-}
-
-.chat-area {
-    background-color: #05092b;
-    color: var(--discret-color);
-    display: inline-block;
+.group-container .separator {
+    position: absolute;
+    height: 1px;
     width: 100%;
-    height: 100vw;
-    border-left: 1.5px solid var(--discret-color);
-    overflow-y: auto;
-    /* firefox */
-    scrollbar-color: transparent transparent;
-    display: grid;
-    grid-template-columns: 5fr 1fr;
+    background-color: #777777;
+}
+
+body[theme=dark] .group-container .active {
+    background-color: #494c4efb;
+}
+
+.group-container .active {
+    background-color: #b1b1b1fb;
+}
+
+.group-container a p {
+    color: #000;
+}
+
+body[theme=dark] .group-container a p {
+    color: #fff;
+}
+
+.group-container .group {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    transition: 0.2s background-color;
+}
+
+body[theme=dark] .group-container .group:hover {
+    background-color: #494c4efb;
+}
+
+.group-container .group:hover {
+    background-color: #b1b1b1fb;
+}
+
+.new-group-form[open] {
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+    background: linear-gradient(18deg, #0e1343, #1c30df);
+    color: white;
+    padding: 2rem 0 2rem 2rem;
+    /* padding: 2rem; */
+    border-radius: 18px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
     position: relative;
 }
 
-/* chrome */
-.chat-area::-webkit-scrollbar {
-    display: none;
+.new-group-form[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
 }
 
-.members-list {
-    display: inline-block;
-    background-color: var(--sidebar-background);
-    width: var(--sidebar-width);
-    height: var(--sidebar-height);
-    border-left: 1.5px solid var(--discret-color);
-    z-index: 999;
-    position: sticky;
-}
-
-.member {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 15px;
-    padding: 15px 0 0 20px;
-    font-size: 20px;
-}
-
-.member p {
-    color: white;
-}
-
-.title-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.title-container h2 {
-    color: var(--sidebar-color);
-}
-
-.title-container h2::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: var(--sidebar-color);
-}
-
-.search {
+.new-group-form .close-button {
     background-color: transparent;
-    width: 15rem;
-    height: 1.25rem;
-    padding: 5px 10px;
-    margin-top: 10px;
-    font-size: 10pt;
-    border: 1px solid var(--discret-color);
-    border-radius: var(--rounded);
-}
-
-.send-message-form {
-    display: flex;
-    justify-content: baseline;
-    align-items: center;
+    border: none;
+    font-size: 3rem;
     position: absolute;
-    top: 100vh;
-    position: fixed;
-    padding: 5px 1.5rem;
-    border-top: 1px solid var(--discret-color);
-    background-color: var(--sidebar-background);
-    transform: translateY(-100%);
-    width: 64%;
-    height: 5rem;
+    left: calc(100% - 3rem - 1rem);
+    top: 0;
 }
 
-.send-message {
-    border-radius: var(--rounded);
-    border: 1px solid var(--discret-color);
-    color: var(--discret-color);
-    background-color: transparent;
-    font-size: 16px;
-    /* width: calc(100% - 25rem); */
-    width: 100%;
-    height: 2rem;
-    padding: 3px 15px;
+.new-group-form .close-button:hover {
+    cursor: pointer;
 }
 
-.messages-container {
-    margin: 2rem;
+.new-group-form .rotated {
+    rotate: 45deg;
+}
+
+.new-group-form form {
     display: flex;
-    gap: 20px;
     flex-direction: column;
-    font-size: 18px;
-    overflow: scroll;
+    gap: 1rem;
+    width: 18rem;
 }
 
-.message-profile-picture {
-    height: 3.5rem;
+.new-group-form input {
+    width: 100%;
+}
+
+.new-group-form .error-message {
+    display: none;
+    color: red;
+}
+
+.new-group-form .select-image {
+    width: 100%;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background-color: #1c30df;
+    text-align: center;
+}
+
+.new-group-form .select-image:hover {
+    cursor: pointer;
+}
+
+.new-group-form .new-img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-group-form .new-group-picture {
     aspect-ratio: 1/1;
+    width: 8rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.new-group-form .confirm {
+    width: 20rem;
+    padding: 8px 14px;
+    background-color: #1c30df;
+    border: 1px solid #1c30df;
+    transition: 0.2s translate;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.new-group-form .confirm:hover {
+    cursor: pointer;
+    translate: 0 -4px;
+}
+
+/* chat area styling */
+.ui-container .chat-area {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* 5rem is the height of the navbar */
+    height: calc(100% - 5rem);
+}
+
+.chat-area .messages-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* scrollbar styles for chrome and safari */
+.messages-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.messages-container::-webkit-scrollbar-track {
+   background-color: #f1f1f1;
+   border-radius: 10px;
+}
+  
+.messages-container::-webkit-scrollbar-thumb {
+    background-color: #595a5a;
+    border-radius: 10px;
+}
+
+.messages-container .message {
+    display: flex;
+    height: 3rem;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0 1rem 1.5rem;
+    margin-inline: 10px;
+    position: relative;
+}
+
+body[theme=dark] .messages-container .message:hover {
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: rgba(128, 128, 128, 0.5);
+}
+
+.message .options {
+    /* hidden by default */
+    position: absolute;
+    /* padding of the members list - gap - margin-inline of the message - padding of the message - custom offset */
+    left: calc(100% - 2rem - 10px - 10px - 1.5rem - 1rem);
+    top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.message .options button {
+    aspect-ratio: 1/1;
+    width: 2rem;
+    border: 1px solid #6a6a6a;
+    background-color: #6a6a6a;
+    font-size: 16px;
+}
+
+.message .message-profile-picture {
+    aspect-ratio: 1/1;
+    width: 3rem;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.message {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 18px;
-    margin: 0.5rem 0;
-}
-
-.infos-container p {
+.message .infos-container p {
     margin: 0;
 }
 
-.infos-container p:not(.message-username) {
-    color: white;
+.message .infos-container .message-username {
+    color: #1a8ae9;
+    font-weight: bold;
 }
 
-.message-username {
-    font-size: 20px;
-    font-weight: bold;
-    color: #14b8b2;
+.ui-container .members-list {
+    margin-left: auto;
+    width: 30rem;
+    border-left: 1px solid #777777;
+    padding-left: 2rem;
+}
+
+.members-list .title-container {
+    margin-inline: auto;
+    width: fit-content;
+}
+
+.members-list .member {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.chat-area .send-message-form {
+    width: calc(100% - 2rem);
+    border-top: 1px solid #777777;
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    vertical-align: bottom;
+    top: 1%;
+}
+
+.chat-area .send-message-form input {
+    width: 100%;
 }

@@ -10,6 +10,14 @@
                 <p class="message-username">{{ user.username }}</p>
                 <p>{{ message.content }}</p>
             </div>
+            <div class="options">
+                <button>
+                    <i class='bx bx-edit'></i>
+                </button>
+                <button>
+                    <i class="bx bxs-trash"></i>
+                </button>
+            </div>
         </div>
         {% endif %}
     {% endfor %}
