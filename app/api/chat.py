@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 import os
 
-from ..server.models import ChatGroup
+from ..server.models import ChatGroup, Message
 from ..server import db
 
 chat = Blueprint('chat', __name__, url_prefix='/chat')
@@ -37,3 +37,18 @@ def send():
     # all the logic for sending messages and saving them is in server/events.py
     current_chat_group = request.form.get('current-chat-group')
     return redirect(url_for('views.group', id=current_chat_group))
+
+@chat.route('/message/edit/<id>', methods=['POST'])
+@login_required
+def edit_message(id):
+    message = Message.query.filter_by(id=id).first()
+    message.content = request.form.get('message')
+    db.session.commit()
+    return redirect(request.referrer)
+
+@chat.route('/message/delete/<id>', methods=['POST'])
+@login_required
+def delete_message(id):
+    Message.query.filter_by(id=id).delete()
+    db.session.commit()
+    return redirect(request.referrer)

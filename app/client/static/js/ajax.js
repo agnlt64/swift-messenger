@@ -30,6 +30,16 @@ function go(linkId, to) {
 const globalCallback = mutationList => {
     for (const mutation of mutationList) {
         if (mutation.type === "childList") {
+            // specific action if the url contains /chat/...
+            if (window.location.pathname.includes('/chat/')) {
+                try {
+                    const chatArea = document.getElementById('messages-container')
+                    chatArea.scrollTo(0, chatArea.scrollHeight)
+                }
+                catch (error) {
+                    // unreachable
+                }
+            }
             const links = document.querySelectorAll('a')
             links.forEach(link => {
                 link.addEventListener('click', event => {

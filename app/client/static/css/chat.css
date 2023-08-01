@@ -304,28 +304,56 @@ body[theme=dark] .group-container .group:hover {
     position: relative;
 }
 
-body[theme=dark] .messages-container .message:hover {
-    cursor: pointer;
+.messages-container .message:hover {
     border-radius: 8px;
     background-color: rgba(128, 128, 128, 0.5);
 }
 
+.messages-container .message:hover .options {
+    display: flex;
+}
+
+body[theme=dark] .message input:disabled {
+    color: #fff;
+}
+
+.message input:disabled {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    padding: 0;
+}
+
 .message .options {
     /* hidden by default */
+    display: none;
     position: absolute;
-    /* padding of the members list - gap - margin-inline of the message - padding of the message - custom offset */
+    /* 100% - padding of the members list - gap - margin-inline of the message - padding of the message - some offset */
     left: calc(100% - 2rem - 10px - 10px - 1.5rem - 1rem);
     top: 10px;
-    display: flex;
     gap: 10px;
 }
 
 .message .options button {
     aspect-ratio: 1/1;
     width: 2rem;
+    font-size: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.1s background-color, 0.1s border-color;
+}
+
+.message .options button {
     border: 1px solid #6a6a6a;
     background-color: #6a6a6a;
-    font-size: 16px;
+}
+
+.message .options button:hover {
+    cursor: pointer;
+    background-color: #323131;
+    border-color: #323131;
 }
 
 .message .message-profile-picture {
