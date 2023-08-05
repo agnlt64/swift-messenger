@@ -388,7 +388,7 @@ body[theme=dark] .message input:disabled {
 }
 
 .members-list .title-container {
-    margin-inline: auto;
+    margin: 1rem;
     width: fit-content;
 }
 

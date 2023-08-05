@@ -87,12 +87,12 @@ const chatCallback = (mutationList) => {
                     e.preventDefault()
                     message = document.getElementById('message')
                     const currentChatGroup =  sendMessage.getAttribute('data-current-chat-group')
-                    socket.emit('message', message.value, currentChatGroup)
                     // build a message component
                     if (message.value !== '') {
                         const username = sendMessage.getAttribute('data-sender')
                         const profilePicture = sendMessage.getAttribute('data-profile-picture')
                         const msgComponent = buildMessage(username, profilePicture, message.value, parseInt(sendMessage.getAttribute('data-last-id')) + 1)
+                        socket.emit('message', message.value, currentChatGroup, username)
                         chatArea.appendChild(msgComponent)
                     }
                     message.value = ''

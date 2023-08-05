@@ -6,20 +6,21 @@ const config = { attributes: true, childList: true, subtree: true }
 function ajax(method, url, requestData={'data': null, 'updateURL': true}) {
     xhr.open(method, url, true)
     xhr.onload = () => {
-        if (xhr.readyState === 4 && xhr.status === 200) {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             const splitResponse = xhr.responseText.split(separator)
             document.querySelector('head').innerHTML = splitResponse[0]
             document.body.innerHTML = separator + splitResponse[1]
+            // the new URL must be created here
+            if (requestData['updateURL']) {
+                window.history.pushState({ prevUrl: window.location.href }, '', xhr.responseURL)
+            }
         }
     }
     xhr.onprogress = event => {
         // add a progress bar
         document.getElementById('progress-bar').style.width = `${(event.loaded / event.total) * 100}%`
     }
-    xhr.send(requestData['data'])
-    if (requestData['updateURL']) {
-        window.history.pushState({ prevUrl: window.location.href }, '', url)
-    }
+    xhr.send(JSON.stringify(requestData['data']))
 }
 
 const globalCallback = mutationList => {
@@ -46,6 +47,30 @@ const globalCallback = mutationList => {
                 catch (error) {
                     // unreachable
                 }
+            }
+
+            // specific actions for authentication
+            if (window.location.pathname === '/login' || window.location.pathname === '/sign-up') {
+                const authForms = document.querySelectorAll('.form')
+                authForms.forEach(form => form.addEventListener('submit', e => {
+                    e.preventDefault()
+                    // same fields for both pages
+                    const username = document.getElementById('username').value
+                    const password = document.getElementById('password').value
+                    let confirm = null
+                    if (window.location.pathname === '/sign-up') {
+                        confirm = document.getElementById('confirm').value
+                    }
+                    const credentials = {
+                        'data': {
+                            'username': username,
+                            'password': password,
+                            'confirm': confirm === null ? '' : confirm
+                        },
+                        'updateURL': true,
+                    }
+                    ajax(form.method, form.action, credentials)
+                }))
             }
 
             const links = document.querySelectorAll('a')

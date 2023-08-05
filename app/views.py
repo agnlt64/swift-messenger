@@ -1,6 +1,5 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user
-from werkzeug.utils import secure_filename
 from .server.models import ChatGroup, Task, User, Message
 from . import logger
 
@@ -30,6 +29,7 @@ def group(id):
     global current_chat_group
     current_chat_group = group.id
     if group:
+        assert current_user.is_authenticated, 'error'
         names = group.members.split(',')[:-1]
         members = [User.query.filter_by(username=name).first() for name in names]
         # a lot of parameters since send_message inherits from chat.html 

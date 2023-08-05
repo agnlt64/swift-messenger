@@ -1,21 +1,22 @@
-from flask import Blueprint, request, flash, redirect, url_for
+from flask import Blueprint, request, flash, redirect, url_for, session
 from flask_login import login_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from ..server.models import User
 import datetime
 from ..server import db
+import json
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
 @auth.route('/login', methods=['POST'])
 def login():
-    raw_credentials = request.data.decode('utf-8').split(',')
-    print(raw_credentials)
-    username = request.form.get('username')
-    password = request.form.get('password')
+    raw_credentials = json.loads(request.data.decode('utf-8'))
+    username = raw_credentials['username']
+    password = raw_credentials['password']
     user = User.query.filter_by(username=username).first()
     if user:
         if check_password_hash(user.password, password):
+            session['user_id'] = user.id
             login_user(user, remember=True)
             return redirect(url_for('views.chat'))
         else:
@@ -26,11 +27,10 @@ def login():
 
 @auth.route('/sign-up', methods=['POST'])
 def sign_up():
-    raw_credentials = request.data.decode('utf-8').split(',')
-    print(raw_credentials)
-    username = request.form.get('username')
-    password = request.form.get('password')
-    confirm = request.form.get('confirm')
+    raw_credentials = json.loads(request.data.decode('utf-8'))
+    username = raw_credentials['username']
+    password = raw_credentials['password']
+    confirm = raw_credentials['confirm']
     user = User.query.filter_by(username=username).first()
     if user:
         flash('Username already taken!', category='error')

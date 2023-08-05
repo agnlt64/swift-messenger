@@ -60,6 +60,7 @@ input:focus {
     justify-content: center;
     gap: 10px;
     width: 100%;
+    pointer-events: none;
 }
 
 .message-container .flashed-message {
@@ -75,6 +76,7 @@ input:focus {
     height: 3rem;
     position: relative;
     text-align: center;
+    pointer-events: all;
 }
 
 .flashed-message .close-button {

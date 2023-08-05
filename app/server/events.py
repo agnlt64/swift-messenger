@@ -1,6 +1,5 @@
 from . import socketio
 from .models import Message
-from flask_login import current_user
 from . import db
 from .. import logger
 
@@ -10,8 +9,10 @@ def handle_connection():
     logger.info('Client connected')
 
 @socketio.on('message')
-def handle_message(message: str, chat_group_id: int):
-    new_message = Message(sender=current_user.username, content=message, chat_group=chat_group_id)
+def handle_message(message: str, chat_group_id: int, current_user: str):
+    # we need to pass the current user because the user is not logged in anymore when this function is called
+    # I think it is due to the AJAX loading but I'm not sure
     if message != '':
+        new_message = Message(sender=current_user, content=message, chat_group=chat_group_id)
         db.session.add(new_message)
         db.session.commit()
