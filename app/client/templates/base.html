@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='media/favicon.ico') }}" type="image/x-icon">
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js" integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
     {% block style %}
     {% endblock %}
 </head>
@@ -18,8 +19,10 @@
                 {% for category, message in messages %}
                     <div class="flashed-message {{ category }}" id="message">
                         <p>{{ message }}</p>
+                        <button id="close-message" class="close-button">
+                            <i class='bx bx-plus rotated'></i>
+                        </button>
                     </div>
-                    <img class="close-message" id="close-message" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
                 {% endfor %}
             </div>
         {% endif %}
