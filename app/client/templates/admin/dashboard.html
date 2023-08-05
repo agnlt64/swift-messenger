@@ -1,3 +1,6 @@
+{% extends 'admin/admin.html' %}
+
+{% block content %}
 <ul class="box-info">
     <li>
         <i class="bx bxs-group total-users"></i>
@@ -13,7 +16,7 @@
         <div class="flashed-message {{ category }}" id="message">
             <p>{{ message }}</p>
         </div>
-        <img class="close-message-dashboard" id="close-message"  onclick="document.getElementById('message').style.display='none';document.getElementById('close-message').style.display='none'" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
+        <img class="close-message-dashboard" id="close-message" onclick="document.getElementById('message').style.display='none';document.getElementById('close-message').style.display='none'" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
     {% endfor %}
     {% endwith %}
 </div>
@@ -61,4 +64,8 @@
         </table>
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
 <script src="{{ url_for('static', filename='js/add_user.js') }}"></script>
+{% endblock %}

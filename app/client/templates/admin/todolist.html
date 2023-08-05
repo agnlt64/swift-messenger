@@ -1,3 +1,6 @@
+{% extends 'admin/admin.html' %}
+
+{% block content %}
 <div class="table-data">
     <dialog id="new-task-form" class="todo-dialog">
         <img class="close-message" id="close" src="{{ url_for('static', filename='media/close.png') }}" alt="close button">
@@ -42,6 +45,7 @@
         </ul>
     </div>
 </div>
+{% endblock %}
 
 {% block scripts %}
 <script src="{{ url_for('static', filename='js/todolist.js') }}"></script>

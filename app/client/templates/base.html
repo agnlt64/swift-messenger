@@ -50,6 +50,11 @@
                 </button>
             </li>
             {% else %}
+            <li>
+                {% if current_user.role == 'admin' %}
+                <a href="/admin">Admin</a>
+                {% endif %}
+            </li>
             <li class="slide">
                 <a href="/chat">Chat</a>
             </li>

@@ -63,11 +63,10 @@ def logout():
 @views.route('/admin')
 @login_required
 def admin_page():
-    if current_user.role != 'admin':
-        logger.enable_file_logging()
-        logger.error(f'{current_user.username} tried to access the admin page')
-        return redirect(url_for('views.chat'))
-    return render_template('admin/admin.html', profile_picture=current_user.profile_picture)
+    total_users = 0
+    for _ in User.query.all():
+        total_users += 1
+    return render_template('admin/dashboard.html', total_users=total_users, users=User.query.all(), profile_picture=current_user.profile_picture)
 
 @views.route('/admin/dashboard')
 @login_required
@@ -75,17 +74,17 @@ def dashboard():
     total_users = 0
     for _ in User.query.all():
         total_users += 1
-    return render_template('admin/dashboard.html', total_users=total_users, users=User.query.all())
+    return render_template('admin/dashboard.html', total_users=total_users, users=User.query.all(), profile_picture=current_user.profile_picture)
 
 @views.route('/admin/team')
 @login_required
 def team():
-    return render_template('admin/team.html')
+    return render_template('admin/team.html', profile_picture=current_user.profile_picture)
 
 @views.route('/admin/todolist')
 @login_required
 def todolist():
-    return render_template('admin/todolist.html', all_tasks=Task.query.all())
+    return render_template('admin/todolist.html', all_tasks=Task.query.all(), profile_picture=current_user.profile_picture)
 
 @views.route('/settings')
 @login_required
