@@ -1,9 +1,0 @@
-{% extends "settings/settings.html" %}
-
-{% block settings_content %}
-<h1>Change your username</h1>
-<form action="/api/settings/update/username" method="post" class="change-username" autocomplete="off">
-    <input type="text" placeholder="New username" name="username">
-    <button type="submit">Confirm</button>
-</form>
-{% endblock %}

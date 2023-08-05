@@ -18,18 +18,6 @@ def update_profile_picture():
     flash('Profile picture updated successfully!', category='success')
     return redirect(url_for('views.settings_page'))
 
-@settings.route('/update/username', methods=['POST'])
-def update_username():
-    new_name = request.form.get('username')
-    user = User.query.filter_by(username=new_name).first()
-    if user:
-        flash('Username already taken', category='error')
-    else:
-        current_user.username = new_name
-        db.session.commit()
-        flash('Username updated successfully!', category='success')
-    return redirect(url_for('views.username'))
-
 @settings.route('/update/password', methods=['POST'])
 def update_password():
     old_password = request.form.get('old-password')
