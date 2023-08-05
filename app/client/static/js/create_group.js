@@ -1,4 +1,4 @@
-let createRoom = document.getElementById("new-chat-group-btn");
+let createGroup = document.getElementById("new-chat-group-btn");
 let newGroupForm = document.getElementById("new-group-form");
 let chooseImage = document.getElementById("choose-image");
 let chooseImageInput = document.getElementById("choose-image-input");
@@ -7,11 +7,11 @@ let errorMsg = document.getElementById("error-message");
 let groupName = document.getElementById("group-name");
 let submitForm = document.getElementById("submit-form");
 
-const roomObserver = new MutationObserver((mutationList) => {
+const groupObserver = new MutationObserver((mutationList) => {
     for (const mutation of mutationList) {
         if (mutation.type === "childList") {
             try {
-                createRoom = document.getElementById("new-chat-group-btn");
+                createGroup = document.getElementById("new-chat-group-btn");
                 newGroupForm = document.getElementById("new-group-form");
                 chooseImage = document.getElementById("choose-image");
                 chooseImageInput = document.getElementById("choose-image-input");
@@ -20,8 +20,8 @@ const roomObserver = new MutationObserver((mutationList) => {
                 groupName = document.getElementById("group-name");
                 submitForm = document.getElementById("submit-form");
 
-                // show the room creation dialog
-                createRoom.addEventListener("click", () => {
+                // show the group creation dialog
+                createGroup.addEventListener("click", () => {
                     newGroupForm.showModal();
                 });
 
@@ -73,4 +73,4 @@ const roomObserver = new MutationObserver((mutationList) => {
     }
 });
 
-roomObserver.observe(document.body, { attributes: true, childList: true, subtree: true })
+groupObserver.observe(document.body, { attributes: true, childList: true, subtree: true })

@@ -59,7 +59,16 @@ function buildMessage(username, profilePicturePath, content, id) {
     editIcon.className = 'bx bx-edit'
     editOption.appendChild(editIcon)
     optionsElement.appendChild(editOption)
-    const deleteOption = buildOption(`/api/chat/message/delete/${id}`, 'bx bxs-trash', '')
+    // const deleteOption = buildOption(`/api/chat/message/delete/${id}`, 'bx bxs-trash', '')
+    const deleteOption = document.createElement('form')
+    deleteOption.action = `/api/chat/message/delete/${id}`
+    deleteOption.method = 'post'
+    const deleteButton = document.createElement('button')
+    deleteButton.name = 'delete-message-btn'
+    const icon = document.createElement('i')
+    icon.className = 'bx bxs-trash'
+    deleteButton.appendChild(icon)
+    deleteOption.appendChild(deleteButton)
     optionsElement.append(deleteOption)
 
     msgDiv.appendChild(optionsElement)
@@ -77,7 +86,8 @@ const chatCallback = (mutationList) => {
                 sendMessage.addEventListener('submit', e => {
                     e.preventDefault()
                     message = document.getElementById('message')
-                    socket.emit('message', message.value, sendMessage.getAttribute('data-current-chat-group'))
+                    const currentChatGroup =  sendMessage.getAttribute('data-current-chat-group')
+                    socket.emit('message', message.value, currentChatGroup)
                     // build a message component
                     if (message.value !== '') {
                         const username = sendMessage.getAttribute('data-sender')

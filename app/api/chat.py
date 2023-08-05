@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 import os
 
+from .. import logger
 from ..server.models import ChatGroup, Message
 from ..server import db
 

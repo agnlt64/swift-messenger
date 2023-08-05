@@ -3,7 +3,7 @@ const separator = '<body'
 
 const config = { attributes: true, childList: true, subtree: true };
 
-function loadAjax(method, url, data=null) {
+function loadAjax(method, url, data=null, updateURL=true) {
     xhr.open(method, url, true)
     xhr.onload = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -12,34 +12,38 @@ function loadAjax(method, url, data=null) {
             document.body.innerHTML = separator + splitResponse[1]
         }
     }
-    // add a progress bar
-    document.getElementById('progress-bar').style.width = '100%'
+    xhr.onprogress = event => {
+        // add a progress bar
+        document.getElementById('progress-bar').style.width = `${(event.loaded / event.total) * 100}%`
+    }
     xhr.send(data)
-    window.history.pushState({ prevUrl: window.location.href }, '', url)
-}
-
-// this function will probably die soon
-function go(linkId, to) {
-    const from = document.getElementById(linkId)
-    from.addEventListener('click', event => {
-        event.preventDefault()
-        loadAjax('GET', to)
-    })
+    if (updateURL) {
+        window.history.pushState({ prevUrl: window.location.href }, '', url)
+    }
 }
 
 const globalCallback = mutationList => {
     for (const mutation of mutationList) {
         if (mutation.type === "childList") {
-            // specific action if the url contains /chat/...
+            // specific actions if the url contains /chat/...
             if (window.location.pathname.includes('/chat/')) {
                 try {
                     const chatArea = document.getElementById('messages-container')
                     chatArea.scrollTo(0, chatArea.scrollHeight)
+
+                    // delete a message without reloading
+                    const deleteMessageButtons = document.getElementsByName('delete-message-btn')
+                    deleteMessageButtons.forEach(button => button.addEventListener('click', e => {
+                            e.preventDefault()
+                            const form = button.parentElement
+                            loadAjax(form.method, form.action, '', false)
+                    }))
                 }
                 catch (error) {
                     // unreachable
                 }
             }
+
             const links = document.querySelectorAll('a')
             links.forEach(link => {
                 link.addEventListener('click', event => {

@@ -363,6 +363,14 @@ body[theme=dark] .message input:disabled {
     border-radius: 50%;
 }
 
+.message .infos-container {
+    width: 100%;
+}
+
+.message .infos-container input:disabled {
+    width: 100%;
+}
+
 .message .infos-container p {
     margin: 0;
 }

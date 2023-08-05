@@ -50,35 +50,7 @@ input:focus {
     position: absolute;
     height: 4px;
     background-color: white;
-    animation: slideIn 5s;
     transform-origin: left;
-}
-
-@keyframes slideIn {
-    0% {
-        transform: scaleX(0);
-    }
-    10% {
-        transform: scaleX(10%);
-    }
-    20% {
-        transform: scaleX(20%);
-    }
-    30% {
-        transform: scaleX(30%);
-    }
-    50% {
-        transform: scaleX(50%);
-    }
-    70% {
-        transform: scaleX(70%);
-    }
-    90% {
-        transform: scaleX(90%);
-    }
-    100% {
-        transform: scaleX(100%);
-    }
 }
 
 /* Flashed messages, do not touch */

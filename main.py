@@ -9,6 +9,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 2:
         if sys.argv[1] == '--expose' or sys.argv[1] == '-E':
             socketio.run(app, debug=True, host='0.0.0.0', port=8080)
+            logger.info('App is running')
     else:
         socketio.run(app, debug=True, host='127.0.0.1', port=8080)
-    logger.info('App is running')
+        logger.info('App is running')
