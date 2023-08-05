@@ -104,13 +104,18 @@ const chatCallback = (mutationList) => {
             }
         }
     }
-};
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    const chatArea = document.getElementById('messages-container')
-    chatArea.scrollTo(0, chatArea.scrollHeight)
+    try {        
+        const chatArea = document.getElementById('messages-container')
+        chatArea.scrollTo(0, chatArea.scrollHeight)
+    }
+    catch (error) {
+        // don't care
+    }
 })
 
-const chatObserver = new MutationObserver(chatCallback);
+const chatObserver = new MutationObserver(chatCallback)
 
-chatObserver.observe(document.body, config);
+chatObserver.observe(document.body, config)

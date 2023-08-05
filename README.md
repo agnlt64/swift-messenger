@@ -41,8 +41,9 @@ POST /api/settings/update/profile-picture -> updates the profile picture of the 
 - [x] Change username and password  
 - [x] Admin interface  
 - [x] Roles  
+- [x] Actually sending messages  
+- [x] Delete and edit a message  
 - [ ] Multiple users in one chat group  
-- [ ] Actually sending messages  
 
 ### Future featues (when everything else is finished)
 - [ ] Ping a specific user  

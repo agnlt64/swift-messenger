@@ -1,9 +1,9 @@
 const xhr = new XMLHttpRequest()
 const separator = '<body'
 
-const config = { attributes: true, childList: true, subtree: true };
+const config = { attributes: true, childList: true, subtree: true }
 
-function loadAjax(method, url, data=null, updateURL=true) {
+function ajax(method, url, requestData={'data': null, 'updateURL': true}) {
     xhr.open(method, url, true)
     xhr.onload = () => {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -16,8 +16,8 @@ function loadAjax(method, url, data=null, updateURL=true) {
         // add a progress bar
         document.getElementById('progress-bar').style.width = `${(event.loaded / event.total) * 100}%`
     }
-    xhr.send(data)
-    if (updateURL) {
+    xhr.send(requestData['data'])
+    if (requestData['updateURL']) {
         window.history.pushState({ prevUrl: window.location.href }, '', url)
     }
 }
@@ -36,7 +36,11 @@ const globalCallback = mutationList => {
                     deleteMessageButtons.forEach(button => button.addEventListener('click', e => {
                             e.preventDefault()
                             const form = button.parentElement
-                            loadAjax(form.method, form.action, '', false)
+                            const requestData = {
+                                'data': null,
+                                'updateURL': false,
+                            }
+                            ajax(form.method, form.action, requestData)
                     }))
                 }
                 catch (error) {
@@ -48,15 +52,15 @@ const globalCallback = mutationList => {
             links.forEach(link => {
                 link.addEventListener('click', event => {
                     event.preventDefault()
-                    loadAjax('GET', link.href)
+                    ajax('GET', link.href)
                 })
             })
             window.addEventListener('popstate', () => {
-                loadAjax('GET', window.location.pathname)
+                ajax('GET', window.location.pathname)
             })
         }
     }
-};
+}
 
 const globalObserver = new MutationObserver(globalCallback)
 
