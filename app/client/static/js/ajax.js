@@ -5,7 +5,7 @@ const config = { attributes: true, childList: true, subtree: true }
 
 function ajax(method, url, requestData={'data': null, 'updateURL': true}) {
     xhr.open(method, url, true)
-    xhr.onload = () => {
+    xhr.onload = event => {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             const splitResponse = xhr.responseText.split(separator)
             document.querySelector('head').innerHTML = splitResponse[0]

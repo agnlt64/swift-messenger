@@ -47,6 +47,7 @@ body[theme=light] .bx {
     text-align: center;
     transition: 0.2s opacity;
     border-radius: 8px;
+    pointer-events: none;
 }
 
 /* from here:
@@ -170,17 +171,21 @@ body[theme=dark] .group-container .group:hover {
 }
 
 .new-group-form[open] {
+    --height: 10rem;
+    --width: 24rem;
     display: flex;
     flex-direction: column;
-    width: 24rem;
+    width: var(--width);
+    height: var(--height);
     background: linear-gradient(18deg, #0e1343, #1c30df);
     color: white;
     padding: 2rem 0 2rem 2rem;
-    /* padding: 2rem; */
     border-radius: 18px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     position: relative;
+    left: calc(50% - var(--width)/2);
+    top: calc(50% - var(--height));
 }
 
 .new-group-form[open]::backdrop {

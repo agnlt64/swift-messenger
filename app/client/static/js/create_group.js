@@ -44,14 +44,15 @@ const groupObserver = new MutationObserver((mutationList) => {
                         imgContainer.appendChild(newImage)
                     }
                     reader.readAsDataURL(image)
+                    newGroupForm.style.height = '18rem'
                 })
                 
                 // error handling
                 groupName.addEventListener("input", () => {
                     if (Number(groupName.value.length) > 100) {
-                    errorMsg.style.display = "flex"
+                        errorMsg.style.display = "flex"
                     } else {
-                    errorMsg.style.display = "none"
+                            errorMsg.style.display = "none"
                     }
                 })
 
