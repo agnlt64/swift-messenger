@@ -16,63 +16,24 @@ function buildOption(formAction, iconClass, btnName) {
     return form
 }
 
-function buildMessage(username, profilePicturePath, content, id) {
-    // global message
-    const msgDiv = document.createElement('div')
-    msgDiv.className = 'message'
+function buildMessage(username, content, id) {
+    // using html templates to create a new message instead of creating each element by hand
+    const messageTemplate = document.querySelector('[data-message-template]')
+    const newMessage = messageTemplate.content.cloneNode(true).children[0]
 
-    // sender profile picture
-    const profilePicture = document.createElement('img')
-    profilePicture.src = `/static/${profilePicturePath}`
-    profilePicture.className = 'message-profile-picture'
-    msgDiv.appendChild(profilePicture)
-    
-    // container for content and username
-    const infosContainer = document.createElement('div')
-    infosContainer.className = 'infos-container'
-    
-    // username
-    const usernameElement = document.createElement('p')
-    usernameElement.className = 'message-username'
-    usernameElement.innerHTML = username
-    infosContainer.appendChild(usernameElement)
-    
-    // message content
-    const messageForm = document.createElement('form')
-    messageForm.method = 'post'
-    messageForm.action = `/api/chat/message/edit/${id}`
-    const messageInput = document.createElement('input')
-    messageInput.value = content
-    messageInput.type = 'text'
-    messageInput.name = 'message'
-    messageInput.disabled = true
-    messageForm.appendChild(messageInput)
-    infosContainer.appendChild(messageForm)
-    msgDiv.appendChild(infosContainer)
+    const messageSender = newMessage.querySelector('[data-message-sender]')
+    messageSender.textContent = username
 
-    // message options
-    const optionsElement = document.createElement('div')
-    optionsElement.className = 'options'
-    const editOption = document.createElement('button')
-    editOption.name = 'edit-message'
-    const editIcon = document.createElement('i')
-    editIcon.className = 'bx bx-edit'
-    editOption.appendChild(editIcon)
-    optionsElement.appendChild(editOption)
-    // const deleteOption = buildOption(`/api/chat/message/delete/${id}`, 'bx bxs-trash', '')
-    const deleteOption = document.createElement('form')
-    deleteOption.action = `/api/chat/message/delete/${id}`
-    deleteOption.method = 'post'
-    const deleteButton = document.createElement('button')
-    deleteButton.name = 'delete-message-btn'
-    const icon = document.createElement('i')
-    icon.className = 'bx bxs-trash'
-    deleteButton.appendChild(icon)
-    deleteOption.appendChild(deleteButton)
-    optionsElement.append(deleteOption)
+    const messageValue = newMessage.querySelector('[data-message-content]')
+    messageValue.value = content
 
-    msgDiv.appendChild(optionsElement)
-    return msgDiv
+    const editMessage = newMessage.querySelector('[data-edit-message]')
+    editMessage.action = `/api/chat/message/edit/${id}`
+
+    const deleteMessage = newMessage.querySelector('[data-delete-message]')
+    deleteMessage.action = `/api/chat/message/delete/${id}`
+
+    return newMessage
 }
 
 const socket = io()
@@ -90,8 +51,7 @@ const chatCallback = (mutationList) => {
                     // build a message component
                     if (message.value !== '') {
                         const username = sendMessage.getAttribute('data-sender')
-                        const profilePicture = sendMessage.getAttribute('data-profile-picture')
-                        const msgComponent = buildMessage(username, profilePicture, message.value, parseInt(sendMessage.getAttribute('data-last-id')) + 1)
+                        const msgComponent = buildMessage(username, message.value, parseInt(sendMessage.getAttribute('data-last-id')) + 1)
                         socket.emit('message', message.value, currentChatGroup, username)
                         chatArea.appendChild(msgComponent)
                     }

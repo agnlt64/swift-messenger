@@ -27,6 +27,31 @@
         </div>
         {% endif %}
     {% endfor %}
+    <!-- message template used in js -->
+    <template data-message-template>
+        <div class="message">
+            <img class="message-profile-picture" src="{{ url_for('static', filename=''+user.profile_picture) }}" alt="profile picture">
+            <div class="infos-container">
+                <p class="message-username" data-message-sender></p>
+                <!-- action is set in js -->
+                <form method="post" data-edit-message>
+                    <!-- value is set in js -->
+                    <input type="text" name="message" value="" disabled data-message-content>
+                </form>
+            </div>
+            <div class="options">
+                <button name="edit-message">
+                    <i class="bx bx-edit"></i>
+                </button>
+                <!-- action is set in js -->
+                <form method="post" data-delete-message>
+                    <button type="button" name="delete-message-btn">
+                        <i class="bx bxs-trash"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </template>
 </div>
 
 <form method="post" action="/api/chat/send" class="send-message-form" id="send-message-form" 
