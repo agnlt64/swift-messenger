@@ -1,10 +1,12 @@
 from flask import Blueprint, request, flash, redirect, url_for, session
 from flask_login import login_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from ..server.models import User
 import datetime
-from ..server import db
 import json
+import base64
+
+from ..server.models import User
+from ..server import db
 
 auth = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -12,11 +14,10 @@ auth = Blueprint('auth', __name__, url_prefix='/auth')
 def login():
     raw_credentials = json.loads(request.data.decode('utf-8'))
     username = raw_credentials['username']
-    password = raw_credentials['password']
+    password = base64.b64decode(raw_credentials['password']).decode('utf-8')
     user = User.query.filter_by(username=username).first()
     if user:
         if check_password_hash(user.password, password):
-            session['user_id'] = user.id
             login_user(user, remember=True)
             return redirect(url_for('views.chat'))
         else:
