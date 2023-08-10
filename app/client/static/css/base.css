@@ -162,6 +162,14 @@ input:focus {
     font-size: inherit;
 }
 
+.auth-buttons .sign-up button a {
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    padding: 1em;
+    margin: -1em;
+}
+
 .auth-buttons .sign-up:hover button {
     background-color: #1c30df;
     cursor: pointer;

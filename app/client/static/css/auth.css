@@ -28,6 +28,27 @@
     flex-direction: column;
 }
 
+.form .field-container .password {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.form .field-container .password input {
+    width: 100%;
+}
+
+.form .field-container .password i {
+    position: absolute;
+    color: #1c30df;
+    right: 0.5rem;
+    font-size: 26px;
+}
+
+.form .field-container .password i:hover {
+    cursor: pointer;
+}
+
 .form .btn {
     height: 2.5rem;
     color: white;
