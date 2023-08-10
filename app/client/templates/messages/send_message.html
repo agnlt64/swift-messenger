@@ -8,7 +8,7 @@
             <img class="message-profile-picture" src="{{ url_for('static', filename=''+user.profile_picture) }}" alt="profile picture">
             <div class="infos-container">
                 <p class="message-username">{{ user.username }}</p>
-                <form method="post" action="/api/chat/message/edit/{{ message.id }}">
+                <form method="post" action="/api/chat/message/edit/{{ message.id }}" name="edit-message-form">
                     <input type="text" name="message" value="{{ message.content }}" disabled>
                 </form>
             </div>
@@ -34,7 +34,7 @@
             <div class="infos-container">
                 <p class="message-username" data-message-sender></p>
                 <!-- action is set in js -->
-                <form method="post" data-edit-message>
+                <form method="post" data-edit-message name="edit-message-form">
                     <!-- value is set in js -->
                     <input type="text" name="message" value="" disabled data-message-content>
                 </form>
@@ -56,12 +56,10 @@
 
 <form method="post" action="/api/chat/send" class="send-message-form" id="send-message-form" 
       data-current-chat-group="{{ current_chat_group }}" 
-      data-profile-picture="{{ user.profile_picture }}"
       data-sender="{{ user.username }}"
       data-last-id="{{ messages[-1].id }}"
     >
     <input type="text" name="message" class="send-message" id="message" placeholder="Enter a message..." autocomplete="off" />
-    <input type="submit" hidden value="{{ current_chat_group }}" name="current-chat-group">
 </form>
 {% endblock %}
 

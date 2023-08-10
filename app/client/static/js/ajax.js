@@ -58,6 +58,16 @@ const globalCallback = mutationList => {
                     ajax(submitForm.method, submitForm.action, groupData)
                 })
 
+                // submit the new value of an edited message
+                const editMessageForms = document.getElementsByName('edit-message-form')
+                editMessageForms.forEach(form => form.addEventListener('submit', e => {
+                    e.preventDefault()
+                    const messageValue = form.children[0].value
+                    const messageData = {
+                        'message': messageValue
+                    }
+                    ajax(form.method, form.action, messageData)
+                }))
             }
 
             // specific actions for authentication

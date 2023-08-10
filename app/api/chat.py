@@ -1,7 +1,6 @@
 from flask import Blueprint, request, flash, redirect
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
-import os
 import json
 import base64
 
@@ -49,8 +48,10 @@ def send():
 @chat.route('/message/edit/<id>', methods=['POST'])
 @login_required
 def edit_message(id):
+    logger.info(request.data)
+    raw_value = json.loads(request.data.decode('utf-8'))
     message = Message.query.filter_by(id=id).first()
-    message.content = request.form.get('message')
+    message.content = raw_value['message']
     db.session.commit()
     return redirect(request.referrer)
 
