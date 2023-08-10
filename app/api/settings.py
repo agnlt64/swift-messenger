@@ -2,17 +2,23 @@ from flask import Blueprint, redirect, url_for, request, flash
 from flask_login import current_user
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
-from ..server import db
-from ..server.models import User
+
 import os
+import json
+
+from ..server import db
+from ..utils import sm_parse_raw_image, sm_save_file
+from .. import logger, UPLOAD_PREFIX
 
 settings = Blueprint('settings', __name__, url_prefix='/settings')
 
 @settings.route('/update/profile-picture', methods=['POST'])
 def update_profile_picture():
-    image = request.files.get('image-file')
-    image_name = secure_filename(image.filename)
-    image.save(os.path.join('app/client/static/files/pp', image_name))
+    raw_image = json.loads(request.data.decode('utf-8'))
+    img_data = sm_parse_raw_image(raw_image)
+    image_name = secure_filename(img_data[0])
+    img_content = img_data[1]
+    sm_save_file(UPLOAD_PREFIX + 'pp/' + image_name, img_content)
     current_user.profile_picture = f'files/pp/{image_name}'
     db.session.commit()
     flash('Profile picture updated successfully!', category='success')

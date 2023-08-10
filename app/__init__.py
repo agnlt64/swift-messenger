@@ -9,6 +9,8 @@ from .server import app
 # Global logger available in all the app
 logger = Logger(log_to_file=True)
 
+UPLOAD_PREFIX = 'app/client/static/files/'
+
 def create_app():
     from .views import views
     from .api import api

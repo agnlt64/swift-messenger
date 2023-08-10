@@ -70,6 +70,21 @@ const globalCallback = mutationList => {
                 }))
             }
 
+            // changing the profile picture without reloading the page
+            if (window.location.pathname === '/settings/profile-picture') {
+                const newProfilePictureForm = document.getElementById('new-profile-picture')
+                newProfilePictureForm.addEventListener('submit', e => {
+                    e.preventDefault()
+                    const newImageName = document.getElementById('choose-image-input').value
+                    const newImageContent = document.getElementById('new-img-container').children[0].src
+                    const groupData = {
+                        'image_name': newImageName,
+                        'image_content': newImageContent
+                    }
+                    ajax(newProfilePictureForm.method, newProfilePictureForm.action, groupData)
+                })
+            }
+
             // specific actions for authentication
             if (window.location.pathname === '/login' || window.location.pathname === '/sign-up') {
                 const authForms = document.querySelectorAll('.form')

@@ -2,9 +2,9 @@ from flask import Blueprint, request, flash, redirect
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 import json
-import base64
 
-from .. import logger
+from .. import logger, UPLOAD_PREFIX
+from ..utils import sm_parse_raw_image, sm_save_file
 from ..server.models import ChatGroup, Message
 from ..server import db
 
@@ -16,16 +16,14 @@ def create_form():
     raw_credentials = json.loads(request.data.decode('utf-8'))
     chat_group_name = raw_credentials['name']
     chat_group = ChatGroup.query.filter_by(name=chat_group_name, creator=current_user.username).first()
-    file_name = raw_credentials['image_name'].split('\\')[-1]
-    # this is encoded in base64
-    raw_file_content = raw_credentials['image_content'].split('data:image/png;base64,')[-1]
-    decoded_file_content = base64.b64decode(raw_file_content)
+    img_data = sm_parse_raw_image(raw_credentials)
+    unsecure_file_name = img_data[0]
+    file_content = img_data[1]
     if chat_group:
         flash('The chat group already exists!', category='error')
     else:
-        filename = secure_filename(file_name)
-        with open(f'app/client/static/files/{filename}', 'wb') as f:
-            f.write(decoded_file_content)
+        filename = secure_filename(unsecure_file_name)
+        sm_save_file(UPLOAD_PREFIX + filename, file_content)
         chat_group = ChatGroup(name=chat_group_name, creator=current_user.username, image_path=filename)
         # necessary idk why but dont remove
         chat_group.members = ''
