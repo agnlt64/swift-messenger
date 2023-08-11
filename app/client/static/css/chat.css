@@ -427,6 +427,10 @@ body[theme=dark] .message input:disabled {
     gap: 1rem;
 }
 
+.members[data-showing-users] .member:not([data-user-list]) {
+    display: none;
+}
+
 .chat-area .send-message-form {
     width: calc(100% - 2rem);
     border-top: 1px solid #777777;

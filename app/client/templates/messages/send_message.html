@@ -27,7 +27,7 @@
         </div>
         {% endif %}
     {% endfor %}
-    <!-- message template used in js -->
+    <!-- message template used in index.js -->
     <template data-message-template>
         <div class="message">
             <img class="message-profile-picture" src="{{ url_for('static', filename=''+user.profile_picture) }}" alt="profile picture">
@@ -69,7 +69,17 @@
     <i class='bx bx-plus'></i>
     <input type="text" class="invisible search-user" id="new-user" placeholder="Search for a user here...">
 </div>
-<div class="members">
+<!-- template used in add_user_to_group.js -->
+<template data-member-template>
+    <div class="member invisible" data-user-list>
+        <!-- src is set in js -->
+        <img class="profile-picture" src="" data-profile-picture>
+        <!-- username is set in js -->
+        <p data-member-name></p>
+    </div>
+</template>
+
+<div class="members" data-members-container>
     {% for member in members %}
     <div class="member">
         <img class="profile-picture" src="{{ url_for('static', filename=''+member.profile_picture) }}" alt="{{ member.username }} profile picture">
