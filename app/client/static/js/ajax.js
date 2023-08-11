@@ -21,6 +21,11 @@ function ajax(method, url, requestData={}) {
     xhr.send(JSON.stringify(requestData))
 }
 
+function b64encode(string) {
+    const bytes = new TextEncoder().encode(string)
+    return btoa(String.fromCharCode.apply(null, bytes))
+}
+
 const globalCallback = mutationList => {
     for (const mutation of mutationList) {
         if (mutation.type === "childList") {
@@ -85,6 +90,24 @@ const globalCallback = mutationList => {
                 })
             }
 
+            // updating the password in the settings page without reloading the page
+            if (window.location.pathname === '/settings/password') {
+                // no need for an id since it is the only form in the page
+                const changePasswordForm = document.querySelector('form')
+                changePasswordForm.addEventListener('submit', e => {
+                    e.preventDefault()
+                    const oldPassword = document.getElementsByName('old-password')[0].value
+                    const newPassword = document.getElementsByName('new-password')[0].value
+                    const confirmNewPassword = document.getElementsByName('confirm-new-password')[0].value
+                    const credentials = {
+                        'old_password': b64encode(oldPassword),
+                        'new_password': b64encode(newPassword),
+                        'confirm_new_password': b64encode(confirmNewPassword),
+                    }
+                    ajax(changePasswordForm.method, changePasswordForm.action, credentials)
+                })
+            }
+
             // specific actions for authentication
             if (window.location.pathname === '/login' || window.location.pathname === '/sign-up') {
                 const authForms = document.querySelectorAll('.form')
@@ -93,16 +116,14 @@ const globalCallback = mutationList => {
                     // same fields for both pages
                     const username = document.getElementById('username').value
                     const password = document.getElementById('password').value
-                    // base64 encoding for password
-                    const passwordBytes = new TextEncoder().encode(password)
                     let confirm = null
                     if (window.location.pathname === '/sign-up') {
                         confirm = document.getElementById('confirm').value
                     }
                     const credentials = {
                         'username': username,
-                        'password': btoa(String.fromCharCode.apply(null, passwordBytes)),
-                        'confirm': confirm === null ? '' : confirm
+                        'password': b64encode(password),
+                        'confirm': confirm === null ? '' : b64encode(confirm)
                     }
                     ajax(form.method, form.action, credentials)
                 }))

@@ -32,6 +32,11 @@ body {
 
 .settings .sidebar ul li a {
     color: black;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    padding: 1em;
+    margin: -1em;
 }
 
 .settings .sidebar ul li:hover {
@@ -223,4 +228,8 @@ body[theme=dark] .settings .sidebar ul li a {
 .change-password button:hover {
     cursor: pointer;
     translate: 0 -4px;
+}
+
+.change-password button:disabled {
+    display: none;
 }

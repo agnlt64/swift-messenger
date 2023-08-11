@@ -3,7 +3,7 @@ from flask_login import current_user
 from werkzeug.utils import secure_filename
 from werkzeug.security import generate_password_hash, check_password_hash
 
-import os
+import base64
 import json
 
 from ..server import db
@@ -26,9 +26,10 @@ def update_profile_picture():
 
 @settings.route('/update/password', methods=['POST'])
 def update_password():
-    old_password = request.form.get('old-password')
-    new_password = request.form.get('new-password')
-    confirm_new_password = request.form.get('confirm-new-password')
+    raw_credentials = json.loads(request.data.decode('utf-8'))
+    old_password = base64.b64decode(raw_credentials['old_password']).decode('utf-8')
+    new_password = base64.b64decode(raw_credentials['new_password']).decode('utf-8')
+    confirm_new_password = base64.b64decode(raw_credentials['confirm_new_password']).decode('utf-8')
     if check_password_hash(current_user.password, old_password):
         if len(new_password) < 10:
             flash('Your password must be at least 10 characters long!', category='error')

@@ -30,8 +30,8 @@ def login():
 def sign_up():
     raw_credentials = json.loads(request.data.decode('utf-8'))
     username = raw_credentials['username']
-    password = raw_credentials['password']
-    confirm = raw_credentials['confirm']
+    password = base64.b64decode(raw_credentials['password']).decode('utf-8')
+    confirm = base64.b64decode(raw_credentials['confirm']).decode('utf-8')
     user = User.query.filter_by(username=username).first()
     if user:
         flash('Username already taken!', category='error')
