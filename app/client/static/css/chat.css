@@ -389,12 +389,36 @@ body[theme=dark] .message input:disabled {
     margin-left: auto;
     width: 30rem;
     border-left: 1px solid #777777;
-    padding-left: 2rem;
+    padding-left: 1rem;
 }
 
 .members-list .title-container {
-    margin: 1rem;
-    width: fit-content;
+    margin: 1rem 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+}
+
+.members-list .title-container i {
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
+.members-list .title-container i:hover {
+    cursor: pointer;
+}
+
+.members-list .members {
+    width: calc(100% - 2rem);
+}
+
+.members-list .search-user {
+    margin-top: 0.5rem;
 }
 
 .members-list .member {

@@ -46,7 +46,6 @@ def send():
 @chat.route('/message/edit/<id>', methods=['POST'])
 @login_required
 def edit_message(id):
-    logger.info(request.data)
     raw_value = json.loads(request.data.decode('utf-8'))
     message = Message.query.filter_by(id=id).first()
     message.content = raw_value['message']

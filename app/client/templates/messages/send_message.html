@@ -66,6 +66,8 @@
 {% block members %}
 <div class="title-container">
     <h2>All group members</h2>
+    <i class='bx bx-plus'></i>
+    <input type="text" class="invisible search-user" id="new-user" placeholder="Search for a user here...">
 </div>
 <div class="members">
     {% for member in members %}

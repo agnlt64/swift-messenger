@@ -26,10 +26,15 @@ POST /api/admin/create/user -> creates an user within the admin interface
 # Chat API
 POST /api/chat/create -> creates a new chat group
 GET /api/chat/group/<chat id> -> accesses a chat group with its unique id
-POST /api/chat/send -> sends a message
+POST /api/chat/send -> here for semantical reasons, does not actually send a message
 
 # Settings API
 POST /api/settings/update/profile-picture -> updates the profile picture of the current user (no need to specify the unique id)
+POST /api/settings/update/password -> updates the password of the current user (no need to specify the unique id)
+
+# Users API
+GET /api/users/all -> returns a JSON object containing all the users
+GET /api/users/get/<name> -> returns a JSON object containing the infos about the <name>
 ```
 
 ## Roadmap

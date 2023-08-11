@@ -42,3 +42,7 @@
     cursor: pointer;
     translate: 0 -4px;
 }
+
+.form .btn:disabled {
+    display: none;
+}
