@@ -7,7 +7,7 @@
 
 @media (max-width: 100em) {
     .form-container {
-        min-height: 35rem;
+        min-height: 40rem;
     }
 }
 
@@ -59,7 +59,32 @@
     transition: 0.2s translate;
 }
 
+.form .btn:disabled {
+    display: none;
+}
+
 .form .btn:hover {
     cursor: pointer;
     translate: 0 -4px;
+}
+
+.form .match {
+    --color: #1fbf10;
+    --bg-color: #a1f59a;
+}
+
+.form .password-rules {
+    border: 1px solid var(--color, #fa1919);
+    color: var(--color, #fa1919);
+    background-color: var(--bg-color, #ff8b8b);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.form .password-rules ul {
+    padding: 0;
+    margin-left: 8px;
 }
