@@ -5,7 +5,8 @@ function storeTheme(theme) {
 }
 
 function getTheme() {
-    const currentTheme = localStorage.getItem('theme')
+    let currentTheme = localStorage.getItem('theme')
+    currentTheme = currentTheme !== null ? currentTheme : 'light'
     themes.forEach(theme => {
         if (currentTheme === theme.id) {
             theme.checked = true

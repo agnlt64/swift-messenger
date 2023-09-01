@@ -1,7 +1,8 @@
-from flask import Blueprint
-from ..server.models import User
+from flask import Blueprint, request, redirect, url_for
 import json
 
+from ..server.models import User
+from .. import db
 
 users = Blueprint('users', __name__, url_prefix='/users')
 
@@ -20,6 +21,13 @@ def get_all_users():
         })
     return json.dumps(all_users)
 
-@users.route('/<name>')
+@users.route('/member/<name>')
 def get_user_by_name(name):
     return User.query.filter_by(name=name).first()
+
+@users.route('/delete/<name>', methods=['DELETE'])
+def delete_user(name):
+    User.query.filter_by(username=name).delete()
+    db.session.commit()
+    return redirect(url_for(request.referrer))
+    

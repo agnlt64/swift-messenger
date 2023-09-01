@@ -34,7 +34,7 @@ POST /api/settings/update/password -> updates the password of the current user (
 
 # Users API
 GET /api/users/all -> returns a JSON object containing all the users
-GET /api/users/get/<name> -> returns a JSON object containing the infos about the <name>
+GET /api/users/member/<name> -> returns a JSON object containing the infos about the <name>
 ```
 
 ## Roadmap

@@ -141,10 +141,13 @@ body[theme=dark] .settings .sidebar ul li a {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.2s;
 }
 
 .choose-image-form .choose-image:hover {
     cursor: pointer;
+    background-color: #636262;
+    border-color: #636262;
 }
 
 .choose-image-form .new-img-container .new-profile-picture {
@@ -171,30 +174,6 @@ body[theme=dark] .settings .sidebar ul li a {
 .choose-image-form .choose-image-btn:hover {
     cursor: pointer;
     transform: translateY(-4px);
-}
-
-/* change the username */
-.change-username {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-}
-
-.change-username input {
-    width: 14rem;
-}
-
-.change-username button {
-    padding: 6px 0;
-    width: 10rem;
-    border-radius: 8px;
-    border: 1px solid #1c30df;
-    color: white;
-    background-color: #1c30df;
-    font-size: 16px;
-    transition: translate 0.2s;
 }
 
 .change-username button:hover {

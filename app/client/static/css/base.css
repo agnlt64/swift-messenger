@@ -44,6 +44,25 @@ input:focus {
     transform-origin: left;
 }
 
+/* X to close any message */
+.close-button {
+    background-color: transparent;
+    border: none;
+    font-size: 3rem;
+    position: absolute;
+    left: calc(100% - 3rem - 1rem);
+    top: 0;
+    outline: none;
+}
+
+.close-button .rotated {
+    rotate: 45deg;
+}
+
+.close-button:hover {
+    cursor: pointer;
+}
+
 /* Flashed messages, do not touch */
 .error {
     --color: #db2b06;
@@ -150,6 +169,33 @@ input:focus {
     margin-left: auto;
     gap: 2rem;
     margin-right: 2rem;
+}
+
+/* basic button styling */
+.button {
+    padding: 10px 20px;
+    transition: background-color 0.2s, scale 0.2s, translate 0.2s;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.blue {
+    background-color: #1c30df;
+    border: 1px solid #1c30df;
+}
+
+.red {
+    background-color: #db2b06;
+    border: 1px solid  #db2b06;
+}
+
+.lift:hover {
+    translate: 0 -4px;
 }
 
 .auth-buttons .sign-up button {

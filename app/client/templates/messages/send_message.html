@@ -3,7 +3,7 @@
 {% block chat_area %}
 <div id="messages-container" class="messages-container">
     {% for message in messages %}
-        {% if message.chat_group == current_chat_group %}
+        {% if message.chat_group == group.id %}
         <div class="message">
             <img class="message-profile-picture" src="{{ url_for('static', filename=''+user.profile_picture) }}" alt="profile picture">
             <div class="infos-container">
@@ -55,7 +55,7 @@
 </div>
 
 <form method="post" action="/api/chat/send" class="send-message-form" id="send-message-form" 
-      data-current-chat-group="{{ current_chat_group }}" 
+      data-current-chat-group="{{ group.id }}" 
       data-sender="{{ user.username }}"
       data-last-id="{{ messages[-1].id }}"
     >
@@ -65,19 +65,32 @@
 
 {% block members %}
 <div class="title-container">
-    <h2>All group members</h2>
+    <i class='bx bx-dots-vertical-rounded' id="show-manage"></i>
+    <h2 class="group-name">{{ group.name }}</h2>
     <i class='bx bx-plus'></i>
     <input type="text" class="invisible search-user" id="new-user" placeholder="Search for a user here...">
 </div>
+<!-- dialog for managing the group -->
+{% if user.username == group.creator %}
+<dialog class="manage-group" id="manage-group">
+    <button data-action="close" class="close-button">
+        <i class='bx bx-plus rotated'></i>
+    </button>
+    <h1>Hello world</h1>
+    <div class="buttons-container">
+        <button class="button blue lift">Confirm</button>
+        <button class="button red lift">Cancel</button>
+    </div>
+</dialog>
+{% endif %}
+
 <!-- template used in add_user_to_group.js -->
-<template data-member-template>
+<!-- <template data-member-template>
     <div class="member invisible" data-user-list>
-        <!-- src is set in js -->
         <img class="profile-picture" src="" data-profile-picture>
-        <!-- username is set in js -->
         <p data-member-name></p>
     </div>
-</template>
+</template> -->
 
 <div class="members" data-members-container>
     {% for member in members %}

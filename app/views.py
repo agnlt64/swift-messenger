@@ -38,7 +38,7 @@ def group(id):
         return render_template('messages/send_message.html', messages=Message.query.all(), 
                                user=current_user, group=group, members=members, 
                                groups=ChatGroup.query.all(), profile_picture=str(current_user.profile_picture),
-                               active='active', current_chat_group=current_chat_group)
+                               active='active')
     else:
         # this can't be reached
         logger.enable_file_logging()

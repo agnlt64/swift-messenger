@@ -47,7 +47,7 @@ SwiftMessengr - Chat
     </div>
 
     <dialog id="new-group-form" class="new-group-form">
-        <button id="group-close-btn" class="close-button">
+        <button data-action="close" class="close-button">
             <i class='bx bx-plus rotated'></i>
         </button>
         <form action="/api/chat/create" id="create-group-form" method="post" enctype="multipart/form-data" autocomplete="off">
@@ -58,7 +58,7 @@ SwiftMessengr - Chat
                 <span>Select an image</span>
             </div>
             <div class="new-img-container" id="new-img-container"></div>
-            <button class="confirm" id="submit-form">Confirm</button>
+            <button class="button blue lift" id="submit-form">Confirm</button>
         </form>
         <p id="error-message" class="error-message">The name must be less than 100 characters!</p>
     </dialog>

@@ -19,7 +19,7 @@
                 {% for category, message in messages %}
                     <div class="flashed-message {{ category }}" id="message">
                         <p>{{ message }}</p>
-                        <button id="close-message" class="close-button">
+                        <button data-action="close" class="close-button">
                             <i class='bx bx-plus rotated'></i>
                         </button>
                     </div>
@@ -81,7 +81,7 @@
 <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
 <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
-<script src="{{ url_for('static', filename='js/close_message.js') }}"></script>
+<script src="{{ url_for('static', filename='js/close.js') }}"></script>
 <script src="{{ url_for('static', filename='js/create_group.js') }}"></script>
 <script src="{{ url_for('static', filename='js/profile_picture.js') }}"></script>
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
@@ -89,8 +89,10 @@
 <script src="{{ url_for('static', filename='js/edit_message.js') }}"></script>
 <script src="{{ url_for('static', filename='js/password.js') }}"></script>
 <script src="{{ url_for('static', filename='js/add_user_to_group.js') }}"></script>
+<script src="{{ url_for('static', filename='js/manage_group.js') }}"></script>
 <script>
-    document.body.setAttribute('theme', localStorage.getItem('theme'))
+    const theme = localStorage.getItem('theme')
+    document.body.setAttribute('theme', theme !== null ? theme : 'light')
 </script>
 {% block scripts %}
 {% endblock %}

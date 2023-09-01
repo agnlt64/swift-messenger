@@ -35,7 +35,7 @@ try {
 catch {}
 
 function toggleSearchField() {
-    const addButton = document.querySelector('.title-container i')
+    const addButton = document.querySelector('.title-container .bx-plus')
     const searchUserField = document.getElementById('new-user')
     const membersContainer = document.querySelector('[data-members-container]')
     const actualGroupMembers = document.querySelectorAll('.members .member:not([data-user-list])')
