@@ -212,7 +212,7 @@ dialog[open]::backdrop {
 
 .new-group-form .error-message {
     display: none;
-    color: red;
+    color: #db2b06;
 }
 
 .new-group-form .select-image {
