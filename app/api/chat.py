@@ -13,10 +13,10 @@ chat = Blueprint('chat', __name__, url_prefix='/chat')
 @chat.route('/create', methods=['POST'])
 @login_required
 def create_form():
-    raw_credentials = json.loads(request.data.decode('utf-8'))
-    chat_group_name = raw_credentials['name']
+    raw_data = json.loads(request.data.decode('utf-8'))
+    chat_group_name = raw_data['name']
     chat_group = ChatGroup.query.filter_by(name=chat_group_name, creator=current_user.username).first()
-    img_data = sm_parse_raw_image(raw_credentials)
+    img_data = sm_parse_raw_image(raw_data)
     unsecure_file_name = img_data[0]
     file_content = img_data[1]
     if chat_group:

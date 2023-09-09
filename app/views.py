@@ -36,7 +36,7 @@ def group(id):
         # and we need to pass the parameters to chat.html via this render_template call
         # because the page is re-rendered
         return render_template('messages/send_message.html', messages=Message.query.all(), 
-                               user=current_user, group=group, members=members, 
+                               user=current_user, group=group, current_chat_group=current_chat_group, members=members, 
                                groups=ChatGroup.query.all(), profile_picture=str(current_user.profile_picture),
                                active='active')
     else:

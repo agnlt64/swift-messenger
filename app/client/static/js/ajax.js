@@ -3,22 +3,39 @@ const separator = '<body'
 
 const config = { attributes: true, childList: true, subtree: true }
 
-function ajax(method, url, requestData={}) {
-    xhr.open(method, url, true)
-    xhr.onload = () => {
-        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-            const splitResponse = xhr.responseText.split(separator)
-            document.querySelector('head').innerHTML = splitResponse[0]
-            document.body.innerHTML = separator + splitResponse[1]
-            // the new URL must be created here
-            window.history.pushState({ prevUrl: window.location.href }, '', xhr.responseURL)
+function ajax(method, url, requestData = {}) {
+    if (window.fetch) {
+        fetch(url, {
+            method: method,
+            body: method.toUpperCase() === 'GET' ? null : JSON.stringify(requestData)
+        })
+            .then(res => {
+                window.history.pushState({ prevUrl: window.location.href }, '', url)
+                return res.text()
+            })
+            .then(html => {
+                const split = html.split(separator)
+                document.querySelector('head').innerHTML = split[0]
+                document.body.innerHTML = separator + split[1]
+            })
+    }
+    else {
+        xhr.open(method, url, true)
+        xhr.onload = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                const splitResponse = xhr.responseText.split(separator)
+                document.querySelector('head').innerHTML = splitResponse[0]
+                document.body.innerHTML = separator + splitResponse[1]
+                // the new URL must be created here
+                window.history.pushState({ prevUrl: window.location.href }, '', xhr.responseURL)
+            }
         }
+        xhr.onprogress = event => {
+            // add a progress bar
+            document.getElementById('progress-bar').style.width = `${(event.loaded / event.total) * 100}%`
+        }
+        xhr.send(JSON.stringify(requestData))
     }
-    xhr.onprogress = event => {
-        // add a progress bar
-        document.getElementById('progress-bar').style.width = `${(event.loaded / event.total) * 100}%`
-    }
-    xhr.send(JSON.stringify(requestData))
 }
 
 function b64encode(string) {
@@ -29,7 +46,7 @@ function b64encode(string) {
 const globalCallback = mutationList => {
     for (const mutation of mutationList) {
         if (mutation.type === "childList") {
-            // specific actions if the url contains /chat/...
+            // specific actions if the url contains /chat...
             if (window.location.pathname.includes('/chat')) {
                 try {
                     // scrolling to the end of the messages
@@ -43,9 +60,9 @@ const globalCallback = mutationList => {
                 // delete a message without reloading
                 const deleteMessageButtons = document.getElementsByName('delete-message-btn')
                 deleteMessageButtons.forEach(button => button.addEventListener('click', e => {
-                        e.preventDefault()
-                        const form = button.parentElement
-                        ajax(form.method, form.action)
+                    e.preventDefault()
+                    const form = button.parentElement
+                    ajax(form.method, form.action)
                 }))
 
                 // create a new chat group without reloading the page
@@ -56,7 +73,7 @@ const globalCallback = mutationList => {
                     const newImageName = document.getElementById('choose-image-input').value
                     const newImageContent = document.getElementById('new-img-container').children[0].src
                     const groupData = {
-                        'name': groupName, 
+                        'name': groupName,
                         'image_name': newImageName,
                         'image_content': newImageContent
                     }
