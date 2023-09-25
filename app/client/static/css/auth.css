@@ -16,8 +16,8 @@
     flex-direction: column;
     gap: 1.5rem;
     width: 18rem;
-    background: linear-gradient(18deg, #0e1343, #1c30df);
     color: white;
+    background: var(--blue-gradient);
     padding: 2rem;
     border-radius: 18px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);

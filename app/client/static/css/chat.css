@@ -3,11 +3,21 @@ body {
 }
 
 body[theme=dark] *:not(input) {
-    color: #fff;
+    color: white;
 }
 
 body[theme=light] .bx {
-    color: #fff;
+    color: white;
+}
+
+body[layout=blue] .new-chat-group {
+    border: 1px solid #1771bd;
+    background-color: #1771bd;
+}
+
+body[layout=purple] .new-chat-group {
+    border: 1px solid var(--purple-border);
+    background-color: var(--purple-border);
 }
 
 /* cant use a container for these elements */
@@ -15,8 +25,6 @@ body[theme=light] .bx {
     position: absolute;
     margin-left: 1rem;
     top: 93%;
-    border: 1px solid #1771bd;
-    background-color: #1771bd;
     border-radius: 50%;
     aspect-ratio: 1/1;
     width: 3rem;
@@ -27,7 +35,7 @@ body[theme=light] .bx {
 }
 
 .new-chat-group i {
-    color: #fff;
+    color: white;
 }
 
 .new-chat-group:hover {
@@ -73,7 +81,7 @@ https://stackoverflow.com/questions/20076388/how-can-i-draw-a-left-pointing-tria
 
 .tooltip p {
     margin: 0;
-    color: #fff;
+    color: white;
 }
 
 @media screen and (min-width: 992px) {
@@ -156,7 +164,7 @@ body[theme=dark] .group-container .active {
 }
 
 body[theme=dark] .group-container a p {
-    color: #fff;
+    color: white;
 }
 
 .group-container .group {
@@ -182,7 +190,7 @@ dialog[open] {
     flex-direction: column;
     width: var(--width);
     height: var(--height);
-    background: linear-gradient(18deg, #0e1343, #1c30df);
+    background: linear-gradient(18deg, #0e1343, var(--main-blue));
     color: white;
     padding: 2rem 0 2rem 2rem;
     border-radius: 18px;
@@ -219,7 +227,7 @@ dialog[open]::backdrop {
     width: 100%;
     padding: 8px 14px;
     border-radius: 8px;
-    background-color: #1c30df;
+    background-color: var(--main-blue);
     text-align: center;
 }
 
@@ -297,7 +305,7 @@ dialog[open]::backdrop {
 }
 
 body[theme=dark] .message input:disabled {
-    color: #fff;
+    color: white;
 }
 
 .message input:disabled {
@@ -358,8 +366,15 @@ body[theme=dark] .message input:disabled {
     margin: 0;
 }
 
-.message .infos-container .message-username {
+body[layout=purple] .message .infos-container .message-username {
+    color: var(--purple-border);
+}
+
+body[layout=blue] .message .infos-container .message-username {
     color: #1a8ae9;
+}
+
+.message .infos-container .message-username {
     font-weight: bold;
 }
 
@@ -392,7 +407,7 @@ body[theme=dark] .message input:disabled {
 }
 
 .members-list .title-container .group-name {
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid white;
 }
 
 .members-list .title-container i {

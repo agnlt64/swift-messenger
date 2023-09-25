@@ -28,7 +28,7 @@ li {
     --light-blue: #CFE8FF;
     --red: #DB504A;
     --yellow: #FFCE26;
-    --light-yellow: #FFF2C6;
+    --light-yellow: white2C6;
     --orange: #FD7238;
     --light-orange: #FFE0D3;
 }
@@ -506,7 +506,7 @@ main {
 }
 
 .flashed-message p {
-    color: #fff;
+    color: white;
 }
 
 @media screen and (max-width: 768px) {

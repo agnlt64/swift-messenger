@@ -1,8 +1,8 @@
 {% extends "settings/settings.html" %}
 
 {% block settings_content %}
-<h1>Change the color scheme</h1>
-<form class="color-schemes">
+<h2>Color scheme</h2>
+<section class="scheme">
     <div class="color" name="light">
         <label for="light">Light Theme</label>
         <input type="radio" name="theme-option" id="light" />
@@ -11,5 +11,18 @@
         <label for="light">Dark Theme</label>
         <input type="radio" name="theme-option" id="dark" />
     </div>
-</form>
+</section>
+<section class="layout-color">
+    <h2>Layout</h2>
+    <section class="scheme">
+        <div class="color" name="blue">
+            <label for="blue">Blue</label>
+            <input type="radio" name="layout-option" id="blue">
+        </div>
+        <div class="color" name="purple">
+            <label for="purple">Purple</label>
+            <input type="radio" name="layout-option" id="purple">
+        </div>
+    </section>
+</section>
 {% endblock %}

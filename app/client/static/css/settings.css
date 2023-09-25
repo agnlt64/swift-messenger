@@ -66,7 +66,7 @@ body[theme=dark] .settings .main-panel {
 }
 
 body[theme=dark] .settings .sidebar {
-    background-color: #212529;
+    background-color: var(--dark-gray);
     color: white;
 }
 
@@ -81,13 +81,13 @@ body[theme=dark] .settings .sidebar ul li a {
 }
 
 /* change the color scheme */
-.color-schemes {
+.scheme {
     display: flex;
     gap: 2rem;
     flex-direction: column;
 }
 
-.color-schemes .color {
+.scheme .color {
     display: flex;
     padding: 15px 18px;
     border-radius: 12px;
@@ -95,17 +95,31 @@ body[theme=dark] .settings .sidebar ul li a {
     align-items: center;
 }
 
-.color-schemes .color[name=light] {
+.scheme .color[name=light] {
     background-color: white;
     color: black;
 }
 
-.color-schemes .color[name=dark] {
+.scheme .color[name=dark] {
     background-color: black;
     color: white;
 }
 
-.color-schemes .color input[type=radio] {
+body[theme=light] .scheme .color:not([name=light]) label {
+    color: white;
+}
+
+.scheme .color[name=purple] {
+    background-color: var(--purple);
+    border-color: var(--purple);
+}
+
+.scheme .color[name=blue] {
+    background-color: var(--dark-blue);
+    border-color: var(--dark-blue);
+}
+
+.scheme .color input[type=radio] {
     appearance: none;
     aspect-ratio: 1/1;
     width: 1.5rem;
@@ -114,12 +128,16 @@ body[theme=dark] .settings .sidebar ul li a {
     margin-left: auto;
 }
 
-.color-schemes .color input[type=radio]:checked {
-    background-color:  #1c30df;
+.scheme .color input[type=radio]:checked {
+    background-color:  var(--main-blue);
 }
 
-.color-schemes .color input[type=radio]:hover {
+.scheme .color input[type=radio]:hover {
     cursor: pointer;
+}
+
+.layout-color {
+    margin-top: 2rem;
 }
 
 /* update the profile picture */
@@ -165,8 +183,8 @@ body[theme=dark] .settings .sidebar ul li a {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #1c30df;
-    background-color: #1c30df;
+    border: 1px solid var(--main-blue);
+    background-color: var(--main-blue);
     transition: 0.2s transform;
     border-radius: 8px;
 }
@@ -197,9 +215,9 @@ body[theme=dark] .settings .sidebar ul li a {
     padding: 6px 0;
     width: 16rem;
     border-radius: 8px;
-    border: 1px solid #1c30df;
+    border: 1px solid var(--main-blue);
     color: white;
-    background-color: #1c30df;
+    background-color: var(--main-blue);
     font-size: 16px;
     transition: translate 0.2s;
 }

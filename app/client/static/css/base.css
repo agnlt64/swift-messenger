@@ -1,6 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Heebo&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@900&display=swap');
 
+:root {
+    --red: #db2b06;
+
+    --purple-border: #ba1194;
+    --purple: #570495;
+    
+    --dark-blue: #0e1343;
+    --dark-gray: #212529;
+    
+    --blue-border: #5361de;
+    --main-blue: #1c30df;
+    
+    --nav-background: var(--dark-blue);
+
+    --blue-gradient: linear-gradient(18deg, var(--dark-blue), var(--main-blue));
+    --purple-gradient: linear-gradient(18deg, #9e0a7c, var(--purple));
+}
+
 * {
     font-family: 'Heebo', sans-serif;
     margin: 0;
@@ -13,7 +31,13 @@ body {
 }
 
 body[theme=dark] {
-    background-color: #212529;
+    background-color: var(--dark-gray);
+}
+
+body[layout=purple] {
+    --nav-background: var(--purple);
+    --blue-gradient: var(--purple-gradient);
+    --main-blue: var(--purple-border);
 }
 
 a {
@@ -28,7 +52,7 @@ input {
 }
 
 input:focus {
-    border: 1px solid #5361de;
+    border: 1px solid var(--blue-border);
     outline: 3px solid rgba(146, 146, 255, 0.6);
 }
 
@@ -65,7 +89,7 @@ input:focus {
 
 /* Flashed messages, do not touch */
 .error {
-    --color: #db2b06;
+    --color: var(--red);
 }
 
 .success {
@@ -89,7 +113,7 @@ input:focus {
     justify-content: center;
     padding: 4px 16px;
     border-radius: 0 0 8px 8px;
-    color: #fff;
+    color: white;
     gap: 1rem;
     width: 14rem;
     height: 3rem;
@@ -107,7 +131,7 @@ input:focus {
     justify-content: center;
     position: absolute;
     left: 100%;
-    color: #fff;
+    color: white;
 }
 
 .flashed-message .close-button .rotated {
@@ -119,7 +143,7 @@ input:focus {
 }
 
 .nav {
-    background-color: #0e1343;
+    background-color: var(--nav-background);
     display: flex;
     align-items: center;
     gap: 2rem;
@@ -176,7 +200,7 @@ input:focus {
     padding: 10px 20px;
     transition: background-color 0.2s, scale 0.2s, translate 0.2s;
     border-radius: 8px;
-    color: #fff;
+    color: white;
     font-size: 16px;
 }
 
@@ -185,13 +209,13 @@ input:focus {
 }
 
 .blue {
-    background-color: #1c30df;
-    border: 1px solid #1c30df;
+    background-color: var(--main-blue);
+    border: 1px solid var(--main-blue);
 }
 
 .red {
-    background-color: #db2b06;
-    border: 1px solid  #db2b06;
+    background-color: var(--red);
+    border: 1px solid  var(--red);
 }
 
 .lift:hover {
@@ -202,7 +226,7 @@ input:focus {
     padding: 10px 20px;
     background-color: transparent;
     transition: background-color 0.2s, scale 0.2s;
-    border: 1px solid #1c30df;
+    border: 1px solid var(--main-blue);
     border-radius: 8px;
     color: inherit;
     font-size: inherit;
@@ -218,7 +242,7 @@ input:focus {
 }
 
 .auth-buttons .sign-up:hover button {
-    background-color: #1c30df;
+    background-color: var(--main-blue);
     cursor: pointer;
 }
 
@@ -257,7 +281,7 @@ input:focus {
 
 .password i {
     position: absolute;
-    color: #1c30df;
+    color: var(--main-blue);
     right: 0.5rem;
     font-size: 26px;
 }

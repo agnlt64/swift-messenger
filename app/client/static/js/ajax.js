@@ -4,13 +4,14 @@ const separator = '<body'
 const config = { attributes: true, childList: true, subtree: true }
 
 function ajax(method, url, requestData = {}) {
+    document.getElementById('spinner').style.display = 'flex'
     if (window.fetch) {
         fetch(url, {
             method: method,
             body: method.toUpperCase() === 'GET' ? null : JSON.stringify(requestData)
         })
             .then(res => {
-                window.history.pushState({ prevUrl: window.location.href }, '', url)
+                window.history.pushState({ prevUrl: window.location.href }, '', res.url)
                 return res.text()
             })
             .then(html => {
@@ -26,13 +27,12 @@ function ajax(method, url, requestData = {}) {
                 const splitResponse = xhr.responseText.split(separator)
                 document.querySelector('head').innerHTML = splitResponse[0]
                 document.body.innerHTML = separator + splitResponse[1]
-                // the new URL must be created here
                 window.history.pushState({ prevUrl: window.location.href }, '', xhr.responseURL)
             }
         }
-        xhr.onprogress = event => {
+        xhr.onprogress = () => {
             // add a progress bar
-            document.getElementById('progress-bar').style.width = `${(event.loaded / event.total) * 100}%`
+            document.getElementById('spinner').style.display = 'flex'
         }
         xhr.send(JSON.stringify(requestData))
     }

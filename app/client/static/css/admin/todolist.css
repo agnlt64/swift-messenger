@@ -103,7 +103,7 @@
     width: 10rem;
     height: 0.5rem;
     background-color: #14b8b2;
-    color: #fff;
+    color: white;
     border-radius: 6px;
     border: #787a7c;
     font-size: large;
@@ -145,7 +145,7 @@
     border-radius: 4px;
     border: none;
     background-color: #3C91E6;
-    color: #fff;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
