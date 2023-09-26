@@ -1,78 +1,31 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/admin.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin/todolist.css') }}">
-    <title>Admin Panel</title>
-</head>
-<body>
-    <section class="sidebar" id="sidebar">
-        <a href="/chat" class="brand">
-            <i class='bx bx-chat'></i>
-            <span class="text">SwiftMessengr</span>
-        </a>
-        <ul class="side-menu top">
-            <li class="active">
-                <a href="/admin/dashboard">
-                    <i class="bx bxs-dashboard"></i>
-                    <span class="text">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="/admin/team">
-                    <i class="bx bxs-group"></i>
-                    <span class="text">Team</span>
-                </a>
-            </li>
-            <li>
-                <a href="/admin/todolist">
-                    <i class="bx bx-list-check"></i>
-                    <span class="text">Todolist</span>
-                </a>
-            </li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <a href="/logout" class="logout">
-                    <i class="bx bxs-log-out-circle"></i>
-                    <span class="text">Logout</span>
-                </a>
-            </li>
-        </ul>
-    </section>
+{% extends "base.html" %}
 
-    <section class="content">
-        <nav>
-            <i class="bx bx-menu" id="menu-bar"></i>
-            <form action="#" id="search-form">
-                <div class="form-input" id="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button type="submit" id="search-btn"><i class="bx bx-search" id="search-button-icon"></i></button>
-                </div>
-            </form>
-            <a href="#" class="notification">
-                <i class="bx bxs-bell bx-tada-hover"></i>
-                <span class="num" id="notification">0</span>
-            </a>
-            <a href="/settings" class="profile">
-                <img src="{{ url_for('static', filename=''+profile_picture) }}">
-            </a>
-        </nav>
-        <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Dashboard</h1>
-                </div>
-            </div>
-            {% block content %}
-            {% endblock %}
-        </main>
-    </section>
-</body>
-{% block scripts %}
+{% block title %}
+SwiftMessengr - Admin Dashboard
 {% endblock %}
-<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
-</html>
+
+{% block style %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="admin">
+    <div class="sidebar">
+        <ul>
+            <li>
+                <a href="/admin">Moderation</a>
+            </li>
+            <li>
+                <a href="/admin/team">Development Team</a>
+            </li>
+            <li>
+                <a href="/admin/todolist">Todolist</a>
+            </li>
+        </ul>
+    </div>
+    <div class="main-panel">
+        {% block admin_content %}
+        {% endblock %}
+    </div>
+</section>
+{% endblock %}

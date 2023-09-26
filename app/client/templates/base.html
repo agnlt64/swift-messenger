@@ -2,116 +2,115 @@
 <html lang="fr">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{% block title %}{% endblock %}</title>
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/loader.css') }}">
-	<link rel="shortcut icon" href="{{ url_for('static', filename='media/favicon.ico') }}" type="image/x-icon">
-	<script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
-		integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
-		crossorigin="anonymous"></script>
-	<link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
-	{% block style %}
-	{% endblock %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/loader.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='media/favicon.ico') }}" type="image/x-icon">
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+        integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+        crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
+    {% block style %}
+    {% endblock %}
 </head>
 
 <body id="body">
-	{% with messages = get_flashed_messages(with_categories=true) %}
-	{% if messages %}
-	<div class="message-container">
-		{% for category, message in messages %}
-		<div class="flashed-message {{ category }}" id="message">
-			<p>{{ message }}</p>
-			<button data-action="close" class="close-button">
-				<i class='bx bx-plus rotated'></i>
-			</button>
-		</div>
-		{% endfor %}
-	</div>
-	{% endif %}
-	{% endwith %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="message-container">
+        {% for category, message in messages %}
+        <div class="flashed-message {{ category }}" id="message">
+            <p>{{ message }}</p>
+            <button data-action="close" class="close-button">
+                <i class='bx bx-plus rotated'></i>
+            </button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 
-	<nav class="nav" id="navbar">
-		<span class="logo">swiftmessengr</span>
-		<ul>
-			<li>
-				<a href="/">Home</a>
-			</li>
-			<li>
-				<a href="#">About</a>
-			</li>
-			<div class="auth-buttons">
-				{% if not current_user.is_authenticated %}
-				<li class="login slide">
-					<a href="/login">Login</a>
-				</li>
-				<li class="sign-up">
-					<button>
-						<a href="/sign-up">Sign Up</a>
-					</button>
-				</li>
-				{% else %}
-				<li>
-					{% if current_user.role == 'admin' %}
-					<a href="/admin">Admin</a>
-					{% endif %}
-				</li>
-				<li class="slide">
-					<a href="/chat">Chat</a>
-				</li>
-				<li class="logout slide">
-					<a href="/logout">Logout</a>
-				</li>
-				<li>
-					<a href="/settings/profile-picture">
-						<img src="{{ url_for('static', filename=''+current_user.profile_picture) }}"
-							class="profile-picture" alt="user profile picture">
-					</a>
-				</li>
-				{% endif %}
-			</div>
-		</ul>
-	</nav>
+    <nav class="nav" id="navbar">
+        <span class="logo">swiftmessengr</span>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+            <div class="auth-buttons">
+                {% if not current_user.is_authenticated %}
+                <li class="login slide">
+                    <a href="/login">Login</a>
+                </li>
+                <li class="sign-up">
+                    <button>
+                        <a href="/sign-up">Sign Up</a>
+                    </button>
+                </li>
+                {% else %}
+                <li>
+                    {% if current_user.role == 'admin' %}
+                    <a href="/admin">Admin</a>
+                    {% endif %}
+                </li>
+                <li class="slide">
+                    <a href="/chat">Chat</a>
+                </li>
+                <li class="logout slide">
+                    <a href="/logout">Logout</a>
+                </li>
+                <li>
+                    <a href="/settings/profile-picture">
+                        <img src="{{ url_for('static', filename=''+current_user.profile_picture) }}"
+                            class="profile-picture" alt="user profile picture">
+                    </a>
+                </li>
+                {% endif %}
+            </div>
+        </ul>
+    </nav>
 
-	{% block content %}
-	{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-	<div class="scene" id="spinner">
-		<div class="objects">
-			<div class="square"></div>
-			<div class="circle"></div>
-			<div class="triangle"></div>
-		</div>
-		<div class="wizard">
-			<div class="body"></div>
-			<div class="right-arm">
-				<div class="right-hand"></div>
-			</div>
-			<div class="left-arm">
-				<div class="left-hand"></div>
-			</div>
-			<div class="head">
-				<div class="beard"></div>
-				<div class="face">
-					<div class="adds"></div>
-				</div>
-				<div class="hat">
-					<div class="hat-of-the-hat"></div>
-					<div class="four-point-star --first"></div>
-					<div class="four-point-star --second"></div>
-					<div class="four-point-star --third"></div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="scene" id="spinner">
+        <div class="objects">
+            <div class="square"></div>
+            <div class="circle"></div>
+            <div class="triangle"></div>
+        </div>
+        <div class="wizard">
+            <div class="body"></div>
+            <div class="right-arm">
+                <div class="right-hand"></div>
+            </div>
+            <div class="left-arm">
+                <div class="left-hand"></div>
+            </div>
+            <div class="head">
+                <div class="beard"></div>
+                <div class="face">
+                    <div class="adds"></div>
+                </div>
+                <div class="hat">
+                    <div class="hat-of-the-hat"></div>
+                    <div class="four-point-star --first"></div>
+                    <div class="four-point-star --second"></div>
+                    <div class="four-point-star --third"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-	<footer class="footer">
-		{% block footer %}
-		{% endblock %}
-	</footer>
+    <footer class="footer">
+        {% block footer %}
+        {% endblock %}
+    </footer>
 </body>
 <script src="{{ url_for('static', filename='js/theme.js') }}"></script>
 <script src="{{ url_for('static', filename='js/ajax.js') }}"></script>
@@ -126,10 +125,10 @@
 <script src="{{ url_for('static', filename='js/add_user_to_group.js') }}"></script>
 <script src="{{ url_for('static', filename='js/manage_group.js') }}"></script>
 <script>
-	const theme = localStorage.getItem('theme')
-	const layout = localStorage.getItem('layout')
-	document.body.setAttribute('theme', theme !== null ? theme : 'light')
-	document.body.setAttribute('layout', layout !== null ? layout : 'blue')
+    const theme = localStorage.getItem('theme')
+    const layout = localStorage.getItem('layout')
+    document.body.setAttribute('theme', theme !== null ? theme : 'light')
+    document.body.setAttribute('layout', layout !== null ? layout : 'blue')
 </script>
 {% block scripts %}
 {% endblock %}

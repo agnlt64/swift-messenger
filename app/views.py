@@ -66,25 +66,17 @@ def admin_page():
     total_users = 0
     for _ in User.query.all():
         total_users += 1
-    return render_template('admin/dashboard.html', total_users=total_users, users=User.query.all(), profile_picture=current_user.profile_picture)
-
-@views.route('/admin/dashboard')
-@login_required
-def dashboard():
-    total_users = 0
-    for _ in User.query.all():
-        total_users += 1
-    return render_template('admin/dashboard.html', total_users=total_users, users=User.query.all(), profile_picture=current_user.profile_picture)
+    return render_template('admin/admin.html', total_users=total_users, users=User.query.all(), profile_picture=current_user.profile_picture)
 
 @views.route('/admin/team')
 @login_required
-def team():
-    return render_template('admin/team.html', profile_picture=current_user.profile_picture)
+def team_page():
+    return render_template('admin/team.html')
 
-@views.route('/admin/todolist')
+@views.route('/admin')
 @login_required
 def todolist():
-    return render_template('admin/todolist.html', all_tasks=Task.query.all(), profile_picture=current_user.profile_picture)
+    return render_template('admin/todolist.html')
 
 @views.route('/settings')
 @login_required
