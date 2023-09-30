@@ -2,12 +2,15 @@
 
 {% block admin_content %}
 <section class="team">
-    <div class="dev">
-        <img src="{{ url_for('static', filename='media/moi-min.jpg') }}" alt="dev profile picture">
-        <div class="infos">
-            <span>Antonin GENELOT</span>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam neque totam cum, corrupti, dolores, nihil non perspiciatis exercitationem a dolorem reprehenderit temporibus ut? Accusamus nisi expedita est, quam dolor fugit?</p>
+    {% for dev in devs %}
+        <div class="dev">
+            <img src="{{ url_for('static', filename='files/'+dev.profile_picture) }}" alt="dev profile picture">
+            <div class="infos">
+                <span>{{ dev.name }}</span>
+                <p>{{ dev.bio }}</p>
+            </div>
         </div>
-    </div>
+    {% endfor %}
+    <button></button>
 </section>
 {% endblock %}

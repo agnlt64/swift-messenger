@@ -14,7 +14,7 @@ UPLOAD_PREFIX = 'app/client/static/files/'
 def create_app():
     from .views import views
     from .api import api
-    from .server.models import User, ChatGroup, Message, Task
+    from .server.models import User, ChatGroup, Message, Task, Dev
     
     app.config['SECRET_KEY'] = secrets.token_urlsafe(40)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user
-from .server.models import ChatGroup, Task, User, Message
+from .server.models import ChatGroup, Dev, User, Message
 from . import logger
 
 # client views only, logic is in the api folder
@@ -63,17 +63,14 @@ def logout():
 @views.route('/admin')
 @login_required
 def admin_page():
-    total_users = 0
-    for _ in User.query.all():
-        total_users += 1
-    return render_template('admin/admin.html', total_users=total_users, users=User.query.all(), profile_picture=current_user.profile_picture)
+    return render_template('admin/admin.html')
 
 @views.route('/admin/team')
 @login_required
 def team_page():
-    return render_template('admin/team.html')
+    return render_template('admin/team.html', devs=Dev.query.all())
 
-@views.route('/admin')
+@views.route('/admin/todolist')
 @login_required
 def todolist():
     return render_template('admin/todolist.html')
@@ -86,17 +83,11 @@ def settings_page():
 @views.route('/settings/profile-picture')
 @login_required
 def profile_picture():
-    print('profile picture page')
     return render_template('settings/profile_picture.html')
 
 @views.route('/settings/color-scheme')
 def color_scheme():
     return render_template('settings/color_scheme.html')
-
-@views.route('/settings/username')
-@login_required
-def username():
-    return render_template('settings/username.html')
 
 @views.route('/settings/password')
 @login_required

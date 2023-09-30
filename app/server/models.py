@@ -26,5 +26,11 @@ class Message(db.Model):
     content = db.Column(db.String(1000), nullable=False, default='')
 
 class Task(db.Model):
-    id = db.Column(db.Integer,primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
+
+class Dev(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(150))
+    bio = db.Column(db.String(1000))
+    profile_picture = db.Column(db.String(200))
