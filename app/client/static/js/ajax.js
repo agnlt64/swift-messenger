@@ -3,7 +3,8 @@ const separator = '<body'
 
 const config = { attributes: true, childList: true, subtree: true }
 
-function ajax(method, url, requestData = {}) {
+function ajax(method, url, requestData = {}, targetElement = null) {
+    const target = targetElement === null ? document.body : document.querySelector(targetElement)
     document.getElementById('spinner').style.display = 'flex'
     if (window.fetch) {
         fetch(url, {
@@ -16,8 +17,13 @@ function ajax(method, url, requestData = {}) {
             })
             .then(html => {
                 const split = html.split(separator)
+                console.log(split)
                 document.querySelector('head').innerHTML = split[0]
-                document.body.innerHTML = separator + split[1]
+                if (targetElement === null) {
+                    document.body.innerHTML = separator + split[1]
+                } else {
+                    document.querySelector(targetElement).innerHTML = separator + split[1]
+                }
             })
     }
     else {
@@ -26,13 +32,13 @@ function ajax(method, url, requestData = {}) {
             if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
                 const splitResponse = xhr.responseText.split(separator)
                 document.querySelector('head').innerHTML = splitResponse[0]
-                document.body.innerHTML = separator + splitResponse[1]
+                if (targetElement === null) {
+                    document.body.innerHTML = separator + splitResponse[1]
+                } else {
+                    document.querySelector(targetElement).innerHTML = separator + splitResponse[1]
+                }
                 window.history.pushState({ prevUrl: window.location.href }, '', xhr.responseURL)
             }
-        }
-        xhr.onprogress = () => {
-            // add a progress bar
-            document.getElementById('spinner').style.display = 'flex'
         }
         xhr.send(JSON.stringify(requestData))
     }
@@ -150,6 +156,7 @@ const globalCallback = mutationList => {
             links.forEach(link => {
                 link.addEventListener('click', event => {
                     event.preventDefault()
+                    // const target = window.location.pathname.includes('/chat') ? '#chat-area' : null
                     ajax('GET', link.href)
                 })
             })

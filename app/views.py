@@ -29,7 +29,6 @@ def group(id):
     global current_chat_group
     current_chat_group = group.id
     if group:
-        assert current_user.is_authenticated, 'error'
         names = group.members.split(',')[:-1]
         members = [User.query.filter_by(username=name).first() for name in names]
         # a lot of parameters since send_message inherits from chat.html 
