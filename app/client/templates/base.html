@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/loader.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='media/favicon.ico') }}" type="image/x-icon">
     <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
         integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
@@ -78,34 +77,11 @@
     {% block content %}
     {% endblock %}
 
-    <div class="scene" id="spinner">
-        <div class="objects">
-            <div class="square"></div>
-            <div class="circle"></div>
-            <div class="triangle"></div>
-        </div>
-        <div class="wizard">
-            <div class="body"></div>
-            <div class="right-arm">
-                <div class="right-hand"></div>
-            </div>
-            <div class="left-arm">
-                <div class="left-hand"></div>
-            </div>
-            <div class="head">
-                <div class="beard"></div>
-                <div class="face">
-                    <div class="adds"></div>
-                </div>
-                <div class="hat">
-                    <div class="hat-of-the-hat"></div>
-                    <div class="four-point-star --first"></div>
-                    <div class="four-point-star --second"></div>
-                    <div class="four-point-star --third"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <svg id="spinner" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <circle class="spinner_main" cx="4" cy="12" r="3"/>
+        <circle class="spinner_main spinner_2" cx="12" cy="12" r="3"/>
+        <circle class="spinner_main spinner_3" cx="20" cy="12" r="3"/>
+    </svg>
 
     <footer class="footer">
         {% block footer %}

@@ -2,6 +2,7 @@
 
 {% block admin_content %}
 <section class="team">
+    <h1>Development team</h1>
     {% for dev in devs %}
         <div class="dev">
             <img src="{{ url_for('static', filename='files/'+dev.profile_picture) }}" alt="dev profile picture">

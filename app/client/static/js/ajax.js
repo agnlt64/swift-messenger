@@ -17,7 +17,6 @@ function ajax(method, url, requestData = {}, targetElement = null) {
             })
             .then(html => {
                 const split = html.split(separator)
-                console.log(split)
                 document.querySelector('head').innerHTML = split[0]
                 if (targetElement === null) {
                     document.body.innerHTML = separator + split[1]

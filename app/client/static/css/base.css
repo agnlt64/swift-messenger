@@ -60,12 +60,42 @@ input:focus {
     display: none !important;
 }
 
-/* progress bar */
-.progress-bar {
+/* loading svg */
+body[theme=dark] #spinner {
+    fill: #fff;
+}
+
+body[theme=light] #spinner {
+    fill: #000;
+}
+
+.spinner_main {
+    animation: load .8s linear infinite
+}
+
+.spinner_2 {
+    animation-delay: -0.65s
+}
+
+.spinner_3 {
+    animation-delay: -0.5s
+}
+
+@keyframes load {
+    93.75%, 100% {
+        r: 3px
+    }
+    46.875% {
+        r: 0.5px
+    }
+}
+
+#spinner {
     position: absolute;
-    height: 4px;
-    background-color: white;
-    transform-origin: left;
+    top: 50%;
+    left: 50%;
+    scale: 8;
+    display: none;
 }
 
 /* X to close any message */
