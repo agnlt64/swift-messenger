@@ -14,12 +14,12 @@ settings = Blueprint('settings', __name__, url_prefix='/settings')
 
 @settings.route('/update/profile-picture', methods=['POST'])
 def update_profile_picture():
-    raw_image = json.loads(request.data.decode('utf-8'))
-    img_data = sm_parse_raw_image(raw_image)
-    image_name = secure_filename(img_data[0])
-    img_content = img_data[1]
-    sm_save_file(UPLOAD_PREFIX + 'pp/' + image_name, img_content)
-    current_user.profile_picture = f'files/pp/{image_name}'
+    raw_data = json.loads(request.data.decode('utf-8'))
+    image_data = sm_parse_raw_image(raw_data)
+    filename = secure_filename(image_data[0])
+    file_content = base64.b64decode(image_data[1])
+    sm_save_file(UPLOAD_PREFIX + 'pp/' + filename, file_content)
+    current_user.profile_picture = f'files/pp/{filename}'
     db.session.commit()
     flash('Profile picture updated successfully!', category='success')
     return redirect(url_for('views.settings_page'))
