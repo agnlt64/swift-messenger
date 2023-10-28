@@ -1,7 +1,29 @@
 {% extends "admin/admin.html" %}
 
 {% block admin_content %}
+<h1>Todolist</h1>
 <section class="todolist">
-    <h1>Todolist</h1>
+    {% for task in all_tasks %}
+    <div class="task" priority="{{ task.priority }}">
+        <div class="name-container">
+            <h2 class="name">{{ task.name }}</h2>
+        </div>
+        <p class="description">{{ task.description }}</p>
+        <div class="bottom">
+            <span class="priority">{{ sm_priority_to_string(task.priority) }}</span>
+            <button class="edit">
+                <i class="bx bx-edit-alt"></i>
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
 </section>
+<button class="add-modal-open">
+    <i class='bx bxs-message-add'></i>
+</button>
+<span class="tooltip">
+    <p>Add a new team member</p>
+</span>
+<span class="arrow"></span>
 {% endblock %}

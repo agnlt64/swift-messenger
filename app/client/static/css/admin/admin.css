@@ -57,6 +57,10 @@ body {
     }
 }
 
+section h1 {
+    font-size: 2rem;
+}
+
 body[theme=dark] .admin .main-panel {
     color: white;
 }
@@ -111,4 +115,70 @@ body[theme=dark] .admin .sidebar ul li a {
     width: 30rem;
     overflow-wrap: break-word;
     text-align: justify;
+}
+
+/* todo list */
+.todolist {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+.todolist .task {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    gap: 0.5rem;
+    width: 25rem;
+    border: 1px solid var(--main-blue);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.todolist .task .name-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todolist .task .bottom {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+}
+
+.todolist .task .bottom .edit {
+    margin-left: auto;
+    font-size: 2rem;
+    margin-top: 1rem;
+    color: #fff;
+    background-color: transparent;
+    border: none;
+}
+
+.todolist .task .bottom .edit:hover {
+    cursor: pointer;
+}
+
+.todolist .task .priority {
+    color: #fff;
+    border-radius: 6px;
+    border: 1px solid;
+    padding: 0.5rem;
+    width: fit-content;
+}
+
+.todolist .task[priority="1"] .priority {
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+}
+
+.todolist .task[priority="2"] .priority {
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+
+.todolist .task[priority="3"] .priority {
+    background-color: #dc3545;
+    border-color: #dc3545;
 }

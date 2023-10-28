@@ -1,7 +1,8 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
 from flask_login import login_required, current_user, logout_user
-from .server.models import ChatGroup, Dev, User, Message
+from .server.models import ChatGroup, Dev, User, Message, Task
 from . import logger
+from .utils import sm_priority_to_string
 
 # client views only, logic is in the api folder
 views = Blueprint('views', __name__)
@@ -77,7 +78,7 @@ def team_page():
 @views.route('/admin/todolist')
 @login_required
 def todolist():
-    return render_template('admin/todolist.html')
+    return render_template('admin/todolist.html', all_tasks=Task.query.all(), sm_priority_to_string=sm_priority_to_string)
 
 @views.route('/settings')
 @login_required

@@ -1,9 +1,12 @@
 from flask import Blueprint, redirect, url_for, request, flash
 from flask_login import login_required, login_user
 from werkzeug.security import generate_password_hash
+
 from ..server import db
 from ..server.models import Task, User
+
 import datetime
+import json
 
 admin = Blueprint('admin', __name__, url_prefix='/admin')
 
@@ -16,8 +19,11 @@ roles_available = [
 @admin.route('/todolist/add', methods=['POST'])
 @login_required
 def add_todolist():
-    name = request.form.get('name')
-    task = Task(name=name)
+    raw_data = json.loads(request.data.decode('utf-8'))
+    name = raw_data['task_name']
+    description = raw_data['task_description']
+    priority = raw_data['priority']
+    task = Task(name=name, description=description, priority=priority)
     db.session.add(task)
     db.session.commit()
     return redirect(url_for('views.todolist'))
@@ -27,14 +33,19 @@ def add_todolist():
 def delete_task(id):
     Task.query.filter_by(id=id).delete()
     db.session.commit()
-    return redirect(url_for('admin.todolist'))
+    return redirect(url_for('views.todolist'))
 
 @admin.route('/todolist/update/<id>', methods=['POST'])
 @login_required
 def update_task(id):
     task_to_update = Task.query.filter_by(id=id).first()
-    new_name = request.form.get('new-name')
+    raw_data = json.loads(request.data.decode('utf-8'))
+    new_name = raw_data['task_name']
+    new_description = raw_data['task_description']
+    new_priority = raw_data['priority']
     task_to_update.name = new_name
+    task_to_update.description = new_description
+    task_to_update.priority = new_priority
     db.session.commit()
     return redirect(url_for('views.todolist'))
 

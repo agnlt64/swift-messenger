@@ -11,3 +11,10 @@ def sm_save_file(path: str, content: str) -> None:
     logger.log_assert(path.startswith(UPLOAD_PREFIX), f'path must start with {UPLOAD_PREFIX} !')
     with open(path, 'wb') as f:
         f.write(content)
+
+def sm_priority_to_string(priority: int) -> str:
+    match priority:
+        case 1: return 'Low Priority'
+        case 2: return 'Medium Priority'
+        case 3: return 'High Priority'
+        case other: return 'Error'

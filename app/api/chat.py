@@ -13,7 +13,7 @@ chat = Blueprint('chat', __name__, url_prefix='/chat')
 
 @chat.route('/create', methods=['POST'])
 @login_required
-def create_form():
+def create_group_form():
     raw_data = json.loads(request.data.decode('utf-8'))
     chat_group_name = raw_data['name']
     img_data = sm_parse_raw_image(raw_data)

@@ -28,6 +28,8 @@ class Message(db.Model):
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
+    description = db.Column(db.String(500))
+    priority = db.Column(db.Integer, nullable=False, default=1)
 
 class Dev(db.Model):
     id = db.Column(db.Integer, primary_key=True)
