@@ -62,7 +62,12 @@ def logout():
 @views.route('/admin')
 @login_required
 def admin_page():
-    return render_template('admin/admin.html')
+    return redirect(url_for('views.moderation_page'))
+
+@views.route('/admin/moderation')
+@login_required
+def moderation_page():
+    return render_template('admin/moderation.html')
 
 @views.route('/admin/team')
 @login_required
