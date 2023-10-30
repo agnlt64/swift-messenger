@@ -117,7 +117,7 @@ body[theme=dark] .admin .sidebar ul li a {
     text-align: justify;
 }
 
-/* todo list */
+/* todolist */
 .todolist {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -133,6 +133,34 @@ body[theme=dark] .admin .sidebar ul li a {
     border: 1px solid var(--main-blue);
     border-radius: 8px;
     padding: 1rem;
+    position: relative;
+    overflow-wrap: break-word;
+}
+
+.todolist .task .priority-dropdown {
+    position: absolute;
+    top: calc(100% - 1rem);
+    padding: 0.75rem 0;
+    border-radius: 8px;
+    background-color: #a6a6a6;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* rotate on click */
+.rotate {
+    rotate: 180deg;
+}
+
+.todolist .task .priority-dropdown span {
+    padding: 0.5rem 1rem;
+}
+
+.todolist .task .priority-dropdown span:hover {
+    cursor: pointer;
+    background-color: #606060;
 }
 
 .todolist .task .name-container {
@@ -166,6 +194,18 @@ body[theme=dark] .admin .sidebar ul li a {
     border: 1px solid;
     padding: 0.5rem;
     width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* smooth rotation */
+.todolist .task .priority i {
+    transition: 0.3s rotate;
+}
+
+.todolist .task .priority:hover {
+    cursor: pointer;
 }
 
 .todolist .task[priority="1"] .priority {

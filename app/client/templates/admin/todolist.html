@@ -10,10 +10,15 @@
         </div>
         <p class="description">{{ task.description }}</p>
         <div class="bottom">
-            <span class="priority">{{ sm_priority_to_string(task.priority) }}</span>
-            <button class="edit">
-                <i class="bx bx-edit-alt"></i>
-            </button>
+            <span class="priority">
+                <p>{{ sm_priority_to_string(task.priority) }}</p>
+                <i class='bx bxs-down-arrow'></i>
+            </span>
+            <div class="priority-dropdown invisible">
+                <span>Low</span>
+                <span>Important</span>
+                <span>High</span>
+            </div>
         </div>
     </div>
     {% endfor %}
@@ -23,7 +28,7 @@
     <i class='bx bxs-message-add'></i>
 </button>
 <span class="tooltip">
-    <p>Add a new team member</p>
+    <p>Add a new task to the list</p>
 </span>
 <span class="arrow"></span>
 {% endblock %}

@@ -1,5 +1,3 @@
-// let manageGroup = document.getElementById('manage-group')
-// let showManage = document.getElementById('show-manage')
 
 const manageGroupObserver = new MutationObserver(mutationList => {
     for (const mutation of mutationList) {

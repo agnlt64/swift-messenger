@@ -102,6 +102,9 @@
 <script src="{{ url_for('static', filename='js/password.js') }}"></script>
 <script src="{{ url_for('static', filename='js/add_user_to_group.js') }}"></script>
 <script src="{{ url_for('static', filename='js/manage_group.js') }}"></script>
+{% if current_user.role == 'admin' %}
+<script src="{{ url_for('static', filename='js/admin/todolist.js') }}"></script>
+{% endif %}
 <script>
     const theme = localStorage.getItem('theme')
     const layout = localStorage.getItem('layout')
