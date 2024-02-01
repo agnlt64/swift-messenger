@@ -126,7 +126,8 @@ body[theme=light] #spinner {
     --color: #1fb402;
 }
 
-.message-container {
+.message-container,
+body[notifs=top] .message-container {
     position: absolute;
     display: flex;
     align-items: center;
@@ -136,13 +137,18 @@ body[theme=light] #spinner {
     pointer-events: none;
 }
 
+body[notifs=bottom] .message-container {
+    bottom: calc(3rem/2);
+    left: calc(50% - 14rem/2 - 4rem);
+}
+
 .message-container .flashed-message {
+    box-shadow: 0 2px 20px 10px rgba(10, 10, 10, 0.3);
     background-color: var(--color);
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 4px 16px;
-    border-radius: 0 0 8px 8px;
     color: white;
     gap: 1rem;
     width: 14rem;
@@ -150,6 +156,14 @@ body[theme=light] #spinner {
     position: relative;
     text-align: center;
     pointer-events: all;
+}
+
+body[notifs=top] .flashed-message {
+    border-radius: 0 0 8px 8px;
+}
+
+body[notifs=bottom] .flashed-message {
+    border-radius: 8px;
 }
 
 .flashed-message .close-button {

@@ -80,46 +80,52 @@ body[theme=dark] .settings .sidebar ul li a {
     color: white;
 }
 
-/* change the color scheme */
-.scheme {
+/* change the color settings-options */
+.settings-options {
     display: flex;
     gap: 2rem;
     flex-direction: column;
 }
 
-.scheme .color {
+.settings-options .option {
     display: flex;
     padding: 15px 18px;
     border-radius: 12px;
     border: 1px solid black;
     align-items: center;
+    background-color: var(--nav-background);
 }
 
-.scheme .color[name=light] {
+.settings-options img {
+    height: 15rem;
+    width: 25rem;
+}
+
+.settings-options .option[name=light] {
     background-color: white;
     color: black;
 }
 
-.scheme .color[name=dark] {
+.settings-options .option[name=dark] {
     background-color: black;
     color: white;
 }
 
-body[theme=light] .scheme .color:not([name=light]) label {
+body[theme=light] .settings-options .option:not([name=light]) label {
     color: white;
 }
 
-.scheme .color[name=purple] {
+.settings-options .option[name=purple] {
     background-color: var(--purple);
     border-color: var(--purple);
 }
 
-.scheme .color[name=blue] {
+.settings-options .option[name=blue] {
     background-color: var(--dark-blue);
     border-color: var(--dark-blue);
 }
 
-.scheme .color input[type=radio] {
+.settings-options .option input[type=radio] {
     appearance: none;
     aspect-ratio: 1/1;
     width: 1.5rem;
@@ -128,11 +134,11 @@ body[theme=light] .scheme .color:not([name=light]) label {
     margin-left: auto;
 }
 
-.scheme .color input[type=radio]:checked {
+.settings-options .option input[type=radio]:checked {
     background-color:  var(--main-blue);
 }
 
-.scheme .color input[type=radio]:hover {
+.settings-options .option input[type=radio]:hover {
     cursor: pointer;
 }
 

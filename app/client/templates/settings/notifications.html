@@ -1,0 +1,17 @@
+{% extends "settings/settings.html" %}
+
+{% block settings_content %}
+<h2>Notifications settings</h2>
+<section class="settings-options">
+    <div class="option" name="notif-top">
+        <label for="notif-top">Top</label>
+        <input type="radio" name="notif-option" id="top" />
+    </div>
+    <img src="{{ url_for('static', filename='media/notif_top.png') }}" alt="Image that depicts the notifications at the top of the screen">
+    <div class="option" name="notif-bot">
+        <label for="notif-bot">Bottom</label>
+        <input type="radio" name="notif-option" id="bottom" />
+    </div>
+    <img src="{{ url_for('static', filename='media/notif_bot.png') }}" alt="Image that depicts the notifications at the bottom of the screen">
+</section>
+{% endblock %}

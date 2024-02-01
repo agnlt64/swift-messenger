@@ -91,6 +91,7 @@ def profile_picture():
     return render_template('settings/profile_picture.html')
 
 @views.route('/settings/color-scheme')
+@login_required
 def color_scheme():
     return render_template('settings/color_scheme.html')
 
@@ -98,3 +99,8 @@ def color_scheme():
 @login_required
 def password():
     return render_template('settings/password.html')
+
+@views.route('/settings/notifications')
+@login_required
+def notifications():
+    return render_template('settings/notifications.html')
