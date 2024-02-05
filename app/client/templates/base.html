@@ -38,10 +38,10 @@
         </a>
         <ul>
             <li>
-                <a href="/">Home</a>
+                <a class="slide" href="/">Home</a>
             </li>
             <li>
-                <a href="#">About</a>
+                <a class="slide" href="#">About</a>
             </li>
             <div class="auth-buttons">
                 {% if not current_user.is_authenticated %}
@@ -56,7 +56,7 @@
                 {% else %}
                 <li>
                     {% if current_user.role == 'admin' %}
-                    <a href="/admin">Admin</a>
+                    <a class="slide" href="/admin">Admin</a>
                     {% endif %}
                 </li>
                 <li class="slide">

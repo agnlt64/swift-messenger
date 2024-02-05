@@ -160,7 +160,7 @@ body[theme=dark] .admin .sidebar ul li a {
 
 .todolist .task .priority-dropdown span:hover {
     cursor: pointer;
-    background-color: #606060;
+    background-color: #808080;
 }
 
 .todolist .task .name-container {
