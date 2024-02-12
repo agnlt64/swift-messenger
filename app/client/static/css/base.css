@@ -24,6 +24,10 @@
     margin: 0;
 }
 
+html {
+    height: 100%;
+}
+
 body {
     box-sizing: border-box;
     margin: 0;
@@ -42,6 +46,28 @@ body[layout=purple] {
 
 a {
     text-decoration: none;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--main-blue);
+    background-color: var(--main-blue);
+    transition: 0.2s transform, 0.2s scale;
+    border-radius: 8px;
+}
+
+button:hover {
+    cursor: pointer;
+    transform: translateY(-4px);
+}
+
+button:active {
+    scale: 0.97;
 }
 
 input {
@@ -98,6 +124,20 @@ body[theme=light] #spinner {
     display: none;
 }
 
+/* custom scrollbar for safari and chrome */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+   background-color: transparent;
+}
+  
+::-webkit-scrollbar-thumb {
+    background-color: #595a5a;
+    border-radius: 10px;
+}
+
 /* X to close any message */
 .close-button {
     background-color: transparent;
@@ -133,13 +173,12 @@ body[notifs=top] .message-container {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 100%;
     pointer-events: none;
 }
 
 body[notifs=bottom] .message-container {
     bottom: calc(3rem/2);
-    left: calc(50% - 14rem/2 - 4rem);
+    right: 3.5rem;
 }
 
 .message-container .flashed-message {

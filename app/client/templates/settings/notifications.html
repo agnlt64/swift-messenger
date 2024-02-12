@@ -1,8 +1,8 @@
 {% extends "settings/settings.html" %}
 
 {% block settings_content %}
-<h2>Notifications settings</h2>
-<section class="settings-options">
+<h1>Notifications settings</h1>
+<div class="settings-options">
     <div class="option" name="notif-top">
         <label for="notif-top">Top</label>
         <input type="radio" name="notif-option" id="top" />
@@ -13,5 +13,6 @@
         <input type="radio" name="notif-option" id="bottom" />
     </div>
     <img src="{{ url_for('static', filename='media/notif_bot.png') }}" alt="Image that depicts the notifications at the bottom of the screen">
-</section>
+    <button>Test notifications</button>
+</div>
 {% endblock %}
